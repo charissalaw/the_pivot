@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path
       else
-        flash[:info] = "Hey #{user.first_name}, welcome to Little Owl."
+        flash[:info] = "Hey #{user.first_name}, welcome to Lending Owl."
         redirect_to root_path
       end
     else

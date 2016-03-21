@@ -1,9 +1,9 @@
-#Little Owl
-[![Stories in Progress](https://badge.waffle.io/weilandia/little_owl.png?label=Ready)](http://waffle.io/weilandia/little_owl.io) &nbsp;&nbsp;&nbsp;&nbsp; [![Code Climate](https://codeclimate.com/github/weilandia/little_owl/badges/gpa.svg)](https://codeclimate.com/github/weilandia/little_owl)
+#Lending Owl
+[![Stories in Progress](https://badge.waffle.io/weilandia/lending_owl.png?label=Ready)](http://waffle.io/weilandia/lending_owl.io) &nbsp;&nbsp;&nbsp;&nbsp; [![Code Climate](https://codeclimate.com/github/weilandia/lending_owl/badges/gpa.svg)](https://codeclimate.com/github/weilandia/lending_owl)
 
-LittleOwl is an enterprise eCommerce app built on rails.  Production is hosted [here](http://littleowl.herokuapp.com).
+LendingOwl is an enterprise eCommerce app built on rails.  Production is hosted [here](http://lendingowl.herokuapp.com).
 
-Admin Username: admin@littleowl.com
+Admin Username: admin@lendingowl.com
 
 Admin Password: password
 
@@ -17,7 +17,7 @@ Admin Password: password
 ###Goals
 #####End-to-End UX Design
 ![team](app/assets/images/ux_banner.png)
-A primary goal for the Little Owl project was to model UX Design workflow from ideation to production.  We started this process by building a Journey Map to define our ideal users. With an idea of these users defined, we interviewed a group of people who fit "The Persona" in order to gather insights on what type of experience our users would like when interacting with an eCommerce app. Rooted in this research, we wireframed the entire app and did our first round of usability testing without writing a snippet of code.
+A primary goal for the Lending Owl project was to model UX Design workflow from ideation to production.  We started this process by building a Journey Map to define our ideal users. With an idea of these users defined, we interviewed a group of people who fit "The Persona" in order to gather insights on what type of experience our users would like when interacting with an eCommerce app. Rooted in this research, we wireframed the entire app and did our first round of usability testing without writing a snippet of code.
 
 Moving forward (if the app was live), we would expect to continually interact with our ideal users in an iterative process of continual design improvement.
 
@@ -26,7 +26,7 @@ Another goal for this project was to mock a two week sprint on an agile team wit
 
 ![agile stats](app/assets/images/agile_tdd.png)
 
-![test coverage](app/assets/images/code_coverage_for_little_owl.png)
+![test coverage](app/assets/images/code_coverage_for_lending_owl.png)
 
 ####Technical Overview
 * Full stack ruby-on-rails
@@ -38,7 +38,7 @@ Another goal for this project was to mock a two week sprint on an agile team wit
 * Testing with rspec and Capybara
 
 ### Testing
-All testing in Little Owl was done via [RSpec-rails](https://github.com/rspec/rspec-rails).  We used [shoulda matchers](https://github.com/thoughtbot/shoulda-matchers) to test database validations and relationships.  Our coverage was tested using [simplecov](https://github.com/colszowka/simplecov).
+All testing in Lending Owl was done via [RSpec-rails](https://github.com/rspec/rspec-rails).  We used [shoulda matchers](https://github.com/thoughtbot/shoulda-matchers) to test database validations and relationships.  Our coverage was tested using [simplecov](https://github.com/colszowka/simplecov).
 ##### Running tests
 Once you have the repo cloned, make sure to reset the database on your local machine and bundle.
 

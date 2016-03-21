@@ -18,7 +18,7 @@ RSpec.feature "UserCanLoginToExistingAccount", type: :feature do
 
     click_on "login"
 
-    expect(page).to have_content("Hey John, welcome to Little Owl.")
+    expect(page).to have_content("Hey John, welcome to Lending Owl.")
 
     expect(current_path).to eq("/")
 
