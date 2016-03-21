@@ -9,7 +9,7 @@
   <div class="col-xs-6 container past-order-review" id="order-information">
   <%= form_for [:admin, @order], url: admin_order_path(@order.id), html: {class:"form-inline"} do |f| %>
   <br>
-    <h2 class="order-id little">Order # <%= @order.id %>
+    <h2 class="order-id lending">Order # <%= @order.id %>
     <span><%= f.submit "update", class:"btn btn-checkout btn-s float-right"%></span></h2>
     <br>
     <h3 class="order-date"><%= @order.date %>
@@ -37,7 +37,7 @@
             <%= f.hidden_field :order_id, value: @order.id %>
             <td><%= f.label :comment, class:"sr-only"  %>
               <%= f.text_field :comment, placeholder: "comment", class: "form-control"%></td>
-              <td><%= f.submit "add comment", class:"btn btn-little-owl btn-s"%></td>
+              <td><%= f.submit "add comment", class:"btn btn-lending-owl btn-s"%></td>
             </tr>
             <% end %>
             <% @order.comments.each do |comment| %>
