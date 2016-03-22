@@ -7,7 +7,6 @@
         <li class="name-in-dropdown">
           <%= current_user.fullname.downcase %>
         </li>
-        <li><%= link_to "order history", user_orders_path(current_user) %></li>
         <li>
           <%= link_to "logout", logout_path, method: :delete %>
         </li>
