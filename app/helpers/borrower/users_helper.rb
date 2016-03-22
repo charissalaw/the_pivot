@@ -1,0 +1,2 @@
+module Borrower::UsersHelper
+end
