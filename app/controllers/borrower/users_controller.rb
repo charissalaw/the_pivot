@@ -2,6 +2,9 @@ class Borrower::UsersController < ApplicationController
   def new
   end
 
+  def show
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -9,7 +12,7 @@ class Borrower::UsersController < ApplicationController
       if borrower.save
         @user.borrower = borrower
         session[:user_id]= @user.id
-        flash[:info] = "Your have successfully created a borrower account... SWEET!"
+        flash[:info] = "You have successfully created a borrower account... SWEET!"
         redirect_to borrower_user_path(current_user)
       else
         flash[:alert] = "Your credentials do not meet our requirements for a loan"
