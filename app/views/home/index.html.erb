@@ -1,10 +1,11 @@
 <div class="hero-unit">
   <div class="container text-center hero-container">
-    <a href="/coffee">
-      <h1>the neat <span class="landing-span">blend.</span></h1>
-    </a>
+      <h1><span class="landing-span">Fund the change.</span></h1>
+      <h2>$10 micro loans for good</h2>
+      <%= link_to "become a lender", root_path, class:"btn btn-primary" %>
   </div>
 </div>
+<%= render partial: "shared/quote_div" %>
 <%= render partial: "shared/category_imgs" %>
 <%= render partial: "shared/mailing_list" %>
 <%= render partial: "shared/footer" %>
