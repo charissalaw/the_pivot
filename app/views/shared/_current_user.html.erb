@@ -25,7 +25,10 @@
     <% end %>
   <% else %>
     <li class="pull-right nav-icon">
-      <a id="login" href="/login" style="color:#777; margin-top: 5px;"><i class="fa fa-sign-in fa-lg"></i></a>
+      <a id="login" href="/login" style="color:#777; margin-top: 5px;">borrow</a>
+    </li>
+    <li class="pull-right nav-icon">
+      <a id="login" href="/login" style="color:#777; margin-top: 5px;">lend</a>
     </li>
     <% if !@cart.contents.empty? %>
       <li class="pull-right nav-icon">
