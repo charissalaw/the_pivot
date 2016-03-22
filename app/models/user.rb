@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_one :borrower
   before_save :build_name
   has_many :orders
   has_many :order_products, through: :orders
@@ -8,6 +9,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
+  has_attached_file :image
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   enum role: %w(default admin super_admin)
 
   def build_name
