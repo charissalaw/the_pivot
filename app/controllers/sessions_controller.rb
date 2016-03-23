@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path
       elsif user.borrower?
-        redirect_to borrower_dashboard_path
+        redirect_to borrower_user_path(user)
       else
         flash[:info] = "Hey #{user.first_name}, welcome to Lending Owl."
         redirect_to root_path

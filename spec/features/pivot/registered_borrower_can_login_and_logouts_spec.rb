@@ -6,7 +6,7 @@ RSpec.feature "RegisteredBorrowerCanLoginAndLogouts" do
     user = create(:user)
     borrower = create(:borrower)
     borrower.user_id = user.id
-    user.role = 1
+    user.update(role: 1)
     visit root_path
     click_on "login"
     expect(current_path).to eq(login_path)
