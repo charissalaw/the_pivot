@@ -4,15 +4,15 @@ RSpec.feature "AdminCanCommentOnOrder", type: :feature do
   scenario "they comment on specific orders" do
     coffee = Category.create(name:"coffee")
 
-    product1 = coffee.products.create(name: "Finca San Matias",
+    project1 = coffee.projects.create(name: "Finca San Matias",
                                       price: 2500,
                                       description: "Es todo que necessita.",
                                       )
-    product2 = coffee.products.create(name: "Gatchatha AA Kenya",
+    project2 = coffee.projects.create(name: "Gatchatha AA Kenya",
                                       price: 2000,
                                       description: "Gatchatha have it.",
                                       )
-    product3 = coffee.products.create(name: "Inter Continental Pack",
+    project3 = coffee.projects.create(name: "Inter Continental Pack",
                                       price: 4000,
                                       description: "Study abroad.",
                                       )
@@ -32,10 +32,10 @@ RSpec.feature "AdminCanCommentOnOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order1.order_products.create(product_id: product1.id,
+    order1.order_projects.create(project_id: project1.id,
                                  quantity: 10)
 
-    order1.order_products.create( product_id: product3.id,
+    order1.order_projects.create( project_id: project3.id,
                                   quantity: 11)
     order1.comments.create(comment: "Test comment")
 
@@ -48,8 +48,8 @@ RSpec.feature "AdminCanCommentOnOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order2.order_products.create(product_id: product2.id, quantity: 1)
-    order2.order_products.create(product_id: product3.id, quantity: 2)
+    order2.order_projects.create(project_id: project2.id, quantity: 1)
+    order2.order_projects.create(project_id: project3.id, quantity: 2)
 
     admin = User.create(first_name: "john",
                         last_name: "admin",

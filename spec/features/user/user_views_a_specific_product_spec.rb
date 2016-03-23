@@ -1,21 +1,21 @@
 require "rails_helper"
 
-RSpec.feature "UserViewsASpecificProduct", type: :feature do
-  scenario "user views a specific product" do
+RSpec.feature "UserViewsASpecificProject", type: :feature do
+  scenario "user views a specific project" do
     category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 
     visit "/coffee"
 
-    within "div##{product.name}-link" do
-      click_on "#{product.id}-product"
+    within "div##{project.name}-link" do
+      click_on "#{project.id}-project"
     end
 
-    expect(current_path).to eq("/products/#{product.id}")
+    expect(current_path).to eq("/projects/#{project.id}")
 
-    within "div#product" do
-      expect(page).to have_content(product.name)
-      expect(page).to have_content(product.description)
+    within "div#project" do
+      expect(page).to have_content(project.name)
+      expect(page).to have_content(project.description)
     end
   end
 end

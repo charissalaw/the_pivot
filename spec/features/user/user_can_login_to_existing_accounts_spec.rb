@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.feature "UserCanLoginToExistingAccount", type: :feature do
   scenario "user logs in to account" do
     category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
     user = User.create(first_name: "John", last_name: "Adams", fullname: "John Adams", email: "email@example.com", password: "password")
 
-    visit "/products/#{product.id}"
+    visit "/projects/#{project.id}"
     click_on "Add to cart"
 
     visit "/"
@@ -32,7 +32,7 @@ RSpec.feature "UserCanLoginToExistingAccount", type: :feature do
 
     click_on "Continue Shopping"
 
-    expect(current_path).to eq("/products")
+    expect(current_path).to eq("/projects")
 
     click_on "logout"
 

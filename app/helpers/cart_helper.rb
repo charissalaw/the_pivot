@@ -1,11 +1,11 @@
 module CartHelper
-  def cart_total(products)
-    raw_cart_total(products) / 100
+  def cart_total(projects)
+    raw_cart_total(projects) / 100
   end
 
-  def raw_cart_total(products)
-    products.map do |product|
-      product.price * product.quantity
+  def raw_cart_total(projects)
+    projects.map do |project|
+      project.price * project.quantity
     end.reduce(:+)
   end
 end

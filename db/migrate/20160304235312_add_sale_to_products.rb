@@ -1,6 +1,6 @@
-class AddSaleToProducts < ActiveRecord::Migration
+class AddSaleToProjects < ActiveRecord::Migration
   def change
-    add_column :products, :sale?, :boolean, default: false
-    add_column :products, :sale_price, :integer
+    add_column :projects, :sale?, :boolean, default: false
+    add_column :projects, :sale_price, :integer
   end
 end

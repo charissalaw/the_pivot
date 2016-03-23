@@ -11,7 +11,7 @@ RSpec.feature "AdminCanViewAllItemsAndEdit", type: :feature do
 
     Category.create(name: "new category")
     category = Category.create(name: "coffee")
-    product = category.products.create(name: "Ethiopian",
+    project = category.projects.create(name: "Ethiopian",
                                        price: 1500,
                                        description: "Ethiopian coffee is super good",
                                       )
@@ -26,22 +26,22 @@ RSpec.feature "AdminCanViewAllItemsAndEdit", type: :feature do
 
     visit admin_dashboard_path
 
-    click_on "active products"
+    click_on "active projects"
 
-    expect(current_path).to eq(admin_products_path)
+    expect(current_path).to eq(admin_projects_path)
 
-    within "tr##{product.id}-product" do
+    within "tr##{project.id}-project" do
       fill_in "name", with: "New Name"
       fill_in "description", with: "newly guud"
-      select "new category", from: "product-category"
+      select "new category", from: "project-category"
       find(:css, "#sale").set(true)
       fill_in "sale price", with: 1200
     end
 
-    click_on "update product"
+    click_on "update project"
 
     expect(page).to have_content("Congrats! New Name has been updated!")
 
-    expect(current_path).to eq(admin_products_path)
+    expect(current_path).to eq(admin_projects_path)
   end
 end

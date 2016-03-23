@@ -1,9 +1,9 @@
-class AddImageToProducts < ActiveRecord::Migration
+class AddImageToProjects < ActiveRecord::Migration
   def self.up
-    add_attachment :products, :image
+    add_attachment :projects, :image
   end
   
   def self.down
-    remove_attachment :products, :image
+    remove_attachment :projects, :image
   end
 end

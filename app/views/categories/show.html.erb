@@ -7,32 +7,32 @@
 </div>
 <div class="container-fluid">
   <div class="row">
-    <% @category.active_products.each do |product| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 product-div" id="<%= product.id %>-category-product">
-        <div class="row sm-product-row product-row">
+    <% @category.active_projects.each do |project| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 project-div" id="<%= project.id %>-category-project">
+        <div class="row sm-project-row project-row">
           <div class="col-xs-12">
-            <%= link_to image_tag(product.image.url(:show), class: "img-responsive product-image"), product_path(product.id), id: "#{product.id}-product-image" %>
-            <div class="sm-product-info">
-              <h4><%= link_to product.name, product_path(product.id), id: "#{product.id}-product" %></h4>
-              <p><%= product.description %></p>
+            <%= link_to image_tag(project.image.url(:show), class: "img-responsive project-image"), project_path(project.id), id: "#{project.id}-project-image" %>
+            <div class="sm-project-info">
+              <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
+              <p><%= project.description %></p>
             </div>
           </div>
-          <div class="product-info" id="<%= product.name %>-link">
-            <h4><%= link_to product.name, product_path(product.id), id: "#{product.id}-product" %></h4>
-            <p><%= product.description %></p>
+          <div class="project-info" id="<%= project.name %>-link">
+            <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
+            <p><%= project.description %></p>
           </div>
         </div>
-        <div class="row xs-product-row product-row">
+        <div class="row xs-project-row project-row">
           <div class="col-xs-6">
-            <%= link_to image_tag(product.image.url(:show), class: "img-responsive"), product_path(product.id), id: "#{product.id}-product-image" %>
-            <div class="sm-product-info">
-              <h4><%= link_to product.name, product_path(product.id), id: "#{product.id}-product" %></h4>
-              <p><%= product.description %></p>
+            <%= link_to image_tag(project.image.url(:show), class: "img-responsive"), project_path(project.id), id: "#{project.id}-project-image" %>
+            <div class="sm-project-info">
+              <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
+              <p><%= project.description %></p>
             </div>
           </div>
-          <div class="product-info">
-            <h4><%= link_to product.name, product_path(product.id), id: "#{product.id}-product" %></h4>
-            <p><%= product.description %></p>
+          <div class="project-info">
+            <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
+            <p><%= project.description %></p>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
     <h2>more stuff you may like</h2>
     <div class="aligncenter divider">-</div>
   </div>
-  <%= render partial: "shared/featured_products" %>
+  <%= render partial: "shared/featured_projects" %>
 </div>
 <%= render partial: "shared/mailing_list" %>
 <%= render partial: "shared/footer" %>

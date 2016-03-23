@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.feature "UserCreatesAccount", type: :feature do
   scenario "user creates account" do
     category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 
-    visit "/products/#{product.id}"
+    visit "/projects/#{project.id}"
     click_on "Add to cart"
 
     visit "/"
@@ -35,7 +35,7 @@ RSpec.feature "UserCreatesAccount", type: :feature do
 
     click_on "Continue Shopping"
 
-    expect(current_path).to eq("/products")
+    expect(current_path).to eq("/projects")
 
     click_on "logout"
 

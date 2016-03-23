@@ -3,7 +3,7 @@
     <h1>so close to awesome.</h1>
   </div>
 </div><br><br>
-<div id="product" class="container">
+<div id="project" class="container">
   <div class="row">
     <div class="col-sm-4">
       <h3 class="shopping-cart-title">Shopping Cart</h3>
@@ -11,26 +11,26 @@
   </div>
   <div class="row">
     <div class="col-sm-7">
-      <% @cart.products.each do |product| %>
-      <div class="cart-product">
-        <div id="<%= product.id %>-product">
+      <% @cart.projects.each do |project| %>
+      <div class="cart-project">
+        <div id="<%= project.id %>-project">
           <div class="row">
             <div class="col-xs-5">
               <div class="cart-image">
-                <%= image_tag(product.image.url(:index), class: "product_image img-responsive") %>
+                <%= image_tag(project.image.url(:index), class: "project_image img-responsive") %>
               </div>
-              <h5><%= link_to "remove from cart", cart_product_path(product.id), method: :delete %></h5>
+              <h5><%= link_to "remove from cart", cart_project_path(project.id), method: :delete %></h5>
             </div>
             <div class="col-xs-4 col-sm-7">
               <div class="row">
-                <p class="product-title"><%= product.name %></p>
-                <h3 class="product-price"><%= product.display_price %></h3>
+                <p class="project-title"><%= project.name %></p>
+                <h3 class="project-price"><%= project.display_price %></h3>
                 <div id="quantity-dropdown" class="row text-left">
                   <div class="form-inline">
-                    <%= form_tag(cart_product_path(id: product.id)) do %>
+                    <%= form_tag(cart_project_path(id: project.id)) do %>
                       <input type="hidden" name="_method" value="patch">
                       <div class="col-xs-6 col-sm-4 col-md-3">
-                        <%= select_tag "quantity", options_for_select([*1..10], product.quantity), {class: "form-control form-control-sm"} %>
+                        <%= select_tag "quantity", options_for_select([*1..10], project.quantity), {class: "form-control form-control-sm"} %>
                       </div>
                       <div class="text-left">
                         <%= submit_tag "Update", class:"btn btn-lending-owl"%>
@@ -47,10 +47,10 @@
     </div>
     <div class="col-sm-4 col-sm-offset-1 text-center checkout-con">
       <div class="cart">
-        <div class="product-header">
+        <div class="project-header">
           <h3>Order Subtotal (<%= @cart.count %> items)</h3>
         </div>
-        <h1 class="cart-total">$<%= cart_total(@cart.products) %></h1>
+        <h1 class="cart-total">$<%= cart_total(@cart.projects) %></h1>
         <div class="checkout">
           <% if current_user %>
             <%= link_to "Checkout", new_user_order_path(current_user), class:"btn btn-checkout form-control" %>
@@ -60,7 +60,7 @@
         </div>
         <h4>or</h4>
         <div class="continue-shopping">
-          <%= link_to "Continue Shopping", products_path, class:"btn btn-primary form-control" %>
+          <%= link_to "Continue Shopping", projects_path, class:"btn btn-primary form-control" %>
         </div>
       </div>
     </div>

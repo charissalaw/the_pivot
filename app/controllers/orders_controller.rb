@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def new
-    @products = OrderProcessor.new(@cart).products
+    @projects = OrderProcessor.new(@cart).projects
     @order = Order.new
   end
 
@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderProcessor.new(@cart).process_current_user(stripe_params, current_user)
-    @order.process(order_processor.products)
+    @order.process(order_processor.projects)
     if @order.save
       OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"

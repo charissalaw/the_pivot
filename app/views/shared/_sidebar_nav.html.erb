@@ -17,18 +17,18 @@
     <%= link_to "cancelled orders", admin_orders_path(status: "cancelled") %>
   </li>
   <li>
-    <%= link_to "active products", admin_products_path(inactive: false) %>
+    <%= link_to "active projects", admin_projects_path(inactive: false) %>
   </li>
   <li>
-    <%= link_to "inactive products", admin_products_path(inactive: true) %>
+    <%= link_to "inactive projects", admin_projects_path(inactive: true) %>
   </li>
   <li>
-    <%= link_to "add product", new_admin_product_path %>
+    <%= link_to "add project", new_admin_project_path %>
   </li>
   <li class="sidebar-header">
     <p>user interface</p>
   </li>
   <li>
-    <%= link_to "shop all", products_path %>
+    <%= link_to "shop all", projects_path %>
   </li>
 </ul>

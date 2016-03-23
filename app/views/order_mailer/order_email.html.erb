@@ -20,15 +20,15 @@
       <td style="width:100%">
         <table bgcolor="#fff" style="background:#fff;border-collapse:collapse;border-top-color:#e5e5e5;border-top-style:solid;border-top-width:1px;font-size:18px;margin:20px 0 30px;max-width:768px;padding:20px 0;width:100%">
           <tbody>
-            <% @order.order_products.each do |order_product| %>
+            <% @order.order_projects.each do |order_project| %>
             <tr style="border-bottom-color:#e5e5e5;border-bottom-style:solid;border-bottom-width:1px;border-collapse:separate">
               <td style="padding:20px 0;width:30%">
-                <%= order_product.quantity %><span style="color:#999999;padding:0 10px">x</span>
-                <%= image_tag(order_product.product.image.url(:small), class:"product-image img-rounded") %>
+                <%= order_project.quantity %><span style="color:#999999;padding:0 10px">x</span>
+                <%= image_tag(order_project.project.image.url(:small), class:"project-image img-rounded") %>
                </td>
               <td style="padding:20px 0 20px 10px;width:70%">
-                <%= order_product.product.description %>
-                <span style="float:right"><%= order_product.product.display_price %></span>
+                <%= order_project.project.description %>
+                <span style="float:right"><%= order_project.project.display_price %></span>
               </td>
             </tr>
             <% end %>

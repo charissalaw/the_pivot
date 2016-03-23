@@ -33,7 +33,7 @@
         <th>date</th>
         <th>id</th>
         <th>name</th>
-        <th>products</th>
+        <th>projects</th>
         <th>total</th>
         <th>latest comment</th>
         <th>status</th>
@@ -45,7 +45,7 @@
         <td class="text-nowrap"><%= order.date %></td>
         <td><%= link_to order.id, admin_order_path(order.id) %></td>
         <td class="text-nowrap"><%= link_to order.name, admin_orders_path(params: {search: order.name}) %></td>
-        <td><%= order.product_quantity %></td>
+        <td><%= order.project_quantity %></td>
         <td><%= order.display_total %></td>
         <% if order.comments.empty? %>
           <td></td>

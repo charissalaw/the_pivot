@@ -4,7 +4,7 @@ RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
   before(:each) do
     coffee = Category.create(name:"coffee")
 
-    product1 = coffee.products.create(name: "Finca San Matias",
+    project1 = coffee.projects.create(name: "Finca San Matias",
                                       price: 2500,
                                       description: "Es todo que necessita.")
 
@@ -24,7 +24,7 @@ RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
                                 email: "spam@foundingfathers.biz",
                                 status: "cancelled")
 
-    order1.order_products.create(product_id: product1.id,
+    order1.order_projects.create(project_id: project1.id,
                                  quantity: 10)
 
     order2 = user.orders.create(street: "1600 Ohio",
@@ -36,7 +36,7 @@ RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
                                 last_name: "jackson",
                                 email: "spam@foundingfathers.biz")
 
-     order2.order_products.create(product_id: product1.id,
+     order2.order_projects.create(project_id: project1.id,
                                   quantity: 5)
 
     admin = User.create(first_name: "john",
@@ -67,7 +67,7 @@ RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
     expect(current_path).to eq(admin_order_path("#{Order.last.id}"))
 
     expect(page).to have_content("#{Order.last.total}")
-    expect(page).to have_content("#{Order.last.order_products.first.product.name}")
+    expect(page).to have_content("#{Order.last.order_projects.first.project.name}")
     expect(page).to have_content("#{Order.last.fullname}")
     expect(page).to have_content("#{Order.last.street}")
     expect(page).to have_content("#{Order.last.city}")

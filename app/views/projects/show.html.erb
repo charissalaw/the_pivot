@@ -1,19 +1,19 @@
-<div id="product" class="container">
-  <div class="product-header">
-    <h2><%= @product.name %></h2>
-    <p><%= @product.description %></p>
+<div id="project" class="container">
+  <div class="project-header">
+    <h2><%= @project.name %></h2>
+    <p><%= @project.description %></p>
   </div>
-  <div class="row products-rows">
+  <div class="row projects-rows">
     <div class="col-sm-7">
-      <div class="product-images">
-          <%= image_tag(@product.image.url(:show), class: "img-responsive") %>
+      <div class="project-images">
+          <%= image_tag(@project.image.url(:show), class: "img-responsive") %>
       </div>
     </div>
     <div class="col-sm-5">
       <div class="cart text-center">
-        <h3><%= @product.name %></h3>
-        <h2 class="text-center"><%= @product.display_price %></h2><br>
-        <%= form_tag(cart_products_path(product_id: @product.id), method: "post") do %>
+        <h3><%= @project.name %></h3>
+        <h2 class="text-center"><%= @project.display_price %></h2><br>
+        <%= form_tag(cart_projects_path(project_id: @project.id), method: "post") do %>
           <select class="form-control" name="quantity">
             <%= render partial: "shared/options"  %>
           </select><br>
@@ -27,7 +27,7 @@
     <h2>more stuff you may like</h2>
     <div class="aligncenter divider">-</div>
   </div>
-  <%= render partial: "shared/featured_products" %>
+  <%= render partial: "shared/featured_projects" %>
 </div>
 <%= render partial: "shared/mailing_list" %>
 <%= render partial: "shared/footer" %>

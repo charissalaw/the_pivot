@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_one :borrower
   before_save :build_name
   has_many :orders
-  has_many :order_products, through: :orders
+  has_many :order_projects, through: :orders
 
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true

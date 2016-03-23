@@ -3,29 +3,29 @@
     <h1>sweet nectar of the coffee gods.</h1>
   </div>
 </div>
-<div id="product" class="container">
+<div id="project" class="container">
   <div class="row">
   </div><br><br>
   <div class="row">
     <div class="col-sm-8">
       <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products">
+        <table class="table table-hover table-condensed table-projects">
           <thead>
             <tr>
               <th></th>
-              <th class="text-center">product</th>
+              <th class="text-center">project</th>
               <th class="text-center">price</th>
               <th class="text-center">quantity</th>
               <th class="text-center">subtotal</th>
             </tr>
           </thead>
-          <% @cart.products.each do |product| %>
+          <% @cart.projects.each do |project| %>
             <tr>
-              <td><%= image_tag(product.image.url(:small), class: "product_image img-responsive") %></td>
-                <td><h4><%= product.name %></h4></td>
-                <td><h4><%= product.display_price %></h4></td>
-                <td><h4><%= product.quantity %></h4></td>
-                <td><h4>$<%= product.format_subtotal %></h4></td>
+              <td><%= image_tag(project.image.url(:small), class: "project_image img-responsive") %></td>
+                <td><h4><%= project.name %></h4></td>
+                <td><h4><%= project.display_price %></h4></td>
+                <td><h4><%= project.quantity %></h4></td>
+                <td><h4>$<%= project.format_subtotal %></h4></td>
             </tr>
           <% end %>
             <tfoot>
@@ -33,7 +33,7 @@
               <th></th>
               <th></th>
               <th class="order-total">Total:</th>
-              <th class="order-total">$<%= cart_total(@cart.products) %></th>
+              <th class="order-total">$<%= cart_total(@cart.projects) %></th>
             </tfoot>
         </table>
       </div>
@@ -41,9 +41,9 @@
     <div class="col-sm-4 text-center checkout-con">
       <div class="cart text-center">
         <h3>Hey, <%= current_user.fullname %>.</h3>
-        <h4>Your total is $<%= cart_total(@cart.products) %></h4><br>
+        <h4>Your total is $<%= cart_total(@cart.projects) %></h4><br>
         <p>Click "submit order" below and you'll be asked all billing and shipping questions. Then enjoy the sweet nectar of the coffee gods.</p>
-          <%= render partial: "checkout_form", locals: {amount: raw_cart_total(@cart.products) } %>
+          <%= render partial: "checkout_form", locals: {amount: raw_cart_total(@cart.projects) } %>
       </div>
     </div>
   </div>
