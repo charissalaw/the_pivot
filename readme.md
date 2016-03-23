@@ -1,7 +1,7 @@
 #Lending Owl
 [![Stories in Progress](https://badge.waffle.io/weilandia/lending_owl.png?label=Ready)](http://waffle.io/weilandia/lending_owl.io) &nbsp;&nbsp;&nbsp;&nbsp; [![Code Climate](https://codeclimate.com/github/weilandia/lending_owl/badges/gpa.svg)](https://codeclimate.com/github/weilandia/lending_owl)
 
-LendingOwl is an enterprise eCommerce app built on rails.  Production is hosted [here](http://lendingowl.herokuapp.com).
+LendingOwl is an enterprise eCommerce app built on rails.  Projection is hosted [here](http://lendingowl.herokuapp.com).
 
 Admin Username: admin@lendingowl.com
 
@@ -17,7 +17,7 @@ Admin Password: password
 ###Goals
 #####End-to-End UX Design
 ![team](app/assets/images/ux_banner.png)
-A primary goal for the Lending Owl project was to model UX Design workflow from ideation to production.  We started this process by building a Journey Map to define our ideal users. With an idea of these users defined, we interviewed a group of people who fit "The Persona" in order to gather insights on what type of experience our users would like when interacting with an eCommerce app. Rooted in this research, we wireframed the entire app and did our first round of usability testing without writing a snippet of code.
+A primary goal for the Lending Owl project was to model UX Design workflow from ideation to projection.  We started this process by building a Journey Map to define our ideal users. With an idea of these users defined, we interviewed a group of people who fit "The Persona" in order to gather insights on what type of experience our users would like when interacting with an eCommerce app. Rooted in this research, we wireframed the entire app and did our first round of usability testing without writing a snippet of code.
 
 Moving forward (if the app was live), we would expect to continually interact with our ideal users in an iterative process of continual design improvement.
 
@@ -47,7 +47,7 @@ In order to run the tests, enter `rspec` in the command line.
 If you would like to run a specific test enter, the whole path of that test, preceeded by the rspec command: ie. 
 
 ```
-rspec spec/features/user/user_adds_product_to_cart_spec.rb
+rspec spec/features/user/user_adds_project_to_cart_spec.rb
 ```
 
 In order to see coverage for our testing suite simply type the command `open coverage/index.html` and it will show the index page for our simple cov code coverage. 

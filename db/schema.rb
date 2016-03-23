@@ -48,16 +48,16 @@ ActiveRecord::Schema.define(version: 20160322214500) do
     t.string "email"
   end
 
-  create_table "order_products", force: :cascade do |t|
-    t.integer  "product_id"
+  create_table "order_projects", force: :cascade do |t|
+    t.integer  "project_id"
     t.integer  "order_id"
     t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
-  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
+  add_index "order_projects", ["order_id"], name: "index_order_projects_on_order_id", using: :btree
+  add_index "order_projects", ["project_id"], name: "index_order_projects_on_project_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "street"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160322214500) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "products", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.integer  "price"
     t.string   "description"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20160322214500) do
     t.boolean  "inactive",           default: false
   end
 
-  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(version: 20160322214500) do
 
   add_foreign_key "borrowers", "users"
   add_foreign_key "comments", "orders"
-  add_foreign_key "order_products", "orders"
-  add_foreign_key "order_products", "products"
+  add_foreign_key "order_projects", "orders"
+  add_foreign_key "order_projects", "projects"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "categories"
+  add_foreign_key "projects", "categories"
 end

@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.feature "AdminCanAddProduct", type: :feature do
-  scenario "they see the correct flash message after product is added" do
+RSpec.feature "AdminCanAddProject", type: :feature do
+  scenario "they see the correct flash message after project is added" do
     admin = User.create(fullname: "john adams",
                         email: "admin@example.com",
                         password: 'password',
@@ -19,17 +19,17 @@ RSpec.feature "AdminCanAddProduct", type: :feature do
 
     visit admin_dashboard_path
 
-    click_on "add product"
+    click_on "add project"
 
-    expect(current_path).to eq(new_admin_product_path)
+    expect(current_path).to eq(new_admin_project_path)
 
-    within "div#new-product" do
+    within "div#new-project" do
     fill_in "name", with: "Ethiopian"
     fill_in "price", with: 100
     fill_in "description", with: "is guud"
-    select "coffee", from: "product-category"
+    select "coffee", from: "project-category"
     end
-    click_on "create product"
+    click_on "create project"
 
     expect(page).to have_content("Life is good, john")
   end

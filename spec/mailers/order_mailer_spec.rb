@@ -7,11 +7,11 @@ RSpec.describe OrderMailer do
 
       Category.create(name: "coffee")
 
-      Product.create(name: "test", price: 23, description: "test", category_id: Category.last.id)
+      Project.create(name: "test", price: 23, description: "test", category_id: Category.last.id)
 
       @order = Order.create(first_name: 'Lucas', last_name: "Jones", street: "123 St.", city: "Denver", state: "CO", zip: "80209", user_id: User.last.id, email: 'lucas@email.com', fullname: "Lucas Jones", order_total: "40")
 
-      @order.order_products.create(product_id: Product.last.id, order_id: Order.last.id, quantity: 1)
+      @order.order_projects.create(project_id: Project.last.id, order_id: Order.last.id, quantity: 1)
     end
 
     let(:mail) { OrderMailer.order_email(@order) }

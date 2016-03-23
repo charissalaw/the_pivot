@@ -61,23 +61,23 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-1">
       <div class="table-responsive">
-        <table class="table table-hover table-condensed table-products">
+        <table class="table table-hover table-condensed table-projects">
           <thead>
             <tr>
               <th></th>
-              <th class="text-center">product</th>
+              <th class="text-center">project</th>
               <th class="text-center">price</th>
               <th class="text-center">quantity</th>
               <th class="text-center">subtotal</th>
             </tr>
           </thead>
-          <% @order.order_products.each do |order_product| %>
+          <% @order.order_projects.each do |order_project| %>
             <tr>
-              <td><%= link_to image_tag(order_product.product.image.url(:small), class: "product_image img-responsive"), product_path(order_product.product.id) %></td>
-                <td><h4><%= link_to order_product.product.name, product_path(order_product.product.id) %></h4></td>
-                <td><h4><%= order_product.product.display_price %></h4></td>
-                <td><h4><%= order_product.quantity %></h4></td>
-                <td><h4><%= order_product.display_total %></h4></td>
+              <td><%= link_to image_tag(order_project.project.image.url(:small), class: "project_image img-responsive"), project_path(order_project.project.id) %></td>
+                <td><h4><%= link_to order_project.project.name, project_path(order_project.project.id) %></h4></td>
+                <td><h4><%= order_project.project.display_price %></h4></td>
+                <td><h4><%= order_project.quantity %></h4></td>
+                <td><h4><%= order_project.display_total %></h4></td>
             </tr>
           <% end %>
             <tfoot>

@@ -1,8 +1,8 @@
 class OrderProcessor
-  attr_reader :products
+  attr_reader :projects
 
   def initialize(cart)
-    @products = cart.products
+    @projects = cart.projects
   end
 
   def process_current_user(params, current_user)
@@ -11,8 +11,8 @@ class OrderProcessor
   end
 
   def cart_total
-      @products.map do |product|
-      product.price * product.quantity
+      @projects.map do |project|
+      project.price * project.quantity
     end.reduce(:+) / 100
   end
 

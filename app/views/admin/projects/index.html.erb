@@ -1,0 +1,55 @@
+<% if params[:inactive] == "false" %>
+  <h3 class="inactive-<%= params[:inactive] %> admin-project-index-header">active projects</h3>
+<% else %>
+  <h3 class="inactive-<%= params[:inactive] %> admin-loan_transaction-project-header">inactive projects</h3>
+<% end %>
+<br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>price</th>
+        <th>sale?</th>
+        <th>sale price</th>
+        <th>description</th>
+        <th>category</th>
+        <th>update image</th>
+        <th></th>
+        <th>inactive?</th>
+      </tr>
+    </thead>
+    <% @projects.each do |project| %>
+      <tr id="<%= project.id %>-project">
+        <td><%= image_tag(project.image.url(:small), class:"admin-project-image") %></td>
+        <%= form_for [:admin, project], url: admin_project_path(project.id) do |f| %>
+        <td><%= f.label :name, class:"sr-only" %>
+        <%= f.text_field :name, placeholder: "name", class: "project-update-form"%></td>
+        <td><%= f.label :price, class:"sr-only"  %>
+        <%= f.text_field :price, placeholder: "price", class: "project-update-form"%></td>
+        <td class="success"><%= f.label :sale, class:"sr-only", id:"sale" %>
+        <%= f.check_box :sale, {placeholder: "sale", class: "project-update-checkbox"}%></td>
+        <td><%= f.label :sale_price, class:"sr-only"  %>
+        <%= f.text_field :sale_price, placeholder: "sale price", class: "project-update-form"%></td>
+        <td><%= f.label :description, class:"sr-only"  %>
+        <%= f.text_field :description, placeholder: "description", class: "project-update-form" %></td>
+        <td><%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", required:true, class: "project-update-form"}) %></td>
+        <%= f.label :image, class:"sr-only"  %>
+        <%= f.file_field :image, { id:"#{project.id}_file_input", style:"display:none" } %>
+          <label class="file">
+          <td><a class="btn btn-primary btn-s" onclick="$('input[id=<%= project.id %>_file_input]').click();">update image</a></td>
+          </label>
+        <td><%= f.submit "update project", class:"btn btn-checkout btn-s"%></td>
+        <td class="danger"><%= f.label :inactive, class:"sr-only", id:"inactive" %>
+        <%= f.check_box :inactive, {class: "project-update-checkbox"}%></td>
+        <% end %>
+      </tr>
+        <script type="text/javascript">
+        $('input[id= <%= project.id %>_file_input]').change(function() {
+          $('#imageFormCover').val($(this).val());
+        });
+        </script>
+    <% end %>
+  </table>
+</div>

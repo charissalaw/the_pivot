@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature "UserChangesQunatityOfProductInCart", type: :feature do
-  scenario "they change the quanity of a product and see it updated in the cart" do
+RSpec.feature "UserChangesQunatityOfProjectInCart", type: :feature do
+  scenario "they change the quanity of a project and see it updated in the cart" do
     category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 
-    visit "/products/#{product.id}"
+    visit "/projects/#{project.id}"
     click_on "Add to cart"
 
     visit cart_path

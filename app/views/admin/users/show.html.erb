@@ -41,7 +41,7 @@
         <%= geo_chart Order.group(:state).count, library: {region: 'US', resolution: 'provinces'} %>
       </div>
       <div class="col-xs-6">
-        <%= pie_chart Product.category_distribution %>
+        <%= pie_chart Project.category_distribution %>
       </div>
     </div>
   <div class="row rev-data-row text-center">
@@ -52,10 +52,10 @@
     <div class="col-xs-2 text-center">
     </div>
     <div class="col-xs-5 rev-data sub-data text-center">
-      <h4><span class="label label-info top-product">top product</span></h4>
+      <h4><span class="label label-info top-project">top project</span></h4>
 
-      <% if !@order_products.empty? %>
-        <span class="revenue-span"><%= link_to @order_products.top_product.name, product_path(@order_products.top_product) %></span>
+      <% if !@order_projects.empty? %>
+        <span class="revenue-span"><%= link_to @order_projects.top_project.name, project_path(@order_projects.top_project) %></span>
       <% end %>
     </div>
   </div>

@@ -4,7 +4,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
   scenario "they see only completed orders" do
     coffee = Category.create(name:"coffee")
 
-    product1 = coffee.products.create(name: "Finca San Matias",
+    project1 = coffee.projects.create(name: "Finca San Matias",
                                       price: 2500,
                                       description: "Es todo que necessita.")
 
@@ -24,7 +24,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
                                 email: "spam@foundingfathers.biz",
                                 status: "completed")
 
-    order1.order_products.create(product_id: product1.id,
+    order1.order_projects.create(project_id: project1.id,
                                  quantity: 10)
 
     order2 = user.orders.create(street: "1600 Ohio",
@@ -36,7 +36,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
                                 last_name: "jackson",
                                 email: "spam@foundingfathers.biz")
 
-     order2.order_products.create(product_id: product1.id,
+     order2.order_projects.create(project_id: project1.id,
                                   quantity: 5)
 
     admin = User.create(first_name: "john",
@@ -61,7 +61,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
       expect(page).to have_content(order1.id)
       expect(page).to have_content(order1.fullname)
       expect(page).to have_content(order1.total)
-      expect(page).to have_content(order1.product_quantity)
+      expect(page).to have_content(order1.project_quantity)
     end
 
     expect(page).to_not have_content(order2.fullname)

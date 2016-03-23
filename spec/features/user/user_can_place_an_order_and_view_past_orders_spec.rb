@@ -3,12 +3,12 @@ require "rails_helper"
 RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
   scenario "user places order and views previous orders" do
     category = Category.create(name: "coffee")
-    product = category.products.create(name:"Ethiopian", price:1500,
+    project = category.projects.create(name:"Ethiopian", price:1500,
     description:"Ethiopian coffee is super good")
     user = User.create(first_name: "John", last_name: "Adams", fullname: "John Adams",
                        email: "email@example.com", password: "password")
 
-    visit "/products/#{product.id}"
+    visit "/projects/#{project.id}"
     click_on "Add to cart"
 
     visit "/"
@@ -33,7 +33,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order1.order_products.create(product_id: product.id,
+    order1.order_projects.create(project_id: project.id,
                                  quantity: 10)
 
     click_on "order history"
@@ -42,7 +42,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
 
     click_on "#{order1.id}"
 
-    expect(page).to have_content("#{product.name}")
+    expect(page).to have_content("#{project.name}")
 
     visit "/users/#{user.id}/orders/#{order1.id}/thanks"
 

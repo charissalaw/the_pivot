@@ -1,8 +1,8 @@
-.admin-product-index-header {
+.admin-project-index-header {
   margin: 0;
 }
 
-.product-container {
+.project-container {
   margin: 10px;
 }
 
@@ -15,12 +15,12 @@
   border:1px solid #DADFE1;
 }
 
-.featured-product {
+.featured-project {
   margin-top: 20px;
   margin-right: 30px;
 }
 
-.product-unit {
+.project-unit {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -28,30 +28,30 @@
   height:300px;
 }
 
-.sm-product-info h4 {
+.sm-project-info h4 {
   font-weight: 300;
   font-size: 15px;
 }
 
 
-.product-info a {
+.project-info a {
   text-decoration: none;
 }
 
-.product-info h4 {
+.project-info h4 {
   margin:0;
 }
 
-.sm-product-info h4 {
+.sm-project-info h4 {
   margin-bottom:0;
 }
 
 @media (min-width:767px) {
-  .product-info {
+  .project-info {
     display: none;
   }
 
-  .xs-product-row {
+  .xs-project-row {
     display: none;
   }
 
@@ -69,15 +69,15 @@
     display: none;
   }
 
-  .sm-product-row {
+  .sm-project-row {
     display: none;
   }
 
-  .sm-product-info {
+  .sm-project-info {
     display: none;
   }
 
-  .featured-sub-product {
+  .featured-sub-project {
     display: none;
   }
 
@@ -86,17 +86,17 @@
   }
 }
 
-.product-header {
+.project-header {
   margin-bottom: 20px;
   font-weight: 800;
 }
 
-.product-header h2 {
+.project-header h2 {
   font-size: 25px;
   font-weight: 300;
 }
 
-.product-header p {
+.project-header p {
   color: #BDC3C7;
 }
 
@@ -107,31 +107,31 @@
   font-size:0;
 }
 
-.product-image {
+.project-image {
   width: 350px;
   height:200px;
   overflow:hidden;
 }
 
-.products {
+.projects {
   margin-left: 15px;
 }
 
-.products-rows {
+.projects-rows {
   margin-top: 10px;
 }
 
-.product-div {
+.project-div {
   margin-top: 15px;
 }
 
-.product-name {
+.project-name {
   font-size: 100%;
   margin-top: 5px;
   margin-bottom: 1px;
 }
 
-.product-desc {
+.project-desc {
   margin-top:0;
 }
 
@@ -139,18 +139,18 @@
   vertical-align: middle;
 }
 
-.table-products td {
+.table-projects td {
   text-align: center;
 }
 
 @media only screen and (max-device-width: 480px) {
-  .product-desc {
+  .project-desc {
     display: hidden;
   }
 
 }
 
-.product-update-form {
+.project-update-form {
   display: inline-block;
   height: 34px;
   padding: 6px 6px;
@@ -169,7 +169,7 @@
 }
 
 .featured-coffee {
-  background-image:url('http://s3.amazonaws.com/lendingowl-turing/products/images/000/000/014/show/open-uri20160308-77869-v1i6si?1457497048');
+  background-image:url('http://s3.amazonaws.com/lendingowl-turing/projects/images/000/000/014/show/open-uri20160308-77869-v1i6si?1457497048');
 }
 
 .featured-coffee h1 {
@@ -215,5 +215,5 @@
 }
 
 .featured-tool {
-  background-image:url('http://s3.amazonaws.com/lendingowl-turing/products/images/000/000/030/show/open-uri20160308-77869-20mqbw?1457497082');
+  background-image:url('http://s3.amazonaws.com/lendingowl-turing/projects/images/000/000/030/show/open-uri20160308-77869-20mqbw?1457497082');
 }

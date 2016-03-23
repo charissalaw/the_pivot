@@ -4,15 +4,15 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
   scenario "they see all of the orders" do
     coffee = Category.create(name:"coffee")
 
-    product1 = coffee.products.create(name: "Finca San Matias",
+    project1 = coffee.projects.create(name: "Finca San Matias",
                                       price: 2500,
                                       description: "Es todo que necessita.",
                                       )
-    product2 = coffee.products.create(name: "Gatchatha AA Kenya",
+    project2 = coffee.projects.create(name: "Gatchatha AA Kenya",
                                       price: 2000,
                                       description: "Gatchatha have it.",
                                       )
-    product3 = coffee.products.create(name: "Inter Continental Pack",
+    project3 = coffee.projects.create(name: "Inter Continental Pack",
                                       price: 4000,
                                       description: "Study abroad.",
                                       )
@@ -33,10 +33,10 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order_product1 = order1.order_products.create(product_id: product1.id,
+    order_project1 = order1.order_projects.create(project_id: project1.id,
                                                   quantity: 10)
 
-    order1.order_products.create( product_id: product3.id,
+    order1.order_projects.create( project_id: project3.id,
                                   quantity: 11)
     order1.comments.create(comment: "Test comment")
 
@@ -49,8 +49,8 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order2.order_products.create(product_id: product2.id, quantity: 1)
-    order2.order_products.create(product_id: product3.id, quantity: 2)
+    order2.order_projects.create(project_id: project2.id, quantity: 1)
+    order2.order_projects.create(project_id: project3.id, quantity: 2)
 
     admin = User.create(first_name: "john",
                         last_name: "admin",
@@ -75,7 +75,7 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
       expect(page).to have_content(order1.first_name)
       expect(page).to have_content(order1.last_name)
       expect(page).to have_content(order1.total)
-      expect(page).to have_content(order1.product_quantity)
+      expect(page).to have_content(order1.project_quantity)
       expect(page).to_not have_content(order2.total)
       select "completed", from: "order_status"
       click_on "update"
@@ -107,9 +107,9 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
       expect(page).to have_content(order1.zip)
     end
 
-    expect(page).to have_content(order_product1.product.name)
-    expect(page).to have_content(order_product1.quantity)
-    expect(page).to have_content(order_product1.product.display_price)
-    expect(page).to have_content(order_product1.display_total)
+    expect(page).to have_content(order_project1.project.name)
+    expect(page).to have_content(order_project1.quantity)
+    expect(page).to have_content(order_project1.project.display_price)
+    expect(page).to have_content(order_project1.display_total)
   end
 end

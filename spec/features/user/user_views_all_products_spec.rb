@@ -1,14 +1,14 @@
 require "rails_helper"
 
-RSpec.feature "UserViewsAllProducts", type: :feature do
-  scenario "user views all products" do
+RSpec.feature "UserViewsAllProjects", type: :feature do
+  scenario "user views all projects" do
     category = Category.create(name:"coffee")
-    product = category.products.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
 
-    visit products_path
+    visit projects_path
 
-    within "div##{product.id}-index" do
-      expect(page).to have_content(product.name)
+    within "div##{project.id}-index" do
+      expect(page).to have_content(project.name)
     end
   end
 end

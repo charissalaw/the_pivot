@@ -1,5 +1,5 @@
-class RemoveImageUrlFromProducts < ActiveRecord::Migration
+class RemoveImageUrlFromProjects < ActiveRecord::Migration
   def change
-    remove_column :products, :image_url, :string
+    remove_column :projects, :image_url, :string
   end
 end

@@ -1,5 +1,5 @@
-class AddInactiveToProducts < ActiveRecord::Migration
+class AddInactiveToProjects < ActiveRecord::Migration
   def change
-    add_column :products, :inactive, :boolean, default: false
+    add_column :projects, :inactive, :boolean, default: false
   end
 end

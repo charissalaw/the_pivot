@@ -1,7 +1,7 @@
-class Product < ActiveRecord::Base
+class Project < ActiveRecord::Base
   belongs_to :category
-  has_many :order_products
-  has_many :orders, through: :order_products
+  has_many :order_projects
+  has_many :orders, through: :order_projects
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-  scope :active_products, -> { where(inactive: false) }
+  scope :active_projects, -> { where(inactive: false) }
 
   def display_price
     "$#{price.to_i / 100}"

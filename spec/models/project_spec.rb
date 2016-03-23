@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Product, :type => :model do
+RSpec.describe Project, :type => :model do
 
   it { should validate_presence_of :name}
   it { should validate_uniqueness_of :name}
@@ -13,7 +13,7 @@ RSpec.describe Product, :type => :model do
               rejecting('text/plain', 'text/xml') }
 
   it { should belong_to :category }
-  it { should have_many :order_products }
+  it { should have_many :order_projects }
   it { should have_many :orders }
 
 end
