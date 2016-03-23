@@ -29,6 +29,7 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'rspec-activemodel-mocks'
+  gem 'factory_girl_rails', :require => false
 end
 
 group :development do

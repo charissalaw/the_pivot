@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       if user.admin?
         redirect_to admin_dashboard_path
+      elsif user.borrower?
+        redirect_to borrower_dashboard_path
       else
         flash[:info] = "Hey #{user.first_name}, welcome to Lending Owl."
         redirect_to root_path

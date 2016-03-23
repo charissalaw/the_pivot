@@ -5,4 +5,5 @@ class Borrower < ActiveRecord::Base
   validates :monthly_housing, presence: true
   validates :monthly_credit_pmt, presence: true
   validates :dependents, presence: true
+
 end
