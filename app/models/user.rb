@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :image
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  enum role: %w(default admin super_admin)
+  enum role: %w(user borrower admin)
 
   def build_name
     self.first_name = fullname.split[0]
