@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-
   def checkout_user
     login_or_create_user
     redirect_to new_user_order_path(current_user)
@@ -49,18 +48,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def login_or_create_user
-    @user = User.find_by(email: params[:email])
-    @user = User.new(user_params) if @user.nil?
-    if @user.save
-      current_user
-      session[:user_id] = @user.id
-    else
-      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
-      render :checkout_login
-    end
-  end
-
   def checkout_login
   end
 
@@ -72,5 +59,17 @@ class OrdersController < ApplicationController
 
   def stripe_params
     params.permit(:stripeEmail, :stripeToken, :stripeShippingName, :stripeShippingAddressLine1, :stripeShippingAddressCity, :stripeShippingAddressZip, :stripeShippingAddressState, :stripeShippingAddressZip )
+  end
+
+  def login_or_create_user
+    @user = User.find_by(email: params[:email])
+    @user = User.new(user_params) if @user.nil?
+    if @user.save
+      current_user
+      session[:user_id] = @user.id
+    else
+      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
+      render :checkout_login
+    end
   end
 end

@@ -1,3 +1,7 @@
+Role.create(name:"lender")
+Role.create(name:"borrower")
+Role.create(name:"admin")
+
 coffee = Category.create(name:"coffee")
 tools = Category.create(name:"tools")
 gifts = Category.create(name:"gifts")

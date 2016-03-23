@@ -29,5 +29,4 @@ class CartProjectsController < ApplicationController
   def find_project(id)
     Project.find(id)
   end
-
 end
