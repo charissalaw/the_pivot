@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_one :borrower
   before_save :build_name
+  has_many :user_roles
+  has_many :roles, through: :user_roles
   has_many :orders
   has_many :order_projects, through: :orders
 
@@ -11,7 +13,18 @@ class User < ActiveRecord::Base
 
   has_attached_file :image
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  enum role: %w(user borrower admin)
+
+  def admin?
+    roles.exists?(name:"admin")
+  end
+
+  def borrower?
+    roles.exists?(name:"borrower")
+  end
+
+  def lender?
+    roles.exists?(name:"lender")
+  end
 
   def build_name
     self.first_name = fullname.split[0]
