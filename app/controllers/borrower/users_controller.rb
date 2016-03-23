@@ -10,6 +10,7 @@ class Borrower::UsersController < ApplicationController
     if @user.save
       borrower = Borrower.new(borrower_params)
       if borrower.save
+        @user.update(role: 1)
         @user.borrower = borrower
         session[:user_id]= @user.id
         flash[:info] = "You have successfully created a borrower account... SWEET!"

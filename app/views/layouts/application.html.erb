@@ -28,6 +28,16 @@
       <%= content_tag :div, sanitize(message), class: "alert alert_#{type} admin-flash" %>
     <% end %>
     <div id="page-content-wrapper">
+  <% elsif current_user && current_user.borrower? %>
+    <%= render partial: "shared/borrower_nav" %>
+      <div id="wrapper">
+         <div id="sidebar-wrapper">
+           <%= render partial: "shared/borrower_sidebar_nav" %>
+         </div>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, sanitize(message), class: "alert alert_#{type} admin-flash" %>
+    <% end %>
+    <div id="page-content-wrapper">
   <% else %>
     <%= render partial: "shared/nav" %>
 
