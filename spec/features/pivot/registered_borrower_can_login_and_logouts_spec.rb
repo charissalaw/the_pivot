@@ -3,10 +3,12 @@ require 'rails_helper'
 RSpec.feature "RegisteredBorrowerCanLoginAndLogouts" do
 
   scenario "registered borrower can log in" do
+    create(:lender_role)
+    create(:borrower_role)
     user = create(:user)
     borrower = create(:borrower)
     borrower.user_id = user.id
-    user.update(role: 1)
+    user.roles << Role.find_by(name:"borrower")
     visit root_path
     click_on "login"
     expect(current_path).to eq(login_path)

@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_one :borrower
-  before_save :build_name
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :orders
   has_many :order_projects, through: :orders
+  before_save :build_name
+  before_save :assign_role
 
   validates :fullname, presence: true
   validates :email, presence: true, uniqueness: true
@@ -37,5 +38,9 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def assign_role
+    self.roles << Role.find_by(name: "lender")
   end
 end

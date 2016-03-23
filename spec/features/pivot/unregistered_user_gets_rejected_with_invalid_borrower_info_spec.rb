@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
   scenario "unqualified borrower gets error message" do
+    create(:lender_role)
+    create(:borrower_role)
     visit "/"
 
     click_on "borrow"
@@ -29,6 +31,8 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
   end
 
   scenario "unqualified borrower gets approved" do
+    create(:lender_role)
+    create(:borrower_role)
     visit "/"
 
     click_on "borrow"
