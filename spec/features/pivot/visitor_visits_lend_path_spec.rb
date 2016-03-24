@@ -1,22 +1,31 @@
 require 'rails_helper'
 
 RSpec.feature "Visitor visits lend path" do
-  scenario "they see all borrowers" do
+  scenario "they see the page showing all projects" do
+    country = Country.create(name: "Kenya")
+    category = Category.create(name: "education")
     create(:lender_role)
     create(:borrower_role)
-    user = create(:user)
+    create(:user)
     borrower = create(:borrower)
-    borrower.user_id = user.id
-    user.roles << Role.find_by(name:"borrower")
-    # As a visitor
-    # When I visit the home page
+
+    project = Project.create(name:        "Project Name",
+                             country_id:  country.id,
+                             description: "Description",
+                             category_id: category.id,
+                             price:       2500,
+                             image:       open("https://s3.amazonaws.com/littleowl-turing/products/Aeropress.png"),
+                             borrower_id: borrower.id,
+                             )
+                             
     visit root_path
-    # And I click on 'Lend'
     click_on "lend"
-  # I expect to be on the '/lend' path
     expect(current_path).to eq(lend_path)
-  # I can see all borrowers that I can lend to
-    expect(page).to have_content("Choose a Borrower")
-  # I see an image, where they are from, the percent funded and how much funding they still need
+    expect(page).to have_content("Choose a Project")
+    expect(page).to have_content("Project Name")
+    expect(page).to have_content("$25")
+    expect(page).to have_content("education")
+    expect(page).to have_content("Kenya")
+    expect(page).to have_xpath("//img")
   end
 end

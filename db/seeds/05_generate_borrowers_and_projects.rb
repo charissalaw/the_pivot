@@ -41,14 +41,19 @@ private
     date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
     user.update(created_at: date, updated_at: date)
     categories = category_ids
+    countries = country_ids
     2.times do
-      project = borrower.projects.create(name:Faker::Book.title, price: 2500, description:Faker::Lorem.paragraph, image: open(image_arr.sample), category_id: categories.sample)
+      project = borrower.projects.create(name:Faker::Book.title, price: 2500, description:Faker::Lorem.paragraph, image: open(image_arr.sample), category_id: categories.sample, country_id: countries.sample)
       puts "Created Project: #{project.name}."
     end
   end
 
   def self.category_ids
     Category.pluck(:id)
+  end
+
+  def self.country_ids
+    Country.pluck(:id)
   end
 
   def self.image_arr

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :projects, only: [:index, :show]
+  get "/lend", to: "projects#index"
+  resources :projects, only: [:show]
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
   end
 
-  get "/lend", to: "borrower/users#index"
   namespace :borrower do
     resources :users, only: [:new, :create, :show]
     resources :projects, only: [:new, :create, :index, :update]

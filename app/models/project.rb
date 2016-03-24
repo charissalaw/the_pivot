@@ -1,13 +1,16 @@
 class Project < ActiveRecord::Base
   belongs_to :category
   belongs_to :borrower
-  has_many :order_projects
-  has_many :orders, through: :order_projects
+  belongs_to :country
+  has_many   :order_projects
+  has_many   :orders, through: :order_projects
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
   validates :description, presence: true
   validates :category_id, presence: true
+  validates :country_id,  presence: true
+  validates :borrower_id, presence: true
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
