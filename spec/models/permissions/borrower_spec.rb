@@ -134,8 +134,8 @@ RSpec.describe "Borrower Permissions" do
     expect(result).to be true
   end
 
-  scenario "cart#show" do
-    permission = Permission.new(@borrower, 'cart', 'show')
+  scenario "carts#show" do
+    permission = Permission.new(@borrower, 'carts', 'show')
     result = permission.allow?
     expect(result).to be true
   end

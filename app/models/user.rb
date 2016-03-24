@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_one :borrower
+  has_many :projects, through: :borrower
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :orders
@@ -41,6 +42,8 @@ class User < ActiveRecord::Base
   end
 
   def assign_role
-    self.roles << Role.find_by(name: "lender")
+    if !lender?
+      self.roles << Role.find_by(name: "lender")
+    end
   end
 end
