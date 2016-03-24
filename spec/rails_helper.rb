@@ -42,8 +42,8 @@ def create_and_stub_admin
   admin
 end
 
-def create_user
-  Role.create(name:"lender")
+def register_and_login_user
+  create(:lender_role)
   visit root_path
   click_on "login"
   click_on "signup"
@@ -65,23 +65,5 @@ def login_user
     fill_in "email", with: "bojangles@example.com"
     fill_in "password", with: "password"
     click_on "login"
-  end
-end
-
-def create_borrower_account(user)
-  visit root_path
-  create(:borrower_role)
-  click_on "borrow"
-  within("div#signup") do
-    fill_in "name", with: user.name
-    fill_in "email", with: user.email
-    fill_in "password", with: user.password
-    fill_in "description", with: "some description"
-    fill_in "annual income", with: "600000"
-    fill_in "monthly_housing", with: "500"
-    fill_in "monthly_credit_pmt", with: "300"
-    fill_in "dependents", with: "5"
-    expect(page).to have_content("Add Image")
-    click_on "Apply"
   end
 end
