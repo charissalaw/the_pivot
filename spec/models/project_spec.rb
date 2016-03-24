@@ -13,7 +13,7 @@ RSpec.describe Project, :type => :model do
               rejecting('text/plain', 'text/xml') }
 
   it { should belong_to :category }
-  it { should have_many :order_projects }
+  it { should have_many :loans }
   it { should have_many :orders }
 
 end

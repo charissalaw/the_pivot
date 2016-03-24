@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OrderProject, :type => :model do
+RSpec.describe Loan, :type => :model do
 
   it { should validate_presence_of :quantity }
   it { should validate_presence_of :project_id }

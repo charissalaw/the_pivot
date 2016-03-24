@@ -33,10 +33,10 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order_project1 = order1.order_projects.create(project_id: project1.id,
+    loan1 = order1.loans.create(project_id: project1.id,
                                                   quantity: 10)
 
-    order1.order_projects.create( project_id: project3.id,
+    order1.loans.create( project_id: project3.id,
                                   quantity: 11)
     order1.comments.create(comment: "Test comment")
 
@@ -49,8 +49,8 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order2.order_projects.create(project_id: project2.id, quantity: 1)
-    order2.order_projects.create(project_id: project3.id, quantity: 2)
+    order2.loans.create(project_id: project2.id, quantity: 1)
+    order2.loans.create(project_id: project3.id, quantity: 2)
 
     admin = User.create(first_name: "john",
                         last_name: "admin",
@@ -107,9 +107,9 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
       expect(page).to have_content(order1.zip)
     end
 
-    expect(page).to have_content(order_project1.project.name)
-    expect(page).to have_content(order_project1.quantity)
-    expect(page).to have_content(order_project1.project.display_price)
-    expect(page).to have_content(order_project1.display_total)
+    expect(page).to have_content(loan1.project.name)
+    expect(page).to have_content(loan1.quantity)
+    expect(page).to have_content(loan1.project.display_price)
+    expect(page).to have_content(loan1.display_total)
   end
 end

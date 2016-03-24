@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :orders
-  has_many :order_projects, through: :orders
+  has_many :loans, through: :orders
   before_save :build_name
   before_save :assign_role
 

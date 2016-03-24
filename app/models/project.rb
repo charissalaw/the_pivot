@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :category
   belongs_to :borrower
-  has_many :order_projects
-  has_many :orders, through: :order_projects
+  has_many :loans
+  has_many :orders, through: :loans
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true

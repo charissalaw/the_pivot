@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create, :show]
     resources :projects, only: [:new, :create, :index, :update]
     resources :orders, only: [:index, :show, :update]
+    resources :loans, only: [:index, :show, :update]
     resources :comments, only: [:create]
   end
 

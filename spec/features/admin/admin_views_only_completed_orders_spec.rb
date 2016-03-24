@@ -24,7 +24,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
                                 email: "spam@foundingfathers.biz",
                                 status: "completed")
 
-    order1.order_projects.create(project_id: project1.id,
+    order1.loans.create(project_id: project1.id,
                                  quantity: 10)
 
     order2 = user.orders.create(street: "1600 Ohio",
@@ -36,7 +36,7 @@ RSpec.feature "AdminViewsCompletedOrders", type: :feature do
                                 last_name: "jackson",
                                 email: "spam@foundingfathers.biz")
 
-     order2.order_projects.create(project_id: project1.id,
+     order2.loans.create(project_id: project1.id,
                                   quantity: 5)
 
     admin = User.create(first_name: "john",
