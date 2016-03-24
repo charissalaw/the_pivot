@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:new]
   end
 
+  get "/lend", to: "borrower/users#index"
   namespace :borrower do
     resources :users, only: [:new, :create, :show]
   end
+
 end
