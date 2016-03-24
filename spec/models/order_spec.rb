@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
-
   it { should validate_presence_of :user_id}
   it { should validate_presence_of :fullname}
   it { should validate_presence_of :email}
@@ -10,8 +9,7 @@ RSpec.describe Order, :type => :model do
   it { should validate_presence_of :zip}
 
   it { should belong_to :user }
-  it { should have_many :order_projects }
+  it { should have_many :loans }
   it { should have_many :projects }
   it { should have_many :comments }
-  
 end

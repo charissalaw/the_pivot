@@ -5,30 +5,21 @@
     </a>
   </li>
   <li>
-    <%= link_to "dashboard", root_path %>
+    <%= link_to "dashboard", borrower_user_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active orders", root_path %>
+    <%= link_to "active loans", borrower_orders_path %>
   </li>
   <li>
-    <%= link_to "completed orders", root_path %>
+    <%= link_to "active projects", borrower_projects_path %>
   </li>
   <li>
-    <%= link_to "cancelled orders", root_path %>
+    <%= link_to "add project", new_borrower_project_path %>
   </li>
   <li>
-    <%= link_to "active projects", root_path %>
+    <%= link_to "funded projects", borrower_projects_path %>
   </li>
   <li>
-    <%= link_to "inactive projects", root_path %>
-  </li>
-  <li>
-    <%= link_to "add project", root_path %>
-  </li>
-  <li class="sidebar-header">
-    <p>user interface</p>
-  </li>
-  <li>
-    <%= link_to "shop all", root_path %>
+    <%= link_to "lend", projects_path %>
   </li>
 </ul>

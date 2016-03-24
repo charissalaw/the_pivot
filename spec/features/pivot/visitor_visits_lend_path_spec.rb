@@ -17,7 +17,7 @@ RSpec.feature "Visitor visits lend path" do
                              image:       open("https://s3.amazonaws.com/littleowl-turing/products/Aeropress.png"),
                              borrower_id: borrower.id,
                              )
-                             
+
     visit root_path
     click_on "lend"
     expect(current_path).to eq(lend_path)

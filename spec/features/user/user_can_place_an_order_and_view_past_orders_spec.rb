@@ -33,7 +33,7 @@ RSpec.feature "UserCanPlaceOrderAndViewPreviousOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order1.order_projects.create(project_id: project.id,
+    order1.loans.create(project_id: project.id,
                                  quantity: 10)
 
     click_on "order history"

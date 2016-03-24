@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
   before_save :build_name
   belongs_to :user
-  has_many :order_projects
-  has_many :projects, through: :order_projects
+  has_many :loans
+  has_many :projects, through: :loans
   has_many :comments
 
   validates :user_id, presence: true
@@ -45,8 +45,8 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    order_projects.map do |order_project|
-      order_project.total
+    loans.map do |loan|
+      loan.total
     end.inject(:+) / 100
   end
 
@@ -56,14 +56,14 @@ class Order < ActiveRecord::Base
 
   def process(projects)
     projects.each do |project|
-      order_projects.create(project_id: project.id, quantity: project.quantity)
+      loans.create(project_id: project.id, quantity: project.quantity)
     end
     process_stripe_payment
     self.update(order_total: total)
   end
 
   def project_quantity
-    order_projects.count
+    loans.count
   end
 
   def name

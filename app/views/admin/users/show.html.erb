@@ -54,8 +54,8 @@
     <div class="col-xs-5 rev-data sub-data text-center">
       <h4><span class="label label-info top-project">top project</span></h4>
 
-      <% if !@order_projects.empty? %>
-        <span class="revenue-span"><%= link_to @order_projects.top_project.name, project_path(@order_projects.top_project) %></span>
+      <% if !@loans.empty? %>
+        <span class="revenue-span"><%= link_to @loans.top_project.name, project_path(@loans.top_project) %></span>
       <% end %>
     </div>
   </div>
