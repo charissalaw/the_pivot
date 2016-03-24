@@ -3,11 +3,14 @@ class Project < ActiveRecord::Base
   belongs_to :borrower
   has_many :loans
   has_many :orders, through: :loans
+  belongs_to :country
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
   validates :description, presence: true
   validates :category_id, presence: true
+  validates :country_id,  presence: true
+  validates :borrower_id, presence: true
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },

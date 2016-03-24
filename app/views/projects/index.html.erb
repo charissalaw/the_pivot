@@ -1,8 +1,6 @@
 <div class="all-hero-unit category-hero-unit">
   <div class="container text-center hero-container">
-    <a href="/coffee">
-      <h1>all the things</h1>
-    </a>
+    <h1>Choose a Project</h1>
   </div>
 </div>
 <div class="container-fluid">
@@ -24,7 +22,9 @@
               <%= link_to image_tag(project.image.url(:show), class: "img-responsive project-image"), project_path(project.id), id: "#{project.id}-project-image" %>
               <div class="sm-project-info">
                 <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
+                <p><%= project.country.name %> | <%= project.category.name %></p>
                 <p><%= project.description %></p>
+                <p>Amount Needed: <%= project.display_price %></p>
               </div>
             </div>
             <div class="project-info">
