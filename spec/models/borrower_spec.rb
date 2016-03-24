@@ -6,5 +6,5 @@ RSpec.describe Borrower, type: :model do
   it { should validate_presence_of :monthly_housing}
   it { should validate_presence_of :monthly_credit_pmt}
   it { should validate_presence_of :dependents}
-  it { should validate_numericality_of(:annual_income).is_less_than(5_000_000)
+  it { should validate_numericality_of(:annual_income).is_less_than(5_000_000) }
 end
