@@ -50,10 +50,6 @@ ActiveRecord::Schema.define(version: 20160324175731) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailing_list_emails", force: :cascade do |t|
-    t.string "email"
-  end
-
   create_table "loans", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "order_id"
@@ -64,6 +60,10 @@ ActiveRecord::Schema.define(version: 20160324175731) do
 
   add_index "loans", ["order_id"], name: "index_loans_on_order_id", using: :btree
   add_index "loans", ["project_id"], name: "index_loans_on_project_id", using: :btree
+
+  create_table "mailing_list_emails", force: :cascade do |t|
+    t.string "email"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.string   "street"
