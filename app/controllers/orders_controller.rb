@@ -11,10 +11,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = OrderProcessor.new(@cart).process_current_user(stripe_params, current_user)
-    @order.process(order_processor.projects)
+    order_processor = OrderProcessor.new(@cart)
+    @order = order_processor.process_current_user(stripe_params, current_user)
     if @order.save
-      OrderMailer.order_email(@order).deliver_now
+      @order.process(order_processor.projects)
+      #OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
       redirect_to user_thanks_path(current_user, @order.id)

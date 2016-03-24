@@ -129,8 +129,8 @@ RSpec.describe "General Permissions" do
     expect(result).to be true
   end
 
-  scenario "cart#show" do
-    permission = Permission.new(@user, 'cart', 'show')
+  scenario "carts#show" do
+    permission = Permission.new(@user, 'carts', 'show')
     result = permission.allow?
     expect(result).to be true
   end

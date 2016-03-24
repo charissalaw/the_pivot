@@ -51,7 +51,7 @@ private
     return true if controller == 'projects' && action.in?(%w(index show))
     return true if controller == 'orders' && action.in?(%w(new create index show thanks))
     return true if controller == 'categories' && action.in?(%w(show))
-    return true if controller == 'cart' && action.in?(%w(show))
+    return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
   end
 
@@ -64,7 +64,7 @@ private
     return true if controller == 'projects' && action.in?(%w(index show))
     return true if controller == 'orders' && action.in?(%w(new create index show thanks))
     return true if controller == 'categories' && action.in?(%w(show))
-    return true if controller == 'cart' && action.in?(%w(show))
+    return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
   end
 
@@ -77,7 +77,7 @@ private
     return true if controller == 'projects' && action.in?(%w(index show))
     return true if controller == 'orders' && action.in?(%w(checkout_user checkout_login))
     return true if controller == 'categories' && action.in?(%w(show))
-    return true if controller == 'cart' && action.in?(%w(show))
+    return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
   end
 end
