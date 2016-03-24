@@ -30,7 +30,7 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
     expect(page).to have_content("Your credentials do not meet our requirements for a loan")
   end
 
-  scenario "unqualified borrower gets approved" do
+  scenario "qualified borrower gets approved" do
     create(:lender_role)
     create(:borrower_role)
     visit "/"
