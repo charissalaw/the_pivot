@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324025519) do
+ActiveRecord::Schema.define(version: 20160324051508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,8 +99,10 @@ ActiveRecord::Schema.define(version: 20160324025519) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "inactive",           default: false
+    t.integer  "borrower_id"
   end
 
+  add_index "projects", ["borrower_id"], name: "index_projects_on_borrower_id", using: :btree
   add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -124,9 +126,8 @@ ActiveRecord::Schema.define(version: 20160324025519) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "role",               default: 0
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "fullname"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(version: 20160324025519) do
   add_foreign_key "order_projects", "orders"
   add_foreign_key "order_projects", "projects"
   add_foreign_key "orders", "users"
+  add_foreign_key "projects", "borrowers"
   add_foreign_key "projects", "categories"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"

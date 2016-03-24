@@ -55,7 +55,9 @@ class Order < ActiveRecord::Base
   end
 
   def process(projects)
+    require "pry"; binding.pry
     projects.each do |project|
+      require "pry"; binding.pry
       order_projects.create(project_id: project.id, quantity: project.quantity)
     end
     process_stripe_payment
