@@ -132,8 +132,8 @@ RSpec.describe "Lender Permissions" do
     expect(result).to be true
   end
 
-  scenario "cart#show" do
-    permission = Permission.new(@lender, 'cart', 'show')
+  scenario "carts#show" do
+    permission = Permission.new(@lender, 'carts', 'show')
     result = permission.allow?
     expect(result).to be true
   end
