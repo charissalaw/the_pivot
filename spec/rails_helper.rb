@@ -41,3 +41,29 @@ def create_and_stub_admin
   ApplicationController.any_instance.stub(:current_user) {admin}
   admin
 end
+
+def register_and_login_user
+  create(:lender_role)
+  visit root_path
+  click_on "login"
+  click_on "signup"
+  within("div#signup-form") do
+    fill_in "name", with: "Mister Bojangles"
+    fill_in "email", with: "bojangles@example.com"
+    fill_in "password", with: "password"
+    click_on "signup"
+  end
+end
+
+def logout_user
+  click_on "logout"
+end
+
+def login_user
+  click_on "login"
+  within("div#login-form") do
+    fill_in "email", with: "bojangles@example.com"
+    fill_in "password", with: "password"
+    click_on "login"
+  end
+end
