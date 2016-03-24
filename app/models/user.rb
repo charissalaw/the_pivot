@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   before_save :assign_role
 
   validates :fullname, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true
   validates :password_digest, presence: true
 
   has_attached_file :image

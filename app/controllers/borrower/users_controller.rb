@@ -6,7 +6,9 @@ class Borrower::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if current_user.blank?
+      @user = User.new(user_params)
+    end
     if @user.save
       borrower = Borrower.new(borrower_params)
       if borrower.save

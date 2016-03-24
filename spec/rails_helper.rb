@@ -67,3 +67,29 @@ def login_user
     click_on "login"
   end
 end
+
+def login_created_user(user)
+  visit root_path
+  click_on "login"
+  within("div#login-form") do
+    fill_in "email", with: user.email
+    fill_in "password", with: user.password
+    click_on "login"
+  end
+end
+
+def create_borrower_account(user)
+  visit root_path
+  create(:borrower_role)
+  # user.Roles << Role.find_by(name:"borrower")
+  click_on "become a borrower"
+  within("div#signup") do
+    fill_in "description", with: "some description"
+    fill_in "annual income", with: "600000"
+    fill_in "monthly_housing", with: "500"
+    fill_in "monthly_credit_pmt", with: "300"
+    fill_in "dependents", with: "5"
+    expect(page).to have_content("Add Image")
+    click_on "Apply"
+  end
+end
