@@ -1,15 +1,12 @@
 class Borrower::UsersController < ApplicationController
   def new
-    # binding.pry
   end
 
   def show
   end
 
   def create
-    if current_user.blank?
-      @user = User.new(user_params)
-    end
+    @user = User.new(user_params)
     if @user.save
       borrower = Borrower.new(borrower_params)
       if borrower.save

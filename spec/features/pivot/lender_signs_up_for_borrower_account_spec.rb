@@ -8,16 +8,12 @@ RSpec.feature "LenderSignsIn", type: :feature do
     visit root_path
     create(:borrower_role)
     click_on "become a borrower"
-    expect(page).to have_selector("input[value='#{user.name}']")
-    expect(page).to have_selector("input[value='#{user.email}']")
     within("div#signup") do
-      fill_in "password", with: user.password
       fill_in "description", with: "some description"
       fill_in "annual income", with: "400000"
-      fill_in "monthly_housing", with: "500"
-      fill_in "monthly_credit_pmt", with: "300"
-      fill_in "dependents", with: "5"
-      expect(page).to have_content("Add Image")
+      fill_in "monthly mortgage or rent payment", with: "500"
+      fill_in "monthly credit payment", with: "300"
+      fill_in "number of dependents", with: "5"
       click_on "Apply"
     end
     expect(page).to have_content("You have successfully created a borrower account... SWEET!")

@@ -66,6 +66,7 @@ private
     return true if controller == 'categories' && action.in?(%w(show))
     return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
+    return true if controller == 'borrowers' && action.in?(%w(new create))
   end
 
   def general_permissions
