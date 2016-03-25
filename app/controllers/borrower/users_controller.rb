@@ -1,5 +1,6 @@
 class Borrower::UsersController < ApplicationController
   def new
+    # binding.pry
   end
 
   def show

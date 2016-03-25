@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
+  resources :borrowers, only: [:new, :create]
 
   resources :users, only: [:new, :create] do
     resources :orders, only: [:new, :index, :create, :show]

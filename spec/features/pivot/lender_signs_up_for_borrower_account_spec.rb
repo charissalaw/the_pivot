@@ -7,7 +7,6 @@ RSpec.feature "LenderSignsIn", type: :feature do
     login_created_user(user)
     visit root_path
     create(:borrower_role)
-    # user.Roles << Role.find_by(name:"borrower")
     click_on "become a borrower"
     expect(page).to have_selector("input[value='#{user.name}']")
     expect(page).to have_selector("input[value='#{user.email}']")

@@ -13,7 +13,11 @@
       <div class="container text-center hero-container">
         <h1>borrow with <span class:"bold-header">Lending Owl<span></h1>
           <br>
-          <%= link_to "become a borrower", new_borrower_user_path, class:"btn btn-primary" %>
+          <% if current_user.blank? %>
+            <%= link_to "become a borrower", new_borrower_user_path, class:"btn btn-primary" %>
+          <% else %>
+            <%= link_to "become a borrower", new_borrower_path, class:"btn btn-primary" %>
+          <% end %>
     </div>
   </div>
 </a>
