@@ -25,13 +25,13 @@
               <th class="text-center">subtotal</th>
             </tr>
           </thead>
-          <% @order.order_projects.each do |order_project| %>
+          <% @order.loans.each do |loan| %>
             <tr>
-              <td><%= image_tag(order_project.project.image.url(:small), class: "project_image img-responsive") %></td>
-                <td><h4><%= order_project.project.name %></h4></td>
-                <td><h4><%= order_project.project.display_price %></h4></td>
-                <td><h4><%= order_project.quantity %></h4></td>
-                <td><h4><%= order_project.display_total %></h4></td>
+              <td><%= image_tag(loan.project.image.url(:small), class: "project_image img-responsive") %></td>
+                <td><h4><%= loan.project.name %></h4></td>
+                <td><h4><%= loan.project.display_price %></h4></td>
+                <td><h4><%= loan.quantity %></h4></td>
+                <td><h4><%= loan.display_total %></h4></td>
             </tr>
           <% end %>
             <tfoot>

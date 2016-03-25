@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :projects, only: [:index, :show]
+  get "/lend", to: "projects#index", as: "projects"
+  resources :projects, only: [:show]
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create, :show]
     resources :projects, only: [:new, :create, :index, :update]
     resources :orders, only: [:index, :show, :update]
+    resources :loans, only: [:index, :show, :update]
     resources :comments, only: [:create]
   end
 

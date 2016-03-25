@@ -7,6 +7,6 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of :password_digest}
 
 
-  it { should have_many :order_projects }
+  it { should have_many :loans }
   it { should have_many :orders }
 end

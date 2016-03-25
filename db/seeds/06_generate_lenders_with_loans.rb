@@ -24,10 +24,10 @@ class LendersLoansSeed
             end
 
             rand(1..7).times do
-              order_project = order.order_projects.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(1..10))
+              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(1..10))
 
-              order_project.update(created_at: order_date, updated_at: order_date)
-              puts "Created OrderProject: #{order_project.project.name}."
+              loan.update(created_at: order_date, updated_at: order_date)
+              puts "Created Loan: #{loan.project.name}."
             end
             total = order.total
             order.update(order_total: total)

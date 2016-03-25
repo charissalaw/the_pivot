@@ -32,10 +32,10 @@ RSpec.feature "AdminCanCommentOnOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order1.order_projects.create(project_id: project1.id,
+    order1.loans.create(project_id: project1.id,
                                  quantity: 10)
 
-    order1.order_projects.create( project_id: project3.id,
+    order1.loans.create( project_id: project3.id,
                                   quantity: 11)
     order1.comments.create(comment: "Test comment")
 
@@ -48,8 +48,8 @@ RSpec.feature "AdminCanCommentOnOrder", type: :feature do
                                 last_name: "adams",
                                 email: "spam@foundingfathers.biz")
 
-    order2.order_projects.create(project_id: project2.id, quantity: 1)
-    order2.order_projects.create(project_id: project3.id, quantity: 2)
+    order2.loans.create(project_id: project2.id, quantity: 1)
+    order2.loans.create(project_id: project3.id, quantity: 2)
 
     admin = User.create(first_name: "john",
                         last_name: "admin",

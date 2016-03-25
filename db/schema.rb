@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324051508) do
+ActiveRecord::Schema.define(version: 20160324175731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,7 @@ ActiveRecord::Schema.define(version: 20160324051508) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailing_list_emails", force: :cascade do |t|
-    t.string "email"
-  end
-
-  create_table "order_projects", force: :cascade do |t|
+  create_table "loans", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "order_id"
     t.integer  "quantity"
@@ -62,8 +58,12 @@ ActiveRecord::Schema.define(version: 20160324051508) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "order_projects", ["order_id"], name: "index_order_projects_on_order_id", using: :btree
-  add_index "order_projects", ["project_id"], name: "index_order_projects_on_project_id", using: :btree
+  add_index "loans", ["order_id"], name: "index_loans_on_order_id", using: :btree
+  add_index "loans", ["project_id"], name: "index_loans_on_project_id", using: :btree
+
+  create_table "mailing_list_emails", force: :cascade do |t|
+    t.string "email"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.string   "street"
@@ -100,10 +100,12 @@ ActiveRecord::Schema.define(version: 20160324051508) do
     t.datetime "image_updated_at"
     t.boolean  "inactive",           default: false
     t.integer  "borrower_id"
+    t.integer  "country_id"
   end
 
   add_index "projects", ["borrower_id"], name: "index_projects_on_borrower_id", using: :btree
   add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree
+  add_index "projects", ["country_id"], name: "index_projects_on_country_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -137,11 +139,12 @@ ActiveRecord::Schema.define(version: 20160324051508) do
 
   add_foreign_key "borrowers", "users"
   add_foreign_key "comments", "orders"
-  add_foreign_key "order_projects", "orders"
-  add_foreign_key "order_projects", "projects"
+  add_foreign_key "loans", "orders"
+  add_foreign_key "loans", "projects"
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "borrowers"
   add_foreign_key "projects", "categories"
+  add_foreign_key "projects", "countries"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

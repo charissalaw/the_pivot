@@ -1,4 +1,4 @@
-class OrderProject < ActiveRecord::Base
+class Loan < ActiveRecord::Base
   belongs_to :project
   belongs_to :order
 
@@ -15,7 +15,7 @@ class OrderProject < ActiveRecord::Base
   end
 
   def self.top_project
-    return if OrderProject.count == 0
+    return if Loan.count == 0
     Project.find(top_project_info[0])
   end
 
