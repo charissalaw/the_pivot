@@ -73,7 +73,7 @@ def create_borrower_account(user)
   # user.Roles << Role.find_by(name:"borrower")
   click_on "become a borrower"
   within("div#signup") do
-    fill_in "description", with: "some description"
+    fill_in "borrower username", with: "username"
     fill_in "annual income", with: "600000"
     fill_in "monthly_housing", with: "500"
     fill_in "monthly_credit_pmt", with: "300"
