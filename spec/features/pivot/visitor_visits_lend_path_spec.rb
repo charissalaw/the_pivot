@@ -13,7 +13,7 @@ RSpec.feature "Visitor visits lend path" do
                              country_id:  country.id,
                              description: "Description",
                              category_id: category.id,
-                             price:       2500,
+                             goal:       2500,
                              image:       open("https://s3.amazonaws.com/littleowl-turing/products/Aeropress.png"),
                              borrower_id: borrower.id,
                              )

@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   end
 
   namespace :borrower do
-    resources :users, only: [:new, :create, :show]
-    resources :projects, only: [:new, :create, :index, :update]
-    resources :orders, only: [:index, :show, :update]
-    resources :loans, only: [:index, :show, :update]
-    resources :comments, only: [:create]
+    resources :users, only: [:new, :create, :show] do
+      resources :projects, only: [:new, :create, :index, :update]
+      resources :orders, only: [:index, :show, :update]
+      resources :loans, only: [:index, :show, :update]
+      resources :comments, only: [:create]
+    end
   end
 
   namespace :admin do

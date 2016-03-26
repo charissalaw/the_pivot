@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "UserViewsASpecificProject", type: :feature do
   scenario "user views a specific project" do
     category = Category.create(name:"coffee")
-    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", goal:1500, description:"Ethiopian coffee is super good")
 
     visit "/coffee"
 

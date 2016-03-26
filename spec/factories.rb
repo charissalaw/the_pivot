@@ -18,8 +18,8 @@ FactoryGirl.define do
 
   factory :borrower do
     username            "username"
-    annual_income       2000000
-    monthly_housing     1000000
+    annual_income       20000
+    monthly_housing     1000
     monthly_credit_pmt  500
     dependents          4
   end
@@ -28,6 +28,20 @@ FactoryGirl.define do
     fullname "Jane Doe"
     email    "jane@gmail.com"
     password "password"
+  end
+
+  factory :category do
+    name "education"
+  end
+
+  factory :country do
+    name "United States"
+  end
+
+  factory :project do
+    name "factory project"
+    description Faker::Lorem.paragraph
+    goal 100
   end
 
 end

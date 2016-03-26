@@ -8,7 +8,7 @@ attr_reader :project, :quantity
   end
 
   def subtotal
-    project.price * quantity
+    project.goal * quantity
   end
 
   def format_subtotal

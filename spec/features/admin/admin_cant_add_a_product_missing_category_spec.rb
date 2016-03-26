@@ -25,7 +25,7 @@ RSpec.feature "AdminCantAddProjectWithoutCategory", type: :feature do
 
     within "div#new-project" do
     fill_in "name", with: "Ethiopian"
-    fill_in "price", with: 100
+    fill_in "goal", with: 100
     fill_in "description", with: "is guud"
     click_on "create project"
     end

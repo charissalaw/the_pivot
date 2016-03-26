@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "NonUserCanPlaceOrder", type: :feature do
   scenario "non-user places order and views previous orders" do
     category = Category.create(name: "coffee")
-    project = category.projects.create(name:"Ethiopian", price:1500,
+    project = category.projects.create(name:"Ethiopian", goal:1500,
     description:"Ethiopian coffee is super good")
     User.create(first_name: "John",
                        last_name: "Adams",

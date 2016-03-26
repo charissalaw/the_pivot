@@ -14,7 +14,7 @@
             <tr>
               <th></th>
               <th class="text-center">project</th>
-              <th class="text-center">price</th>
+              <th class="text-center">goal</th>
               <th class="text-center">quantity</th>
               <th class="text-center">subtotal</th>
             </tr>
@@ -23,7 +23,7 @@
             <tr>
               <td><%= image_tag(project.image.url(:small), class: "project_image img-responsive") %></td>
                 <td><h4><%= project.name %></h4></td>
-                <td><h4><%= project.display_price %></h4></td>
+                <td><h4><%= project.display_goal %></h4></td>
                 <td><h4><%= project.quantity %></h4></td>
                 <td><h4>$<%= project.format_subtotal %></h4></td>
             </tr>

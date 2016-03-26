@@ -5,7 +5,7 @@ module CartHelper
 
   def raw_cart_total(projects)
     projects.map do |project|
-      project.price * project.quantity
+      project.goal * project.quantity
     end.reduce(:+)
   end
 end

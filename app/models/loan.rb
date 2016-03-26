@@ -7,11 +7,11 @@ class Loan < ActiveRecord::Base
   validates :order_id, presence: true
 
   def total
-    quantity * project.price
+    quantity * project.goal
   end
 
   def self.top_project_revenue
-    top_project.price * (top_project_info[1] / 100)
+    top_project.goal * (top_project_info[1] / 100)
   end
 
   def self.top_project

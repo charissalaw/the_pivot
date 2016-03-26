@@ -5,7 +5,7 @@ RSpec.feature "AdminViewsCancelledOrders", type: :feature do
     coffee = Category.create(name:"coffee")
 
     project1 = coffee.projects.create(name: "Finca San Matias",
-                                      price: 2500,
+                                      goal: 2500,
                                       description: "Es todo que necessita.")
 
     user = User.create(first_name: "john",

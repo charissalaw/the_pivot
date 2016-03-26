@@ -5,15 +5,15 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
     coffee = Category.create(name:"coffee")
 
     project1 = coffee.projects.create(name: "Finca San Matias",
-                                      price: 2500,
+                                      goal: 2500,
                                       description: "Es todo que necessita.",
                                       )
     project2 = coffee.projects.create(name: "Gatchatha AA Kenya",
-                                      price: 2000,
+                                      goal: 2000,
                                       description: "Gatchatha have it.",
                                       )
     project3 = coffee.projects.create(name: "Inter Continental Pack",
-                                      price: 4000,
+                                      goal: 4000,
                                       description: "Study abroad.",
                                       )
 
@@ -109,7 +109,7 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
 
     expect(page).to have_content(loan1.project.name)
     expect(page).to have_content(loan1.quantity)
-    expect(page).to have_content(loan1.project.display_price)
+    expect(page).to have_content(loan1.project.display_goal)
     expect(page).to have_content(loan1.display_total)
   end
 end

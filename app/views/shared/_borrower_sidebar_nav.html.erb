@@ -8,16 +8,16 @@
     <%= link_to "dashboard", borrower_user_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active loans", borrower_orders_path %>
+    <%= link_to "active loans", borrower_user_orders_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active projects", borrower_projects_path %>
+    <%= link_to "active projects", borrower_user_projects_path(current_user, inactive: false) %>
   </li>
   <li>
-    <%= link_to "add project", new_borrower_project_path %>
+    <%= link_to "add project", new_borrower_user_project_path(current_user) %>
   </li>
   <li>
-    <%= link_to "funded projects", borrower_projects_path %>
+    <%= link_to "funded projects", borrower_user_projects_path(current_user, inactive: true) %>
   </li>
   <li>
     <%= link_to "lend", projects_path %>
