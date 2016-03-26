@@ -17,10 +17,10 @@
     <%= link_to "cancelled orders", borrower_user_orders_path(current_user, status: "cancelled") %>
   </li>
   <li>
-    <%= link_to "active projects", borrower_user_projects_path(inactive: false) %>
+    <%= link_to "active projects", borrower_user_projects_path(current_user, inactive: false) %>
   </li>
   <li>
-    <%= link_to "inactive projects", borrower_user_projects_path(inactive: true) %>
+    <%= link_to "inactive projects", borrower_user_projects_path(current_user, inactive: true) %>
   </li>
   <li>
     <%= link_to "add project", new_borrower_user_project_path %>

@@ -16,7 +16,11 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def index
-    @projects = current_user.projects
+    if params[:inactive] == "true"
+      @projects = current_user.projects.inactive_index
+    else
+      @projects = current_user.projects.active_index
+    end
   end
 
   def update
@@ -42,6 +46,6 @@ class Borrower::ProjectsController < ApplicationController
 end
 
   def project_params
-    params.require(:project).permit(:name, :goal, :description, :country_id, :category_id, :image)
+    params.require(:project).permit(:name, :goal, :description, :country_id, :category_id, :image, :inactive)
   end
 end
