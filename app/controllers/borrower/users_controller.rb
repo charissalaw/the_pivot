@@ -23,7 +23,7 @@ class Borrower::UsersController < ApplicationController
         redirect_to root_path
       end
     else
-      flash.now[:alert] = "You are missing something"
+      flash.now[:alert] = "Looks like you may already be a user!"
       render :new
     end
   end
@@ -41,7 +41,6 @@ class Borrower::UsersController < ApplicationController
 
     def borrower_params
       params.permit(
-        :description,
         :annual_income,
         :monthly_housing,
         :monthly_credit_pmt,
