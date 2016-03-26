@@ -59,13 +59,13 @@ private
     return true if controller == 'home' && action.in?(%w(index))
     return true if controller == 'mailing_list_emails' && action.in?(%w(create))
     return true if controller == 'users' && action.in?(%w(show))
-    return true if controller == 'borrower/users' && action.in?(%w(new create))
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
     return true if controller == 'projects' && action.in?(%w(index show))
     return true if controller == 'orders' && action.in?(%w(new create index show thanks))
     return true if controller == 'categories' && action.in?(%w(show))
     return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
+    return true if controller == 'borrowers' && action.in?(%w(new create))
   end
 
   def general_permissions

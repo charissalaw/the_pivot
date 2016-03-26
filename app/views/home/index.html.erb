@@ -12,7 +12,13 @@
   <div class="borrow-hero-unit">
       <div class="container text-center hero-container">
         <h1>borrow with <span class:"bold-header">Lending Owl<span></h1>
-      </div>
+          <br>
+          <% if current_user %>
+            <%= link_to "become a borrower", new_borrower_path, class:"btn btn-primary" %>
+          <% else %>
+            <%= link_to "become a borrower", new_borrower_user_path, class:"btn btn-primary" %>
+          <% end %>
+    </div>
   </div>
 </a>
 <%= render partial: "shared/mailing_list" %>

@@ -36,14 +36,14 @@ RSpec.describe "Lender Permissions" do
     expect(result).to be true
   end
 
-  scenario "borrower/users#new" do
-    permission = Permission.new(@lender, 'borrower/users', 'new')
+  scenario "borrowers#new" do
+    permission = Permission.new(@lender, 'borrowers', 'new')
     result = permission.allow?
     expect(result).to be true
   end
 
-  scenario "borrower/users#create" do
-    permission = Permission.new(@lender, 'borrower/users', 'create')
+  scenario "borrowers#create" do
+    permission = Permission.new(@lender, 'borrowers', 'create')
     result = permission.allow?
     expect(result).to be true
   end
