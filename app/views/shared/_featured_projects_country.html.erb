@@ -9,9 +9,9 @@
   <div class="col-xs-12 col-sm-4 featured-project featured-sub-project">
     <div class="row">
       <div class="featured-sub-project">
-        <a href="/agriculture %>">
-          <div class="text-center project-unit featured-agriculture category-unit">
-              <h1>lend to agriculture</h1>
+        <a href="/<%= @project.country.name %>">
+          <div class="text-center project-unit featured-country category-unit">
+              <h1><%= @project.country.name.downcase %></h1>
           </div>
         </a>
       </div>

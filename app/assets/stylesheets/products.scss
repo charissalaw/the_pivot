@@ -168,11 +168,29 @@
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-.featured-coffee {
-  background-image:url('http://s3.amazonaws.com/lendingowl-turing/projects/images/000/000/014/show/open-uri20160308-77869-v1i6si?1457497048');
+.featured-country {
+  background-image:url('https://images.unsplash.com/photo-1421878615130-7c5243914117?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=b694cda10e958c188a29d051377f303b');
+  h1 {
+    padding-top: 100px;
+    text-decoration: none;
+    color:#fff;
+  }
 }
 
-.featured-coffee h1 {
+.featured-general {
+  background-image:url('https://images.unsplash.com/uploads/1412825195419af52b492/8bc72ed7?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=f081380afa483e543a899a8ed02cd81f');
+}
+
+.featured-agriculture {
+  background-image:url('https://images.unsplash.com/photo-1442906361539-6f7052120e7b?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=3af364a1adaf0407c700aae12731c610');
+  h1 {
+    padding-top: 100px;
+    text-decoration: none;
+    color:#fff;
+  }
+}
+
+.featured h1 {
   text-decoration: none;
   color: #fff;
   margin-right:0;

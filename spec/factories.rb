@@ -17,7 +17,7 @@ FactoryGirl.define do
   end
 
   factory :borrower do
-    description         "this is gonna be huge"
+    username            "username"
     annual_income       2000000
     monthly_housing     1000000
     monthly_credit_pmt  500

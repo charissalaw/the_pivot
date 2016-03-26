@@ -17,21 +17,13 @@
       <div class="form-group text-center form-div">
       <%= form_tag(borrower_users_path) do %>
       <%= label_tag :fullname,  nil, class:"sr-only"  %>
-        <% if current_user.blank? %>
-          <%= text_field_tag :fullname, nil, required:true, placeholder: "name", class:"form-control text-input" %><br>
-        <% else %>
-          <%= text_field_tag :fullname, current_user.fullname, required:true, class:"form-control text-input" %><br>
-        <% end %>
+        <%= text_field_tag :fullname, nil, required:true, placeholder: "name", class:"form-control text-input" %><br>
         <%= label_tag :email,  nil, class:"sr-only"  %>
-        <% if current_user.blank? %>
-          <%= email_field_tag :email, nil, required:true, placeholder: "email", class:"form-control text-input" %><br>
-        <% else %>
-          <%= email_field_tag :email, current_user.email, required:true, class:"form-control text-input" %><br>
-        <% end %>
+        <%= email_field_tag :email, nil, required:true, placeholder: "email", class:"form-control text-input" %><br>
+        <%= label_tag :username,  nil, class:"sr-only"  %>
+        <%= text_field_tag :username, nil, required:true, placeholder: "borrower username", class:"form-control text-input" %><br>
         <%= label_tag :password,  nil, class:"sr-only"  %>
         <%= password_field_tag :password, nil, required:true, placeholder: "enter or create password", class:"form-control text-input" %><br>
-        <%= label_tag :description,  nil, class:"sr-only"  %>
-        <%= text_field_tag :description, nil, required:true, placeholder: "description", class:"form-control text-input" %><br>
         <%= label_tag :annual_income,  nil, class:"sr-only"  %>
         <%= text_field_tag :annual_income, nil, required:true, placeholder: "annual income", class:"form-control text-input" %><br>
         <%= label_tag :monthly_housing,  nil, class:"sr-only"  %>

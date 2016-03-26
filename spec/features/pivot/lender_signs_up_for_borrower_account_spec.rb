@@ -9,7 +9,7 @@ RSpec.feature "LenderSignsIn", type: :feature do
     create(:borrower_role)
     click_on "become a borrower"
     within("div#signup") do
-      fill_in "description", with: "some description"
+      fill_in "borrower username", with: "username"
       fill_in "annual income", with: "400000"
       fill_in "monthly mortgage or rent payment", with: "500"
       fill_in "monthly credit payment", with: "300"
