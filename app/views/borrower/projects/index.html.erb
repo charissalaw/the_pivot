@@ -10,31 +10,27 @@
       <tr>
         <th></th>
         <th>name</th>
-        <th>price</th>
-        <th>sale?</th>
-        <th>sale price</th>
+        <th>goal</th>
         <th>description</th>
         <th>category</th>
+        <th>country</th>
         <th>update image</th>
         <th></th>
-        <th>inactive?</th>
+        <th>cancel project?</th>
       </tr>
     </thead>
     <% @projects.each do |project| %>
       <tr id="<%= project.id %>-project">
         <td><%= image_tag(project.image.url(:small), class:"admin-project-image") %></td>
-        <%= form_for [:admin, project], url: admin_project_path(project.id) do |f| %>
+        <%= form_for [:borrower, current_user, project], url: borrower_user_project_path(current_user, project) do |f| %>
         <td><%= f.label :name, class:"sr-only" %>
         <%= f.text_field :name, placeholder: "name", class: "project-update-form"%></td>
-        <td><%= f.label :price, class:"sr-only"  %>
-        <%= f.text_field :price, placeholder: "price", class: "project-update-form"%></td>
-        <td class="success"><%= f.label :sale, class:"sr-only", id:"sale" %>
-        <%= f.check_box :sale, {placeholder: "sale", class: "project-update-checkbox"}%></td>
-        <td><%= f.label :sale_price, class:"sr-only"  %>
-        <%= f.text_field :sale_price, placeholder: "sale price", class: "project-update-form"%></td>
+        <td><%= f.label :goal, class:"sr-only"  %>
+        <%= f.text_field :goal, placeholder: "goal", class: "project-update-form"%></td>
         <td><%= f.label :description, class:"sr-only"  %>
         <%= f.text_field :description, placeholder: "description", class: "project-update-form" %></td>
         <td><%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", required:true, class: "project-update-form"}) %></td>
+        <td><%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", required:true, class: "project-update-form"}) %></td>
         <%= f.label :image, class:"sr-only"  %>
         <%= f.file_field :image, { id:"#{project.id}_file_input", style:"display:none" } %>
           <label class="file">

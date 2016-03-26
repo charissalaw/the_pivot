@@ -5,25 +5,25 @@
     </a>
   </li>
   <li>
-    <%= link_to "dashboard", admin_dashboard_path %>
+    <%= link_to "dashboard", borrower_user_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active orders", admin_orders_path(status: "paid") %>
+    <%= link_to "active orders", borrower_user_orders_path(current_user, status: "paid") %>
   </li>
   <li>
-    <%= link_to "completed orders", admin_orders_path(status: "completed") %>
+    <%= link_to "completed orders", borrower_user_orders_path(current_user, status: "completed") %>
   </li>
   <li>
-    <%= link_to "cancelled orders", admin_orders_path(status: "cancelled") %>
+    <%= link_to "cancelled orders", borrower_user_orders_path(current_user, status: "cancelled") %>
   </li>
   <li>
-    <%= link_to "active projects", admin_projects_path(inactive: false) %>
+    <%= link_to "active projects", borrower_user_projects_path(inactive: false) %>
   </li>
   <li>
-    <%= link_to "inactive projects", admin_projects_path(inactive: true) %>
+    <%= link_to "inactive projects", borrower_user_projects_path(inactive: true) %>
   </li>
   <li>
-    <%= link_to "add project", new_admin_project_path %>
+    <%= link_to "add project", new_borrower_user_project_path %>
   </li>
   <li class="sidebar-header">
     <p>user interface</p>

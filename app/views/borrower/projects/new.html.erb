@@ -7,14 +7,14 @@
   <br>
   <div class="row">
     <div id="new-project" class="form-group has success text-center form-div col-xs-6">
-      <%= form_for [:borrower, @project] do |f| %>
+      <%= form_for [:borrower, current_user, @project] do |f| %>
         <%= f.label :name, class:"sr-only"  %>
         <%= f.text_field :name, placeholder: "project title", class:"form-control form-control-success" %><br>
-        <%= f.label :price, class:"sr-only"  %>
-        <%= f.text_field :price, placeholder: "project goal", class:"form-control text-input" %><br>
+        <%= f.label :goal, class:"sr-only"  %>
+        <%= f.text_field :goal, placeholder: "project goal", class:"form-control text-input" %><br>
         <%= f.label :description, class:"sr-only"  %>
         <%= f.text_area :description, placeholder: "description", class:"form-control text-input" %><br>
-        <%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", class:"form-control", required:true}) %>
+        <%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", class:"form-control", required:true}) %><br>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", class:"form-control", required:true}) %>
         <br>
         <%= f.label :image, class:"sr-only"  %>

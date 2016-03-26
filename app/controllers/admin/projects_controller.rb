@@ -48,6 +48,6 @@ class Admin::ProjectsController < Admin::BaseController
 private
 
   def project_params
-    params.require(:project).permit(:name, :price, :description, :image, :sale, :sale_price, :category_id, :inactive)
+    params.require(:project).permit(:name, :goal, :description, :image, :sale, :sale_goal, :category_id, :inactive)
   end
 end

@@ -38,4 +38,10 @@ FactoryGirl.define do
     name "United States"
   end
 
+  factory :project do
+    name "factory project"
+    description Faker::Lorem.paragraph
+    goal 100
+  end
+
 end

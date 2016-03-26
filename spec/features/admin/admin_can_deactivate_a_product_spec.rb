@@ -9,7 +9,7 @@ RSpec.feature "AdminCanDeactivateAProject", type: :feature do
 
     category = Category.create(name: "coffee")
     project = category.projects.create(name: "Ethiopian",
-                                       price:1500,
+                                       goal:1500,
                                        description: "Ethiopian coffee is super good",
                                       )
 

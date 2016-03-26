@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "BorrowerCanManageProjects", type: :feature do
-  scenario "they see the correct flash message after project is added" do
+  scenario "they can add projects" do
     create(:lender_role)
     create(:borrower_role)
     user = create(:user)
@@ -22,11 +22,11 @@ RSpec.feature "BorrowerCanManageProjects", type: :feature do
       click_on "login"
     end
 
-    visit borrower_user_path(user)
+    expect(current_path).to eq(borrower_user_path(user))
 
     click_on "add project"
 
-    expect(current_path).to eq(new_borrower_project_path)
+    expect(current_path).to eq(new_borrower_user_project_path(user))
 
     within "div#new-project" do
     fill_in "project title", with: "Ethiopian"

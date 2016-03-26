@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   before_save :build_slug
 
   validates :name, presence: true, uniqueness: true
-  validates :price, presence: true
+  validates :goal, presence: true
   validates :description, presence: true
   validates :category_id, presence: true
   validates :country_id,  presence: true
@@ -27,8 +27,8 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def display_price
-    "$#{price.to_i / 100}"
+  def display_goal
+    "$#{goal.to_i / 100}"
   end
 
   def self.active_index

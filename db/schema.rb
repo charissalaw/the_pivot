@@ -90,13 +90,13 @@ ActiveRecord::Schema.define(version: 20160326024948) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
+    t.integer  "goal"
     t.string   "description"
     t.integer  "category_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.boolean  "sale",               default: false
-    t.integer  "sale_price"
+    t.integer  "sale_goal"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

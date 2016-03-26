@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "UserCanLoginToExistingAccount", type: :feature do
   scenario "user logs in to account" do
     category = Category.create(name:"coffee")
-    project = category.projects.create(name:"Ethiopian", price:1500, description:"Ethiopian coffee is super good")
+    project = category.projects.create(name:"Ethiopian", goal:1500, description:"Ethiopian coffee is super good")
     user = User.create(first_name: "John", last_name: "Adams", fullname: "John Adams", email: "email@example.com", password: "password")
 
     visit "/projects/#{project.id}"

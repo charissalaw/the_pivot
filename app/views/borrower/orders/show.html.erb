@@ -66,7 +66,7 @@
             <tr>
               <th></th>
               <th class="text-center">project</th>
-              <th class="text-center">price</th>
+              <th class="text-center">goal</th>
               <th class="text-center">quantity</th>
               <th class="text-center">subtotal</th>
             </tr>
@@ -75,7 +75,7 @@
             <tr>
               <td><%= link_to image_tag(loan.project.image.url(:small), class: "project_image img-responsive"), project_path(loan.project.id) %></td>
                 <td><h4><%= link_to loan.project.name, project_path(loan.project.id) %></h4></td>
-                <td><h4><%= loan.project.display_price %></h4></td>
+                <td><h4><%= loan.project.display_goal %></h4></td>
                 <td><h4><%= loan.quantity %></h4></td>
                 <td><h4><%= loan.display_total %></h4></td>
             </tr>
