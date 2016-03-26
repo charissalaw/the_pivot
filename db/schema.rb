@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324175731) do
+ActiveRecord::Schema.define(version: 20160326024948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "borrowers", force: :cascade do |t|
-    t.text     "description"
     t.integer  "annual_income"
     t.integer  "monthly_housing"
     t.integer  "monthly_credit_pmt"
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160324175731) do
     t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "username"
   end
 
   add_index "borrowers", ["user_id"], name: "index_borrowers_on_user_id", using: :btree
@@ -48,7 +48,10 @@ ActiveRecord::Schema.define(version: 20160324175731) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
+
+  add_index "countries", ["slug"], name: "index_countries_on_slug", using: :btree
 
   create_table "loans", force: :cascade do |t|
     t.integer  "project_id"
@@ -101,11 +104,13 @@ ActiveRecord::Schema.define(version: 20160324175731) do
     t.boolean  "inactive",           default: false
     t.integer  "borrower_id"
     t.integer  "country_id"
+    t.string   "slug"
   end
 
   add_index "projects", ["borrower_id"], name: "index_projects_on_borrower_id", using: :btree
   add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree
   add_index "projects", ["country_id"], name: "index_projects_on_country_id", using: :btree
+  add_index "projects", ["slug"], name: "index_projects_on_slug", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -135,7 +140,10 @@ ActiveRecord::Schema.define(version: 20160324175731) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "slug"
   end
+
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   add_foreign_key "borrowers", "users"
   add_foreign_key "comments", "orders"

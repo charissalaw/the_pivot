@@ -45,7 +45,8 @@ class Borrower::UsersController < ApplicationController
         :annual_income,
         :monthly_housing,
         :monthly_credit_pmt,
-        :dependents
+        :dependents,
+        :username
       )
     end
 end

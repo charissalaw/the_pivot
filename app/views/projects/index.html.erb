@@ -23,7 +23,6 @@
               <div class="sm-project-info">
                 <h4><%= link_to project.name, project_path(project.id), id: "#{project.id}-project" %></h4>
                 <p><%= project.country.name %> | <%= project.category.name %></p>
-                <p><%= project.description %></p>
                 <p>Amount Needed: <%= project.display_price %></p>
               </div>
             </div>

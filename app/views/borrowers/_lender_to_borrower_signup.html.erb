@@ -16,8 +16,8 @@
     <div id="signup" class="col-xs-6">
       <div class="form-group text-center form-div">
       <%= form_for(:borrower, url: borrowers_path ) do |f| %>
-        <%= f.label :description, class:"sr-only"  %>
-        <%= f.text_field :description, required:true, placeholder: "description", class:"form-control text-input" %><br>
+        <%= f.label :username, class:"sr-only"  %>
+        <%= f.text_field :username, required:true, placeholder: "borrower username", class:"form-control text-input" %><br>
         <%= f.label :annual_income, class:"sr-only"  %>
         <%= f.text_field :annual_income,required:true, placeholder: "annual income", class:"form-control text-input" %><br>
         <%= f.label :monthly_housing, class:"sr-only"  %>

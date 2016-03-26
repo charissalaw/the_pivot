@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :loans
   has_many :orders, through: :loans
   belongs_to :country
+  before_save :build_slug
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
@@ -14,11 +15,17 @@ class Project < ActiveRecord::Base
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
-      default_url: "logo.ico"
+      default_url: "https://source.unsplash.com/random"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   scope :active_projects, -> { where(inactive: false) }
+
+  def build_slug
+    if name
+      self.slug = name.gsub(" ", "-").gsub(",","")
+    end
+  end
 
   def display_price
     "$#{price.to_i / 100}"
