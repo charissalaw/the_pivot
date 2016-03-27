@@ -34,21 +34,24 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    loans.map do |loan|
-      loan.total
-    end.inject(:+) / 100
+    loans.sum(:quantity)
   end
 
   def display_total
     "$#{total}"
   end
 
-  def process(projects)
+  def process(projects, contents)
     projects.each do |project|
-      loans.create(project_id: project.id, quantity: project.quantity)
+      loans.create(project_id: project.id, quantity: contents[project.id.to_s])
     end
     process_stripe_payment
     self.update(order_total: total)
+    send_to_escrow
+  end
+
+  def send_to_escrow
+    Escrow.send_to_escrow(self)
   end
 
   def project_quantity
@@ -73,10 +76,10 @@ class Order < ActiveRecord::Base
   end
 
   def process_stripe_payment
-    customer = Stripe::Customer.create email: email,
+    customer = Stripe::Customer.create email: user.email,
                                        card: card_token
     Stripe::Charge.create customer: customer.id,
-                          amount: total * 100,
+                          amount: total,
                           description: id,
                           currency: 'usd'
   end

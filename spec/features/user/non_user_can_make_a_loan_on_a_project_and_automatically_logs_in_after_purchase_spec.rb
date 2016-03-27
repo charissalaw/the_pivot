@@ -31,6 +31,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
 
 
     click_on "continue"
+    
     expect(page).to have_content("Some of your loans have been adjusted.  Please review.")
     expect(page).to have_content("$100")
     expect(page).to have_content("submit loans")

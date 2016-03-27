@@ -38,7 +38,7 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <%= geo_chart Order.group(:state).count, library: {region: 'US', resolution: 'provinces'} %>
+        <%= geo_chart Project.group(:country).count %>
       </div>
       <div class="col-xs-6">
         <%= pie_chart Project.category_distribution %>
