@@ -2,7 +2,12 @@ class OrderProcessor
   attr_reader :projects
 
   def initialize(cart)
+    @cart = cart
     @projects = cart.projects
+  end
+
+  def adjust_loans
+    @cart.adjust_loans
   end
 
   def process_current_user(params, current_user)

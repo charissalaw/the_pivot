@@ -5,9 +5,21 @@ class Cart
     @contents = initial_contents || {}
   end
 
-  def add_project(project_id, quantity)
+  def add_project(project_id, loan_amount)
     contents[project_id.to_s] ||= 0
-    contents[project_id.to_s] += quantity.to_i
+    contents[project_id.to_s] += loan_amount[1..-1].to_i
+  end
+
+  def adjust_loans
+    flash = false
+    contents.each do |project, loan|
+      if loan > Project.find(project.to_i).remaining_goal
+        current_project = Project.find(project.to_i)
+        contents[project] = current_project.remaining_goal
+        flash = true
+      end
+    end
+    flash
   end
 
   def count
@@ -15,8 +27,8 @@ class Cart
   end
 
   def projects
-    contents.map do |project_id, quantity|
-      CartProject.new(project_id, quantity)
+    contents.map do |project_id, loan_amount|
+      CartProject.new(project_id, loan_amount)
     end
   end
 
@@ -29,6 +41,6 @@ class Cart
   end
 
   def update(params)
-    contents[params[:id]] = params[:quantity].to_i
+    contents[params[:id]] = params["loan-amount"][1..-1].to_i
   end
 end

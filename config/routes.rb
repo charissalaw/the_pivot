@@ -36,8 +36,8 @@ Rails.application.routes.draw do
     resources :projects, only: [:index]
   end
 
-  get "orders/login", to: "orders#checkout_login", as: "checkout_login"
-  post "orders/login", to: "orders#checkout_user", as: "checkout_user"
+  get "loans/login", to: "orders#checkout_login", as: "checkout_login"
+  post "loans/login", to: "orders#checkout_user", as: "checkout_user"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"

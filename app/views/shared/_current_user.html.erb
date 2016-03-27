@@ -14,7 +14,7 @@
     </li>
     <% if !@cart.contents.empty? %>
       <li class="pull-right nav-icon">
-        <a id="cart" href="/cart" style="color:#777; margin-top: 5px;"><i class="fa fa-shopping-cart fa-lg"></i> (<%= @cart.count %>) </a>
+        <a id="cart" href="/cart" style="color:#777; margin-top: 5px;">loans ($<%= @cart.count %>) </a>
       </li>
     <% end %>
   <% else %>
@@ -29,7 +29,7 @@
     </li>
     <% if !@cart.contents.empty? %>
       <li class="pull-right nav-icon">
-        <a id="cart" href="/cart" style="color:#777; margin-top: 5px;"><i class="fa fa-shopping-cart fa-lg"></i> (<%= @cart.count %>) </a>
+        <a id="cart" href="/cart" style="color:#777; margin-top: 5px;">loans ($<%= @cart.count %>) </a>
       </li>
     <% end %>
   <% end %>

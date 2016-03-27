@@ -2,9 +2,9 @@ class CartProjectsController < ApplicationController
 
   def create
     project = Project.find(params[:project_id])
-    @cart.add_project(project.id, params[:quantity])
+    @cart.add_project(project.id, params["loan-amount"])
     session[:cart] = @cart.contents
-    flash[:info] = "#{project.name} added to cart"
+    flash[:info] = "A loan for $#{@cart.contents[project.id.to_s]} has been added for #{project.name}."
     redirect_to projects_path
   end
 
