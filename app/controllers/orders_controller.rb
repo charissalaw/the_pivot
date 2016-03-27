@@ -1,8 +1,13 @@
 class OrdersController < ApplicationController
 
   def new
-    @projects = OrderProcessor.new(@cart).projects
+    order_processor = OrderProcessor.new(@cart)
+    flash_message = order_processor.adjust_loans
+    @projects = order_processor.projects
     @order = Order.new
+    if flash_message == true
+      flash.now[:info] = "Some of your loans have been adjusted.  Please review."
+    end
   end
 
   def checkout_user

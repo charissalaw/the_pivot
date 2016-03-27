@@ -1,17 +1,9 @@
 class CartProject < SimpleDelegator
-attr_reader :project, :quantity
+attr_reader :project, :loan_amount
 
-  def initialize(project_id, quantity)
+  def initialize(project_id, loan_amount)
     @project = Project.find(project_id)
-    @quantity = quantity
+    @loan_amount = loan_amount
     super(@project)
-  end
-
-  def subtotal
-    project.goal * quantity
-  end
-
-  def format_subtotal
-    subtotal / 100
   end
 end
