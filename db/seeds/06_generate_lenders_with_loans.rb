@@ -11,7 +11,7 @@ class LendersLoansSeed
         user.update(created_at: date, updated_at: date)
 
         rand(1..4).times do
-          order = user.orders.new(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, fullname: fullname, email: email)
+          order = user.orders.new
 
           if order.save
             puts "Created Order: #{order.id}."
