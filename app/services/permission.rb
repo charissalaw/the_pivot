@@ -40,6 +40,8 @@ private
 
   def platform_admin_permissions
     return true if controller == 'home' && action.in?(%w(index))
+    return true if controller == 'admin/users' && action.in?(%w(show))
+    return true if controller == 'admin/borrowers' && action.in?(%w(index show))
   end
 
   def borrower_permissions

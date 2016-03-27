@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :users, only: [:show]
+    resources :borrowers, only: [:index, :show]
+    resources :projects, only: [:index]
   end
 
   get "orders/login", to: "orders#checkout_login", as: "checkout_login"
