@@ -1,2 +1,32 @@
-<h1>Borrower::Loans#index</h1>
-<p>Find me in app/views/borrower/loans/index.html.erb</p>
+<div class="order-hero-unit order-history-hero-unit">
+  <div class="container text-center hero-container">
+    <h1>oh, the nostalgia.</h1>
+  </div>
+</div><br>
+<div id="loans" class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="table-responsive">
+        <table class="table table-hover table-condensed table-projects">
+          <thead>
+            <tr>
+              <th class="text-center">loan</th>
+              <th class="text-center">project</th>
+              <th class="text-center">status</th>
+              <th class="text-center">amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @loans.each do |loan| %>
+            <tr>
+              <td><h4><%= link_to loan.id, borrower_user_loan_path(current_user, loan) %></h4></td>
+              <td><h4><%= loan.project %></h4></td>
+              <td><h4><%= loan.status %></h4></td>
+              <td><h4><%= loan.quantity %></h4></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

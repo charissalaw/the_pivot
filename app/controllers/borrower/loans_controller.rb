@@ -1,6 +1,6 @@
 class Borrower::LoansController < ApplicationController
   def index
-    @loans = current_user.loans.by_date
+    @loans = current_user.borrower.loans
     if params[:status]
       @loans = current_user.loans.where(status: params[:status]).by_date.limit(50)
     elsif params[:id_search]

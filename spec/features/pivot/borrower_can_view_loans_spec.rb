@@ -19,57 +19,28 @@ RSpec.feature "BorrowerViewsAllOrders", type: :feature do
     loan1 = order.loans.create(quantity: 25, project_id: project_active1.id)
     loan2 = order.loans.create(quantity: 30, project_id: project_active1.id)
     loan3 = order.loans.create(quantity: 35, project_id: project_active2.id)
-    borrower_user.borrower.loans => "all loans"
-  #   click_on "login"
-  #   fill_in "email", with: admin.email
-  #   fill_in "password", with: admin.password
-  #   click_on "login"
-  #   visit admin_dashboard_path
-  #
-  #   click_on "active orders"
-  #
-  #   expect(current_path).to eq(admin_orders_path)
-  #
-  #   within "tr##{order1.id}-order" do
-  #     expect(page).to have_content(order1.id)
-  #     expect(page).to have_content(order1.first_name)
-  #     expect(page).to have_content(order1.last_name)
-  #     expect(page).to have_content(order1.total)
-  #     expect(page).to have_content(order1.project_quantity)
-  #     expect(page).to_not have_content(order2.total)
-  #     select "completed", from: "order_status"
-  #     click_on "update"
-  #   end
-  #
-  #   expect(current_path).to eq(admin_orders_path)
-  #   expect(Order.first.status).to eq("completed")
-  #
-  #   click_on(order1.id)
-  #
-  #   expect(current_path).to eq(admin_order_path(order1.id))
-  #   within "div#order-information" do
-  #     expect(page).to have_content(order1.id)
-  #     expect(Order.first.status).to eq("completed")
-  #     expect(page).to have_button("update")
-  #   end
-  #
-  #   within "div#order-comments" do
-  #     expect(Order.first.comments.last.comment).to eq("Test comment")
-  #     expect(page).to have_button("add comment")
-  #   end
-  #
-  #   within "div#customer-information" do
-  #     expect(page).to have_content(order1.first_name)
-  #     expect(page).to have_content(order1.last_name)
-  #     expect(page).to have_content("1600 pennslyvania")
-  #     expect(page).to have_content(order1.city)
-  #     expect(page).to have_content(order1.state)
-  #     expect(page).to have_content(order1.zip)
-  #   end
-  #
-  #   expect(page).to have_content(loan1.project.name)
-  #   expect(page).to have_content(loan1.quantity)
-  #   expect(page).to have_content(loan1.project.display_goal)
-  #   expect(page).to have_content(loan1.display_total)
+    # borrower_user.borrower.loans => "all loans"
+
+    visit root_path
+    click_on "login"
+    within("div#login-form") do
+      fill_in "email", with: borrower_user.email
+      fill_in "password", with: borrower_user.password
+      click_on "login"
+    end
+
+    click_on "active loans"
+    expect(current_path).to eq(borrower_user_loans_path(borrower_user))
+
+    # within "tr##{order1.id}-order" do
+    within "#loans" do
+      expect(page).to have_content(project_active1.name)
+      expect(page).to have_content(loan1.quantity)
+      expect(page).to have_content(loan2.quantity)
+
+      expect(page).to have_content(project_active2.name)
+      expect(page).to have_content(loan3.quantity)
+    end
+
   end
 end
