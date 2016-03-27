@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :borrower do
+  get 'loans/index'
+  end
+
+  namespace :borrower do
+  get 'loans/show'
+  end
+
   root to: 'home#index'
 
   get "/lend", to: "projects#index", as: "projects"

@@ -26,4 +26,18 @@ class Loan < ActiveRecord::Base
   def display_total
     "$#{total / 100}"
   end
+
+  def self.by_date
+    loan(updated_at: :desc)
+  end
+
+  def self.active_loans
+    where(status: "active").order(:created_at)
+  end
+
+  def self.completed_loans
+    where(status: "completed").order(:created_at)
+  end
+
+
 end

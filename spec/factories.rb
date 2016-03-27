@@ -50,4 +50,8 @@ FactoryGirl.define do
     goal 100
   end
 
+  factory :loan do
+    quantity Faker::Number.number(2)
+  end
+
 end

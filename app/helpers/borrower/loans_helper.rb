@@ -1,0 +1,2 @@
+module Borrower::LoansHelper
+end
