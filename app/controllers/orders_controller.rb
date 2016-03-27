@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     order_processor = OrderProcessor.new(@cart)
     @order = order_processor.process_current_user(stripe_params, current_user)
     if @order.save
-      @order.process(order_processor.projects)
+      @order.process(order_processor.projects, @cart.contents)
       #OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil

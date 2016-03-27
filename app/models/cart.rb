@@ -28,7 +28,7 @@ class Cart
 
   def projects
     contents.map do |project_id, loan_amount|
-      CartProject.new(project_id, loan_amount)
+      CartProject.new(project_id, (loan_amount * 100))
     end
   end
 

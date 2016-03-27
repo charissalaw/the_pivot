@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327214326) do
+ActiveRecord::Schema.define(version: 20160327221116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20160327214326) do
 
   add_index "countries", ["slug"], name: "index_countries_on_slug", using: :btree
 
+  create_table "escrows", force: :cascade do |t|
+    t.integer  "debt_amount", default: 0
+    t.integer  "project_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "escrows", ["project_id"], name: "index_escrows_on_project_id", using: :btree
+
   create_table "loans", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "order_id"
@@ -71,11 +80,11 @@ ActiveRecord::Schema.define(version: 20160327214326) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "status",      default: "paid"
+    t.string   "status",      default: "escrow"
     t.string   "card_token"
     t.integer  "order_total"
   end
@@ -141,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160327214326) do
 
   add_foreign_key "borrowers", "users"
   add_foreign_key "comments", "orders"
+  add_foreign_key "escrows", "projects"
   add_foreign_key "loans", "orders"
   add_foreign_key "loans", "projects"
   add_foreign_key "orders", "users"
