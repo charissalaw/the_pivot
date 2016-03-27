@@ -17,13 +17,15 @@
               <th></th>
             </tr>
           </thead>
+          <% num = 1 %>
           <% @loans.each do |loan| %>
-            <tr>
-              <td><h4><%= link_to loan.id, borrower_user_loan_path(current_user, loan) %></h4></td>
-              <td><h4><%= loan.project %></h4></td>
-              <td><h4><%= loan.status %></h4></td>
-              <td><h4><%= loan.quantity %></h4></td>
+            <tr id="<%= loan.id %>-loan">
+              <td><%= link_to num, borrower_user_loan_path(current_user, loan) %></td>
+              <td class="text-nowrap"><%= link_to loan.project.name, borrower_user_project_path(current_user, loan.project) %></td>
+              <td><%= loan.status %></td>
+              <td><%= loan.quantity %></td>
             </tr>
+            <% num += 1 %>
           <% end %>
         </table>
       </div>

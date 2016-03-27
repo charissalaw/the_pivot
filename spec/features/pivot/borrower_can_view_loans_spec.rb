@@ -31,13 +31,19 @@ RSpec.feature "BorrowerViewsAllOrders", type: :feature do
 
     click_on "active loans"
     expect(current_path).to eq(borrower_user_loans_path(borrower_user))
-
-    # within "tr##{order1.id}-order" do
-    within "#loans" do
+    within "tr##{loan1.id}-loan" do
       expect(page).to have_content(project_active1.name)
       expect(page).to have_content(loan1.quantity)
-      expect(page).to have_content(loan2.quantity)
+      expect(page).to_not have_content(loan2.quantity)
+      expect(page).to_not have_content(loan3.quantity)
+    end
 
+    within "tr##{loan2.id}-loan" do
+      expect(page).to have_content(project_active1.name)
+      expect(page).to have_content(loan2.quantity)
+    end
+
+    within "tr##{loan3.id}-loan" do
       expect(page).to have_content(project_active2.name)
       expect(page).to have_content(loan3.quantity)
     end
