@@ -26,4 +26,9 @@ class Loan < ActiveRecord::Base
   def display_total
     "$#{total / 100}"
   end
+
+  def self.by_date
+    loan(updated_at: :desc)
+  end
+
 end

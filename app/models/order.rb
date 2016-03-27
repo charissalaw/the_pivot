@@ -1,16 +1,10 @@
 class Order < ActiveRecord::Base
-  before_save :build_name
   belongs_to :user
   has_many :loans
   has_many :projects, through: :loans
   has_many :comments
 
   validates :user_id, presence: true
-  validates :fullname, presence:true
-  validates :email, presence: true
-  validates :street, presence: true
-  validates :city, presence: true
-  validates :zip, presence: true
 
   scope :processed_orders, -> { where(status: "paid" || "completed") }
 
@@ -37,11 +31,6 @@ class Order < ActiveRecord::Base
   def self.search_by_date(search)
     date = Date.parse(search)
     where(updated_at: date.beginning_of_day..date.end_of_day)
-  end
-
-  def build_name
-    self.first_name = fullname.split[0]
-    self.last_name = fullname.split[1..-1].join(" ")
   end
 
   def total

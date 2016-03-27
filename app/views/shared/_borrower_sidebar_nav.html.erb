@@ -8,7 +8,7 @@
     <%= link_to "dashboard", borrower_user_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active loans", borrower_user_orders_path(current_user) %>
+    <%= link_to "active loans", borrower_user_loans_path(current_user) %>
   </li>
   <li>
     <%= link_to "active projects", borrower_user_projects_path(current_user, inactive: false) %>

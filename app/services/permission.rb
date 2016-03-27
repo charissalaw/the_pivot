@@ -54,6 +54,7 @@ private
     return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
     return true if controller == 'borrower/projects' && action.in?(%w(new create index update))
+    return true if controller == 'borrower/loans' && action.in?(%w(index show))
   end
 
   def lender_permissions
