@@ -22,7 +22,7 @@
     <%= render partial: "shared/admin_nav" %>
       <div id="wrapper">
          <div id="sidebar-wrapper">
-           <%= render partial: "shared/sidebar_nav" %>
+           <%= render partial: "shared/admin_sidebar_nav" %>
          </div>
     <% flash.each do |type, message| %>
       <%= content_tag :div, sanitize(message), class: "alert alert_#{type} admin-flash" %>
