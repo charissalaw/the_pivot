@@ -34,9 +34,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    loans.map do |loan|
-      loan.total
-    end.inject(:+) / 100
+    loans.sum(:quantity)
   end
 
   def display_total
@@ -81,7 +79,7 @@ class Order < ActiveRecord::Base
     customer = Stripe::Customer.create email: user.email,
                                        card: card_token
     Stripe::Charge.create customer: customer.id,
-                          amount: total * 100,
+                          amount: total,
                           description: id,
                           currency: 'usd'
   end
