@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       if user.admin?
-        redirect_to admin_dashboard_path
+        redirect_to admin_user_path(current_user)
       elsif user.borrower?
         redirect_to borrower_user_path(user)
       else

@@ -46,4 +46,9 @@ class User < ActiveRecord::Base
       self.roles << Role.find_by(name: "lender")
     end
   end
+
+  def balance
+
+  end
+
 end

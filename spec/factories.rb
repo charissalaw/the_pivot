@@ -30,6 +30,12 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :admin_user, parent: :user do
+    fullname "Admin Admin"
+    email "admin@gmail.com"
+    password "password"
+  end
+
   factory :category do
     name "education"
   end
