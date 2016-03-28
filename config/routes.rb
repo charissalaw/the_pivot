@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'country/show'
+
   namespace :borrower do
   get 'loans/index'
   end
@@ -42,6 +44,10 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/lend", to: "projects#index"
+
+  namespace :country do
+    get "/:country", to: 'countries#show'
+  end
 
   resource :projects, as: :project, path: ":project", only: [:show]
 end

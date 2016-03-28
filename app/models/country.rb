@@ -4,6 +4,6 @@ class Country < ActiveRecord::Base
   before_save :build_slug
 
   def build_slug
-    self.slug = name.downcase.gsub(" ", "-").gsub(",","")
+    self.slug = name.parameterize
   end
 end
