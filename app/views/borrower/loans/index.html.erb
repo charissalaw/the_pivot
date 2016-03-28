@@ -24,6 +24,7 @@
               <td class="text-nowrap"><%= link_to loan.project.name, borrower_user_project_path(current_user, loan.project) %></td>
               <td><%= loan.status %></td>
               <td><%= loan.quantity %></td>
+              <td><%= link_to "pay loan", borrower_user_loan_path(current_user, loan), class:"btn btn-checkout btn-s"%></td>
             </tr>
             <% num += 1 %>
           <% end %>

@@ -1,2 +1,32 @@
-<h1>Borrower::Loans#show</h1>
-<p>Find me in app/views/borrower/loans/show.html.erb</p>
+<div id="loan" class="container">
+  <div class="loan-header">
+    <h2>loan toward project <%= @project.name %></h2>
+  </div>
+  <div class="row loans-rows">
+    <div class="col-sm-7">
+      <div class="loan-images">
+          <%= image_tag(@project.image.url(:show), class: "img-responsive") %>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="cart text-center">
+        <h3> Remaining amount to pay off project: </h3>
+        <h2 class="text-center">this loan: $<%= @loan.quantity %></h2><br>
+        <h3 class="text-center">amount to pay</h3>
+        <%= form_tag(borrower_user_loan_path(loan_id: @loan.id), method: "patch") do %>
+          <select class="form-control" name="amount">
+            <%= render partial: "shared/increments_by_5"  %>
+          </select><br>
+          <%= submit_tag "pay now", class:"form-control btn btn-lending-owl"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="category-name">
+    <h2>more stuff you may like</h2>
+    <div class="aligncenter divider">-</div>
+  </div>
+</div>
+<%= render partial: "shared/mailing_list" %>
+<%= render partial: "shared/footer" %>
