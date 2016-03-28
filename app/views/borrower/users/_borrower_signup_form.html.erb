@@ -20,28 +20,14 @@
         <%= text_field_tag :fullname, nil, required:true, placeholder: "name", class:"form-control text-input" %><br>
         <%= label_tag :email,  nil, class:"sr-only"  %>
         <%= email_field_tag :email, nil, required:true, placeholder: "email", class:"form-control text-input" %><br>
-        <%= label_tag :username,  nil, class:"sr-only"  %>
-        <%= text_field_tag :username, nil, required:true, placeholder: "borrower username", class:"form-control text-input" %><br>
         <%= label_tag :password,  nil, class:"sr-only"  %>
         <%= password_field_tag :password, nil, required:true, placeholder: "enter or create password", class:"form-control text-input" %><br>
-        <%= label_tag :annual_income,  nil, class:"sr-only"  %>
-        <%= text_field_tag :annual_income, nil, required:true, placeholder: "annual income", class:"form-control text-input" %><br>
-        <%= label_tag :monthly_housing,  nil, class:"sr-only"  %>
-        <%= text_field_tag :monthly_housing, nil, required:true, placeholder: "monthly mortgage or rent payment", class:"form-control text-input" %><br>
-        <%= label_tag :monthly_credit_pmt,  nil, class:"sr-only"  %>
-        <%= text_field_tag :monthly_credit_pmt, nil, required:true, placeholder: "monthly credit payment", class:"form-control text-input" %><br>
-        <%= label_tag :dependents,  nil, class:"sr-only"  %>
-        <%= text_field_tag :dependents, nil, required:true, placeholder: "number of dependents", class:"form-control text-input" %><br>
+        <%= select_tag :annual_income, options_from_collection_for_select(BorrowerAttribute.annual_income, 'score', 'label'), {class: "form-control text-input", required:true, prompt:"annual income"} %><br>
+        <%= select_tag :monthly_housing, options_from_collection_for_select(BorrowerAttribute.housing_costs, 'score', 'label'), {class: "form-control text-input", required:true, prompt: "monthly mortgage or rent payment"} %><br>
+        <%= select_tag :monthly_credit_pmt, options_from_collection_for_select(BorrowerAttribute.credit_payments, 'score', 'label'), {class: "form-control text-input", required:true, prompt: "monthly credit payment"} %><br>
+        <%= select_tag :dependents, options_from_collection_for_select(BorrowerAttribute.dependents, 'score', 'label'), {class: "form-control text-input", required:true, prompt: "number of dependents"} %><br>
         <%= label_tag :image,  nil, class:"sr-only"  %>
         <%= file_field_tag :image, { id:"file_input", class:"form-control text-input", style:"display:none" } %>
-        <div class="form-inline">
-          <div class="form-group">
-            <label class="file">
-            <input id="imageFormCover" class="form-control" type="text" readonly>
-            <a class="btn btn-primary" onclick="$('input[id=file_input]').click();">Add Image</a>
-            </label>
-          </div>
-        </div>
         <br>
         <%= submit_tag "Apply", class:"btn btn-checkout" %>
       <% end %>

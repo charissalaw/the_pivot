@@ -16,25 +16,10 @@
     <div id="signup" class="col-xs-6">
       <div class="form-group text-center form-div">
       <%= form_for(:borrower, url: borrowers_path ) do |f| %>
-        <%= f.label :username, class:"sr-only"  %>
-        <%= f.text_field :username, required:true, placeholder: "borrower username", class:"form-control text-input" %><br>
-        <%= f.label :annual_income, class:"sr-only"  %>
-        <%= f.text_field :annual_income,required:true, placeholder: "annual income", class:"form-control text-input" %><br>
-        <%= f.label :monthly_housing, class:"sr-only"  %>
-        <%= f.text_field :monthly_housing, required:true, placeholder: "monthly mortgage or rent payment", class:"form-control text-input" %><br>
-        <%= f.label :monthly_credit_pmt, class:"sr-only"  %>
-        <%= f.text_field :monthly_credit_pmt,required:true, placeholder: "monthly credit payment", class:"form-control text-input" %><br>
-        <%= f.label :dependents, class:"sr-only"  %>
-        <%= f.text_field :dependents,required:true, placeholder: "number of dependents", class:"form-control text-input" %><br>
-        <div class="form-inline">
-          <div class="form-group">
-            <label class="file">
-            <input id="imageFormCover" class="form-control" type="text" readonly>
-            <a class="btn btn-primary" onclick="$('input[id=file_input]').click();">Add Image</a>
-            </label>
-          </div>
-        </div>
-        <br>
+        <%= f.collection_select(:annual_income, BorrowerAttribute.annual_income, :score, :label, { prompt:"annual income" }, { class: "form-control text-input", required:true }) %><br>
+        <%= f.collection_select(:monthly_housing, BorrowerAttribute.housing_costs, :score, :label, { prompt:"monthly mortgage or rent payment" }, { class: "form-control text-input", required:true }) %><br>
+        <%= f.collection_select(:monthly_credit_pmt, BorrowerAttribute.credit_payments, :score, :label, { prompt:"monthly credit payment" }, { class: "form-control text-input", required:true }) %><br>
+        <%= f.collection_select(:dependents, BorrowerAttribute.dependents, :score, :label, { prompt:"number of dependents" }, { class: "form-control text-input", required:true }) %><br>
         <%= submit_tag "Apply", class:"btn btn-checkout" %>
       <% end %>
       </div>

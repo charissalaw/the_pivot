@@ -3,11 +3,10 @@ class Borrower < ActiveRecord::Base
   has_many :projects
   has_many :loans, through: :projects
 
-  validates :annual_income, presence: true, numericality: { only_integer: true, less_than: 5_000_000 }
+  validates :annual_income, presence: true
   validates :monthly_housing, presence: true
   validates :monthly_credit_pmt, presence: true
   validates :dependents, presence: true
-  validates :username, presence: true, uniqueness: true
 
   def self.search(search)
     joins(:user).where('first_name || last_name || fullname ILIKE ?', "%#{search}%").uniq

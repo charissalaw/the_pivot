@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328015216) do
+ActiveRecord::Schema.define(version: 20160328182822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "borrower_attributes", force: :cascade do |t|
+    t.string   "category"
+    t.string   "label"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "borrowers", force: :cascade do |t|
     t.integer  "annual_income"
@@ -24,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160328015216) do
     t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "username"
   end
 
   add_index "borrowers", ["user_id"], name: "index_borrowers_on_user_id", using: :btree
