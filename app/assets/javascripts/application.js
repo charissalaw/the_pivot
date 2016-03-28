@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require d3
 //= require_tree .
+$( document ).ready(function() {
+  searchLoans()
+});

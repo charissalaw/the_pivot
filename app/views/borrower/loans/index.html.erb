@@ -3,9 +3,19 @@
     <h1>oh, the nostalgia.</h1>
   </div>
 </div><br>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+      <input id="loan-search" type="text" class="form-control" placeholder="Search for...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
 <div id="loans" class="container">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <divclass="col-sm-8 col-sm-offset-2">
       <div class="table-responsive">
         <table class="table table-hover table-condensed table-projects">
           <thead>
@@ -19,11 +29,11 @@
           </thead>
           <% num = 1 %>
           <% @loans.each do |loan| %>
-            <tr id="<%= loan.id %>-loan">
+            <tr id="<%= loan.id %>-loan" class="loan-row">
               <td><%= link_to num, borrower_user_loan_path(current_user, loan) %></td>
               <td class="text-nowrap"><%= link_to loan.project.name, borrower_user_project_path(current_user, loan.project) %></td>
               <td><%= loan.status %></td>
-              <td><%= loan.quantity %></td>
+              <td class="loan-value" ><%= loan.quantity %></td>
             </tr>
             <% num += 1 %>
           <% end %>
