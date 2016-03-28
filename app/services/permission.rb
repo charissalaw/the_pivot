@@ -42,6 +42,8 @@ private
     return true if controller == 'home' && action.in?(%w(index))
     return true if controller == 'admin/users' && action.in?(%w(show))
     return true if controller == 'admin/borrowers' && action.in?(%w(index show))
+    return true if controller == 'admin/projects' && action.in?(%w(index show update))
+    return true if controller == 'sessions' && action.in?(%w(new create destroy))
   end
 
   def borrower_permissions
@@ -57,6 +59,7 @@ private
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
     return true if controller == 'borrower/projects' && action.in?(%w(new create index update))
     return true if controller == 'borrower/loans' && action.in?(%w(index show))
+    return true if controller == 'sessions' && action.in?(%w(new create destroy))
   end
 
   def lender_permissions

@@ -6,7 +6,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 text-center">
-        <%= area_chart Order.group_by_month(:created_at).maximum(:order_total) %>
+        <%= area_chart Loan.group_by_month(:created_at).maximum(:quantity) %>
       </div>
     </div>
     <div class="row rev-data-row text-center">
@@ -21,8 +21,8 @@
         <span class="revenue-span">$<%= number_with_delimiter(@orders.weekly_average_revenue, delimiter: ',')%></span>
       </div>
       <div class="col-xs-2 rev-data text-center">
-        <h4 class="data-point-header"><small>orders</small></h4>
-        <span class="revenue-span"><%= Order.count %></span>
+        <h4 class="data-point-header"><small>loans</small></h4>
+        <span class="revenue-span"><%= Loan.count %></span>
       </div>
       <div class="col-xs-2 rev-data text-center">
         <h4 class="data-point-header"><small>users</small></h4>
@@ -46,7 +46,7 @@
     </div>
   <div class="row rev-data-row text-center">
     <div class="col-xs-5 rev-data sub-data text-center">
-      <h4><span class="label label-info top-state">top state</span></h4>
+      <h4><span class="label label-info top-state">top country</span></h4>
       <p class="revenue-span"><%= Order.top_country %></p>
     </div>
     <div class="col-xs-2 text-center">

@@ -48,7 +48,6 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
       expect(page).to have_link(user1.fullname)
       expect(page).to have_content(user1.balance)
       expect(page).to have_content(user1.projects.count)
-      expect(page).to have_button("deactivate borrower")
     end
 
     within "tr##{user2.id}-borrower" do
@@ -66,7 +65,6 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
       expect(page).to have_link(user2.fullname)
       expect(page).to have_content(user2.balance)
       expect(page).to have_content(user2.projects.count)
-      expect(page).to have_button("deactivate borrower")
     end
 
     expect(page).to_not have_content(user1.fullname)
@@ -79,7 +77,6 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
       expect(page).to have_link(user2.fullname)
       expect(page).to have_content(user2.balance)
       expect(page).to have_content(user2.projects.count)
-      expect(page).to have_button("deactivate borrower")
     end
 
     expect(page).to_not have_content(user1.fullname)
@@ -96,7 +93,6 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
       expect(page).to have_link(user3.fullname)
       expect(page).to have_content(user3.balance)
       expect(page).to have_content(user3.projects.count)
-      expect(page).to have_button("deactivate borrower")
     end
 
     expect(page).to_not have_content(user1.fullname)

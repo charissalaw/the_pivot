@@ -12,7 +12,9 @@ class Project < ActiveRecord::Base
   validates :category_id, presence: true
   validates :country_id,  presence: true
   validates :borrower_id, presence: true
+  validates :status, presence: true
   validates :slug, uniqueness: true
+
 
   has_attached_file :image,
       styles: { index: '275x175>', show: '550x350<', small: '137.5x87.5>' },
@@ -20,7 +22,7 @@ class Project < ActiveRecord::Base
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-  scope :active_projects, -> { where(inactive: false) }
+  scope :active_projects, -> { where(status: "active") }
 
   def build_slug
     if name
@@ -41,15 +43,15 @@ class Project < ActiveRecord::Base
   end
 
   def self.active_index
-    where(inactive: false).order(:name)
+    where(status: "active").order(:name)
   end
 
   def self.inactive_index
-    where(inactive: true).order(:name)
+    where(status: "deactive").order(:name)
   end
 
-  def inactive?
-    inactive
+  def self.completed_index
+    where(status: "completed").order(:name)
   end
 
   def self.category_distribution

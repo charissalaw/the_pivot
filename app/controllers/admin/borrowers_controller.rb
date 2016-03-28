@@ -20,6 +20,6 @@ class Admin::BorrowersController < ApplicationController
   end
 
   def show
-
+    @borrower = Borrower.find(params[:id])
   end
 end

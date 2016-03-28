@@ -13,7 +13,7 @@ RSpec.feature "BorrowersDashShowProjects", type: :feature do
     country = create(:country)
     create(:country, name: "nicaragua")
     project_active = create(:project, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
-    project_inactive = create(:project, name: "whatever", borrower_id: borrower.id, category_id: category.id, country_id: country.id, inactive: true)
+    project_inactive = create(:project, name: "whatever", borrower_id: borrower.id, category_id: category.id, country_id: country.id, status: "completed")
 
     visit "/"
     click_on "login"
@@ -24,16 +24,13 @@ RSpec.feature "BorrowersDashShowProjects", type: :feature do
     within "div.sign-up-div" do
       click_on "login"
     end
-    
+
     click_on "active projects"
 
     expect(page).to have_selector("input[value = '#{project_active.name}']")
     expect(page).to_not have_selector("input[value = '#{project_inactive.name}']")
 
     click_on "funded projects"
-
-    expect(page).to have_selector("input[value = '#{project_inactive.name}']")
-    expect(page).to_not have_selector("input[value = '#{project_active.name}']")
-
+    expect(page).to have_content(project_inactive.name)
   end
 end
