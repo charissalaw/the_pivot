@@ -31,6 +31,14 @@ class Project < ActiveRecord::Base
     "$#{goal.to_i / 100}"
   end
 
+  def display_goal_remaining
+    "$#{(goal.to_i - loans.sum(:quantity)) / 100}"
+  end
+
+  def remaining_goal
+    (goal.to_i - loans.sum(:quantity))
+  end
+
   def self.active_index
     where(inactive: false).order(:name)
   end

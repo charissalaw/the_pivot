@@ -47,7 +47,7 @@ FactoryGirl.define do
   factory :project do
     name "factory project"
     description Faker::Lorem.paragraph
-    goal 100
+    goal 10000
   end
 
   factory :loan do

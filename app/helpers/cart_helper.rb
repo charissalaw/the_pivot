@@ -4,8 +4,6 @@ module CartHelper
   end
 
   def raw_cart_total(projects)
-    projects.map do |project|
-      project.goal * project.quantity
-    end.reduce(:+)
+    @cart.contents.values.sum * 100
   end
 end

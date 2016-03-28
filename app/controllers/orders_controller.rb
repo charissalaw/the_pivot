@@ -1,8 +1,13 @@
 class OrdersController < ApplicationController
 
   def new
-    @projects = OrderProcessor.new(@cart).projects
+    order_processor = OrderProcessor.new(@cart)
+    flash_message = order_processor.adjust_loans
+    @projects = order_processor.projects
     @order = Order.new
+    if flash_message == true
+      flash.now[:info] = "Some of your loans have been adjusted.  Please review."
+    end
   end
 
   def checkout_user
@@ -14,7 +19,7 @@ class OrdersController < ApplicationController
     order_processor = OrderProcessor.new(@cart)
     @order = order_processor.process_current_user(stripe_params, current_user)
     if @order.save
-      @order.process(order_processor.projects)
+      @order.process(order_processor.projects, @cart.contents)
       #OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil

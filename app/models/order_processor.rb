@@ -2,7 +2,12 @@ class OrderProcessor
   attr_reader :projects
 
   def initialize(cart)
+    @cart = cart
     @projects = cart.projects
+  end
+
+  def adjust_loans
+    @cart.adjust_loans
   end
 
   def process_current_user(params, current_user)
@@ -17,13 +22,6 @@ class OrderProcessor
   end
 
   def process_user_params(params)
-    {
-      email: params[:stripeEmail],
-      fullname: params[:stripeShippingName],
-      street: params[:stripeShippingAddressLine1],
-      city: params[:stripeShippingAddressCity],
-      state: params[:stripeShippingAddressState],
-      zip: params[:stripeShippingAddressZip],
-      card_token: params[:stripeToken]}
+    {card_token: params[:stripeToken]}
   end
 end
