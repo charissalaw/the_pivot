@@ -20,10 +20,13 @@ RSpec.feature "user sees country show page" do
     category1 = create(:category)
     country1 = create(:country)
     project1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
+    project2 = create(:project, name: "As I Lay Dying", borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
 
     visit "/country/#{country1.slug}"
 
     expect(page).to have_content("#{country1.name}")
     expect(page).to have_content("#{project1.name}")
+    expect(page).to have_content("#{project2.name}")
+save_and_open_page
   end
 end
