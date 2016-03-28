@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     resources :projects, only: [:index, :update]
   end
 
+  namespace :category do
+    resource :categories, as: :category, path: ":category", only: [:show]
+  end
+
   get "loans/login", to: "orders#checkout_login", as: "checkout_login"
   post "loans/login", to: "orders#checkout_user", as: "checkout_user"
 

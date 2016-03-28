@@ -6,6 +6,7 @@
   </div>
 </div>
 <div class="container-fluid">
+  <h1><%= @category.name %></h1>
   <div class="row">
     <% @category.active_projects.each do |project| %>
       <div class="col-xs-12 col-sm-6 col-md-4 project-div" id="<%= project.id %>-category-project">
