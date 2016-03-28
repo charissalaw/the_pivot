@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:show]
     resources :borrowers, only: [:index, :show]
-    resources :projects, only: [:index]
+    resources :projects, only: [:index, :update]
   end
 
   get "loans/login", to: "orders#checkout_login", as: "checkout_login"

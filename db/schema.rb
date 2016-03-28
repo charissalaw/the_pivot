@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327221116) do
+ActiveRecord::Schema.define(version: 20160328015216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,18 +96,18 @@ ActiveRecord::Schema.define(version: 20160327221116) do
     t.integer  "goal"
     t.string   "description"
     t.integer  "category_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.boolean  "sale",               default: false
     t.integer  "sale_goal"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "inactive",           default: false
     t.integer  "borrower_id"
     t.integer  "country_id"
     t.string   "slug"
+    t.string   "status",             default: "active"
   end
 
   add_index "projects", ["borrower_id"], name: "index_projects_on_borrower_id", using: :btree

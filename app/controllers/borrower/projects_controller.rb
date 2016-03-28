@@ -16,8 +16,8 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def index
-    if params[:inactive] == "true"
-      @projects = current_user.projects.inactive_index
+    if params[:status] == "completed"
+      @projects = current_user.projects.completed_index
     else
       @projects = current_user.projects.active_index
     end
@@ -25,27 +25,16 @@ class Borrower::ProjectsController < ApplicationController
 
   def update
   @project = Project.find(params[:id])
-  status = @project.inactive?
-  if @project.update(project_params)
-    if status == true && status == @project.inactive?
-      flash[:alert] = "Sorry mate! Reactivate the project!"
-      return redirect_to borrower_user_projects_path(inactive: true)
-    elsif status == true
-      flash[:info] = "#{@project.name} has been activated"
-      return redirect_to borrower_user_projects_path(inactive: true)
-    elsif @project.inactive?
-      flash[:alert] = "#{@project.name} has been deactivated"
-    else
+    if @project.update(project_params)
       flash[:info] = "Congrats! #{@project.name} has been updated!"
+      redirect_to borrower_user_projects_path(active: "status")
+    else
+      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
+      render :new
     end
-    redirect_to borrower_user_projects_path(inactive: false)
-  else
-    flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
-    render :new
   end
-end
 
   def project_params
-    params.require(:project).permit(:name, :goal, :description, :country_id, :category_id, :image, :inactive)
+    params.require(:project).permit(:name, :goal, :description, :country_id, :category_id, :image, :status)
   end
 end

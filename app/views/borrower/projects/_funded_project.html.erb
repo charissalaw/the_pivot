@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>goal</th>
+        <th>description</th>
+        <th>category</th>
+        <th>country</th>
+        <th>update image</th>
+      </tr>
+    </thead>
+    <% if !@projects.nil? %>
+      <% @projects.each do |project| %>
+        <tr id="<%= project.id %>-project">
+          <td><%= image_tag(project.image.url(:small), class:"admin-project-image") %></td>
+          <td><%= project.name %></td>
+          <td><%= project.goal %></td>
+          <td><%= project.description %></td>
+          <td><%= project.category.name %></td>
+          <td><%= project.country.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

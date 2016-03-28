@@ -49,20 +49,13 @@
         <th>full name</th>
         <th>balance</th>
         <th>number of projects</th>
-        <th></th>
-        <th>deactivate borrower?</th>
-        <th></th>
       </tr>
     </thead>
     <% @borrowers.each do |borrower| %>
       <tr id="<%= borrower.user.id %>-borrower">
         <td class="text-nowrap"><%= link_to borrower.user.fullname, admin_borrower_path(borrower) %></td>
-        <td><%= borrower.user.balance %></td>
+        <td><%= borrower.user.display_balance %></td>
         <td><%= borrower.user.projects.count %></td>
-
-        <%= form_for [:admin, borrower], url: admin_borrower_path(borrower) do |f| %>
-          <td><%= f.submit "deactivate borrower", method: :delete, class:"btn btn-checkout btn-s"%></td>
-        <% end %>
       </tr>
     <% end %>
   </table>

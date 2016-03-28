@@ -11,9 +11,12 @@
     <%= link_to "borrowers", admin_borrowers_path(current_user) %>
   </li>
   <li>
-    <%= link_to "active projects", admin_projects_path(current_user, inactive: false) %>
+    <%= link_to "active projects", admin_projects_path(current_user, status: "active") %>
   </li>
   <li>
     <%= link_to "completed projects", admin_projects_path(current_user, status: "completed") %>
+  </li>
+  <li>
+    <%= link_to "deactivated projects", admin_projects_path(current_user, status: "deactive") %>
   </li>
 </ul>
