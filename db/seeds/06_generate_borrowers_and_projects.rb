@@ -33,10 +33,6 @@ private
       dependents: Random.new.rand(7)}
   end
 
-  def build_username
-    fullname.downcase.gsub(/[()-,. ']/, "-") + "-#{user.id}"
-  end
-
   def self.build_borrower_dashboard(user, borrower)
     user.roles << Role.find_by(name:"borrower")
     user.borrower = borrower
