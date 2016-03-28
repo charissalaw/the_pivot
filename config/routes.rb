@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get "/lend", to: "projects#index", as: "projects"
-  resources :projects, only: [:show]
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
@@ -44,5 +43,5 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/lend", to: "projects#index"
 
-  get "/:name", to: "categories#show"
+  resource :projects, as: :project, path: ":project", only: [:show]
 end
