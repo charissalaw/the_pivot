@@ -38,7 +38,7 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <%= geo_chart Project.group(:country).count %>
+        <%= geo_chart Project.joins(:country).group("countries.name").count %>
       </div>
       <div class="col-xs-6">
         <%= pie_chart Project.category_distribution %>
@@ -47,7 +47,7 @@
   <div class="row rev-data-row text-center">
     <div class="col-xs-5 rev-data sub-data text-center">
       <h4><span class="label label-info top-state">top state</span></h4>
-      <p class="revenue-span"><%= Order.top_state %></p>
+      <p class="revenue-span"><%= Order.top_country %></p>
     </div>
     <div class="col-xs-2 text-center">
     </div>

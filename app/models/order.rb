@@ -70,9 +70,9 @@ class Order < ActiveRecord::Base
     updated_at.strftime("%B %-d, %Y")
   end
 
-  def self.top_state
+  def self.top_country
     return if Order.count == 0
-    group(:state).count.sort_by { |state, n| n }.last[0]
+    Project.joins(:country).group("countries.name").count.sort_by { |country, n| n }.last[0]
   end
 
   def process_stripe_payment
