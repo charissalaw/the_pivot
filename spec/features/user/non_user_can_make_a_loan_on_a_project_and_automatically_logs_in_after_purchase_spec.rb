@@ -12,7 +12,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
     country1 = create(:country)
     project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
 
-    visit project_path(project_active1)
+    visit project_path(project_active1.slug)
 
     select "$25", from: "loan-amount"
     click_on "Loan"
@@ -31,7 +31,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
 
 
     click_on "continue"
-    
+
     expect(page).to have_content("Some of your loans have been adjusted.  Please review.")
     expect(page).to have_content("$100")
     expect(page).to have_content("submit loans")
