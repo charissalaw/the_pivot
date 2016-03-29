@@ -48,6 +48,7 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     expect(page).to have_content("You have paid $105 toward your loan, homie.")
 
     within "tr##{project_active1.id}-project" do
+      save_and_open_page
       expect(page).to have_content("105")
     end
 
