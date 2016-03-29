@@ -32,6 +32,14 @@ class Loan < ActiveRecord::Base
     loan(updated_at: :desc)
   end
 
+  def display_total
+    "$#{quantity/100}"
+  end
+
+  def date
+    updated_at.strftime("%B %-d, %Y")
+  end
+
   def self.active_loans
     where(status: "active").order(:created_at)
   end

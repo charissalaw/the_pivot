@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     roles.exists?(name:"lender")
   end
 
+  def loans?
+    loans.first
+  end
+
   def build_name
     self.first_name = fullname.split[0]
     self.last_name = fullname.split[1..-1].join(" ")
