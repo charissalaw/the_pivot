@@ -1,6 +1,6 @@
-<div class="<%= @category.name %>-hero-unit category-hero-unit">
+<div class="general-hero-unit category-hero-unit">
   <div class="container text-center hero-container">
-    <a href="/coffee">
+    <a href="/categories/<%= @category.slug %>">
       <h1><%= @category.name %></h1>
     </a>
   </div>
@@ -8,21 +8,35 @@
 <div class="container-fluid">
   <div class="row">
     <% @category.active_projects.each do |project| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 project-div" id="<%= project.id %>-category-project">
-        <div class="row sm-project-row project-row">
-          <div class="col-xs-12">
-            <%= link_to image_tag(project.image.url(:show), class: "img-responsive project-image"), project_path(project.slug), id: "#{project.id}-project-image" %>
-            <div class="sm-project-info">
-              <h4><%= link_to project.name, project_path(project.slug), id: "#{project.id}-project" %></h4>
-              <p><%= project.description %></p>
-            </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 project-div">
+      <div class="row sm-project-row project-row">
+        <div class="col-xs-12" id="<%= project.id %>-index">
+          <%= link_to image_tag(project.image.url(:show), class: "img-responsive project-image"), project_path(project.slug), id: "#{project.id}-project-image" %>
+          <div class="sm-project-info">
+            <h4><%= link_to project.name, project_path(project.slug), id: "#{project.id}-project" %></h4>
+            <p><%= project.country.name %> | <%= project.category.name %></p>
+            <p>Amount Needed: <%= project.display_goal %></p>
           </div>
-          <div class="project-info" id="<%= project.name %>-link">
+        </div>
+        <div class="project-info">
+          <h4><%= link_to project.name, project_path(project.slug), id: "#{project.id}-project" %></h4>
+          <p><%= project.description %></p>
+        </div>
+      </div>
+      <div class="row xs-project-row project-row">
+        <div class="col-xs-6">
+          <%= link_to image_tag(project.image.url(:show), class: "img-responsive"), project_path(project.slug), id: "#{project.id}-project-image" %>
+          <div class="sm-project-info">
             <h4><%= link_to project.name, project_path(project.slug), id: "#{project.id}-project" %></h4>
             <p><%= project.description %></p>
           </div>
         </div>
+        <div class="project-info">
+          <h4><%= link_to project.name, project_path(project.slug), id: "#{project.id}-project" %></h4>
+          <p><%= project.description %></p>
+        </div>
       </div>
+    </div>
     <% end %>
   </div>
   <div class="category-name">

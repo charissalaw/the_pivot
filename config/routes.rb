@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
   resources :borrowers, only: [:new, :create]
+  resources :categories, param: :slug, only: [:show]
 
   resources :users, only: [:new, :create] do
     resources :orders, only: [:new, :index, :create, :show]
@@ -33,10 +34,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
     resources :borrowers, only: [:index, :show]
     resources :projects, only: [:index, :update]
-  end
-
-  namespace :category do
-    resource :categories, as: :category, path: ":category", only: [:show]
   end
 
   get "loans/login", to: "orders#checkout_login", as: "checkout_login"
