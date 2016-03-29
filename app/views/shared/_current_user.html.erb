@@ -4,8 +4,8 @@
     <li class="dropdown pull-right nav-icon">
       <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle"><i class="fa fa-user fa-lg"></i></a>
       <ul class="dropdown-menu">
-        <li class="name-in-dropdown">
-          <%= current_user.fullname.downcase %>
+        <li>
+          <%= link_to current_user.fullname.downcase, user_path(current_user) %>
         </li>
         <% if current_user.loans? %>
         <li>

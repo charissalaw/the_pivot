@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 
   validates :user_id, presence: true
 
-  scope :processed_orders, -> { where(status: "paid" || "completed") }
+  scope :processed_orders, -> { where(status: "escrow" || "completed") }
 
   scope :cancelled_orders, -> { where(status: "cancelled") }
 

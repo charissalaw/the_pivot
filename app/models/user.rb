@@ -32,6 +32,16 @@ class User < ActiveRecord::Base
     loans.first
   end
 
+  def dashboard
+    if admin?
+      "/admin/users/#{id}"
+    elsif borrower?
+      "/borrower/users/#{id}"
+    else
+      "/"
+    end
+  end
+
   def build_name
     self.first_name = fullname.split[0]
     self.last_name = fullname.split[1..-1].join(" ")

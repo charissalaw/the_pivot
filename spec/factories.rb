@@ -35,6 +35,12 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :borrower_user, parent: :user do
+    fullname "Borrower Borrower"
+    email "borrower@gmail.com"
+    password "password"
+  end
+
   factory :category do
     name "education"
   end
