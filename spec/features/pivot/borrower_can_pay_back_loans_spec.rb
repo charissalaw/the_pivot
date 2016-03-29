@@ -19,7 +19,7 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     loan1 = order.loans.create(quantity: 25, project_id: project_active1.id)
     loan2 = order.loans.create(quantity: 30, project_id: project_active1.id)
     loan3 = order.loans.create(quantity: 35, project_id: project_active2.id)
-    # borrower_user.borrower.loans => "all loans"
+    repayment = create(:repayment, project_id: project_active1.id, amount_paid: "100")
 
     visit root_path
     click_on "login"
@@ -30,19 +30,25 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     end
 
     click_on "active loans"
+    expect(page).to have_content("#{project_active1.name}")
+    expect(page).to have_content("#{project_active2.name}")
 
-    within "tr##{loan1.id}-loan" do
-      click_on "pay loan"
-      expect(current_path).to eq(borrower_user_loan_path(borrower_user, loan1))
+    within "tr##{project_active1.id}-project" do
+      click_on "pay back"
+      expect(current_path).to eq(borrower_user_repayment_path(borrower_user, repayment))
     end
 
-    expect(page).to have_content("loan toward project #{project_active1.name}")
+    expect(page).to have_content("repayment toward project #{project_active1.name}")
 
     select "5", from: "amount"
     click_on "pay now"
 
-    within "tr##{loan1.id}-loan" do
-      expect(page).to have_content("20")
+    expect(current_path).to eq(borrower_user_loans_path(borrower))
+    save_and_open_page
+    expect(page).to have_content("You have paid $105 toward your loan, homie.")
+
+    within "tr##{project_active1.id}-project" do
+      expect(page).to have_content("105")
     end
 
   end

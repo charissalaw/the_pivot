@@ -58,8 +58,9 @@ private
     return true if controller == 'categories' && action.in?(%w(show))
     return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
-    return true if controller == 'borrower/projects' && action.in?(%w(new create index update))
+    return true if controller == 'borrower/projects' && action.in?(%w(new create index update show))
     return true if controller == 'borrower/loans' && action.in?(%w(index show update))
+    return true if controller == 'borrower/repayments' && action.in?(%w(show update))
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
     return true if controller == 'country/countries' && action.in?(%w(show))
   end

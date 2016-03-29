@@ -5,6 +5,7 @@ class Borrower::LoansController < ApplicationController
     else
       @loans = current_user.borrower.loans.active_loans
     end
+    @projects = current_user.borrower.projects
   end
 
   def show

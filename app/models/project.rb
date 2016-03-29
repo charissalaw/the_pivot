@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :category
   belongs_to :borrower
   has_many :loans
+  has_many :repayments
   has_many :orders, through: :loans
   belongs_to :country
   before_validation :build_slug

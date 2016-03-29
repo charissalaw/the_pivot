@@ -24,9 +24,10 @@ Rails.application.routes.draw do
 
   namespace :borrower do
     resources :users, only: [:new, :create, :show] do
-      resources :projects, only: [:new, :create, :index, :update]
+      resources :projects, only: [:new, :create, :index, :update, :show]
       resources :orders, only: [:index, :show, :update]
       resources :loans, only: [:index, :show, :update]
+      resources :repayments, only: [:create, :update, :show]
       resources :comments, only: [:create]
     end
   end

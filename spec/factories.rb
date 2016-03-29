@@ -53,6 +53,10 @@ FactoryGirl.define do
     quantity Faker::Number.number(2)
   end
 
+  factory :repayment do
+    amount_paid Faker::Number.number(2)
+  end
+
   factory :borrower_attribute do
     category "income"
     label "$20,000 to $30,000"

@@ -34,6 +34,11 @@ class Borrower::ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = Project.find(params[:id])
+    @repayment = Repayment.find_by(project_id: @project.id)
+  end
+
   def project_params
     params.require(:project).permit(:name, :goal, :description, :country_id, :category_id, :image, :status)
   end
