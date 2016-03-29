@@ -11,7 +11,7 @@ class Borrower::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      borrower = Borrower.new(borrower_params)
+      borrower = BorrowerApplication.new(borrower_params).evaluate_borrower
       if borrower.save
         @user.roles << Role.find_by(name: "borrower")
         @user.borrower = borrower
@@ -44,8 +44,7 @@ class Borrower::UsersController < ApplicationController
         :annual_income,
         :monthly_housing,
         :monthly_credit_pmt,
-        :dependents,
-        :username
+        :dependents
       )
     end
 end

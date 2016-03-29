@@ -1,21 +1,9 @@
 class Admin::ProjectsController < Admin::BaseController
-  def new
-    @project = Project.new
-  end
-
-  def create
-    @project = Project.new(project_params)
-    if @project.save
-      flash[:info] = "Congrats! #{@project.name} created!"
-      redirect_to admin_dashboard_path
-    else
-      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
-      render :new
-    end
-  end
 
   def index
-    if params[:inactive] == "true"
+    if params[:status] == "completed"
+      @projects = Project.completed_index
+    elsif params[:status] == "deactive"
       @projects = Project.inactive_index
     else
       @projects = Project.active_index
@@ -23,31 +11,13 @@ class Admin::ProjectsController < Admin::BaseController
   end
 
   def update
-    @project = Project.find(params[:id])
-    status = @project.inactive?
-
-    if @project.update(project_params)
-      if status == true && status == @project.inactive?
-        flash[:alert] = "Sorry mate! Reactivate the project!"
-        return redirect_to admin_projects_path(inactive: true)
-      elsif status == true
-        flash[:info] = "#{@project.name} has been activated"
-        return redirect_to admin_projects_path(inactive: true)
-      elsif @project.inactive?
-        flash[:alert] = "#{@project.name} has been deactivated"
-      else
-        flash[:info] = "Congrats! #{@project.name} has been updated!"
-      end
-      redirect_to admin_projects_path(inactive: false)
+    project = Project.find(params[:id])
+    if params[:commit] == "deactivate project"
+      project.update(status: "active")
+      redirect_to admin_projects_path(current_user, status: "active")
+      flash[:info] = "Project #{project.id} has been deactivated."
     else
-      flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
-      render :new
+      render :index
     end
-  end
-
-private
-
-  def project_params
-    params.require(:project).permit(:name, :goal, :description, :image, :sale, :sale_goal, :category_id, :inactive)
   end
 end

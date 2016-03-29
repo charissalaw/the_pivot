@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327221116) do
+ActiveRecord::Schema.define(version: 20160328182822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "borrower_attributes", force: :cascade do |t|
+    t.string   "category"
+    t.string   "label"
+    t.integer  "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "borrowers", force: :cascade do |t|
     t.integer  "annual_income"
@@ -24,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160327221116) do
     t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "username"
   end
 
   add_index "borrowers", ["user_id"], name: "index_borrowers_on_user_id", using: :btree
@@ -96,18 +103,18 @@ ActiveRecord::Schema.define(version: 20160327221116) do
     t.integer  "goal"
     t.string   "description"
     t.integer  "category_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.boolean  "sale",               default: false
     t.integer  "sale_goal"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "inactive",           default: false
     t.integer  "borrower_id"
     t.integer  "country_id"
     t.string   "slug"
+    t.string   "status",             default: "active"
   end
 
   add_index "projects", ["borrower_id"], name: "index_projects_on_borrower_id", using: :btree

@@ -27,15 +27,10 @@ class BorrowersProjectsSeed
 
 private
   def self.borrower_params(user)
-    { username: user.first_name.downcase.gsub(/[()-,. ']/, "-") + "-#{user.id}",
-      annual_income: Random.new.rand(300000),
+    { annual_income: Random.new.rand(300000),
       monthly_housing: Random.new.rand(30000),
       monthly_credit_pmt: Random.new.rand(30000),
       dependents: Random.new.rand(7)}
-  end
-
-  def build_username
-    fullname.downcase.gsub(/[()-,. ']/, "-") + "-#{user.id}"
   end
 
   def self.build_borrower_dashboard(user, borrower)

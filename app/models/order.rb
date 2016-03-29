@@ -43,7 +43,7 @@ class Order < ActiveRecord::Base
 
   def process(projects, contents)
     projects.each do |project|
-      loans.create(project_id: project.id, quantity: contents[project.id.to_s])
+      loans.create(project_id: project.id, quantity: (contents[project.id.to_s] * 100))
     end
     process_stripe_payment
     self.update(order_total: total)
@@ -70,9 +70,9 @@ class Order < ActiveRecord::Base
     updated_at.strftime("%B %-d, %Y")
   end
 
-  def self.top_state
+  def self.top_country
     return if Order.count == 0
-    group(:state).count.sort_by { |state, n| n }.last[0]
+    Project.joins(:country).group("countries.name").count.sort_by { |country, n| n }.last[0]
   end
 
   def process_stripe_payment

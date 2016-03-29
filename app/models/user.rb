@@ -48,7 +48,11 @@ class User < ActiveRecord::Base
   end
 
   def balance
+    borrower.loans.sum(:quantity)
+  end
 
+  def display_balance
+    "$#{balance}"
   end
 
 end

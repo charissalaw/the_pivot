@@ -4,7 +4,7 @@ class BorrowersController < ApplicationController
   end
 
   def create
-    borrower = Borrower.new(borrower_params)
+    borrower = BorrowerApplication.new(borrower_params).evaluate_borrower
     if borrower.save
       current_user.roles << Role.find_by(name: "borrower")
       current_user.borrower = borrower
@@ -25,7 +25,6 @@ class BorrowersController < ApplicationController
       :monthly_housing,
       :monthly_credit_pmt,
       :dependents,
-      :username
     )
   end
 

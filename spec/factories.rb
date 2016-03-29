@@ -17,7 +17,6 @@ FactoryGirl.define do
   end
 
   factory :borrower do
-    username            "username"
     annual_income       20000
     monthly_housing     1000
     monthly_credit_pmt  500
@@ -52,6 +51,54 @@ FactoryGirl.define do
 
   factory :loan do
     quantity Faker::Number.number(2)
+  end
+
+  factory :borrower_attribute do
+    category "income"
+    label "$20,000 to $30,000"
+    score 7
+  end
+
+  factory :housing_costs, parent: :borrower_attribute do
+    category "housing"
+    label "< $500"
+    score 4
+  end
+
+  factory :credit_costs, parent: :borrower_attribute do
+    category "credit"
+    label "< $500"
+    score 1
+  end
+
+  factory :dependents, parent: :borrower_attribute do
+    category "dependents"
+    label "0"
+    score 5
+  end
+
+  factory :fail_borrower_attribute, parent: :borrower_attribute do
+    category "income"
+    label "> $60,000"
+    score 7
+  end
+
+  factory :fail_housing_costs, parent: :borrower_attribute do
+    category "housing"
+    label "> $5000"
+    score 10
+  end
+
+  factory :fail_credit_costs, parent: :borrower_attribute do
+    category "credit"
+    label "> $5000"
+    score 10
+  end
+
+  factory :fail_dependents, parent: :borrower_attribute do
+    category "dependents"
+    label "10"
+    score 10
   end
 
 end

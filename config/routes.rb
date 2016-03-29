@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'country/show'
+
   namespace :borrower do
   get 'loans/index'
   end
@@ -10,7 +12,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get "/lend", to: "projects#index", as: "projects"
-  resources :projects, only: [:show]
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:show]
     resources :borrowers, only: [:index, :show]
-    resources :projects, only: [:index]
+    resources :projects, only: [:index, :update]
   end
 
   get "loans/login", to: "orders#checkout_login", as: "checkout_login"
@@ -44,5 +45,9 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/lend", to: "projects#index"
 
-  get "/:name", to: "categories#show"
+  namespace :country do
+    get "/:country", to: 'countries#show'
+  end
+
+  resource :projects, as: :project, path: ":project", only: [:show]
 end

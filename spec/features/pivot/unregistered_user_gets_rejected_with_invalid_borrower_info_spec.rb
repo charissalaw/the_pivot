@@ -4,6 +4,10 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
   scenario "unqualified borrower gets error message" do
     create(:lender_role)
     create(:borrower_role)
+    create(:fail_borrower_attribute)
+    create(:fail_housing_costs)
+    create(:fail_credit_costs)
+    create(:fail_dependents)
     visit "/"
 
     click_on "borrow"
@@ -12,12 +16,10 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
       fill_in "name", with: "test name"
       fill_in "email", with: "email@email.com"
       fill_in "password", with: "password"
-      fill_in "borrower username", with: "username"
-      fill_in "annual income", with: "6000000"
-      fill_in "monthly_housing", with: "500"
-      fill_in "monthly_credit_pmt", with: "300"
-      fill_in "dependents", with: "5"
-      expect(page).to have_content("Add Image")
+      select "> $60,000", from: "annual_income"
+      select "> $5000", from: "monthly_housing"
+      select "> $5000", from: "monthly_credit_pmt"
+      select "10", from: "dependents"
       click_on "Apply"
     end
 
@@ -28,6 +30,10 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
   scenario "qualified borrower gets approved" do
     create(:lender_role)
     create(:borrower_role)
+    create(:borrower_attribute)
+    create(:housing_costs)
+    create(:credit_costs)
+    create(:dependents)
     visit "/"
 
     click_on "borrow"
@@ -36,12 +42,10 @@ RSpec.feature "UnregisteredUserSignsUpAsBorrower", type: :feature do
       fill_in "name", with: "test name"
       fill_in "email", with: "email@email.com"
       fill_in "password", with: "password"
-      fill_in "borrower username", with: "username"
-      fill_in "annual income", with: "600000"
-      fill_in "monthly_housing", with: "500"
-      fill_in "monthly_credit_pmt", with: "300"
-      fill_in "dependents", with: "5"
-      expect(page).to have_content("Add Image")
+      select "$20,000 to $30,000", from: "annual_income"
+      select "< $500", from: "monthly_housing"
+      select "< $500", from: "monthly_credit_pmt"
+      select "0", from: "dependents"
       click_on "Apply"
     end
 
