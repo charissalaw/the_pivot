@@ -20,7 +20,6 @@ gem 'stripe'
 gem 'chartkick'
 gem 'groupdate'
 
-
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'

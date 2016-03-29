@@ -24,7 +24,7 @@ class LendersLoansSeed
             end
 
             rand(1..7).times do
-              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(1..10))
+              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(25..50))
 
               loan.update(created_at: order_date, updated_at: order_date)
               puts "Created Loan: #{loan.project.name}."

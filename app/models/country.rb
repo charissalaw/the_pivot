@@ -3,7 +3,11 @@ class Country < ActiveRecord::Base
   validates :name, presence: true
   before_save :build_slug
 
+  def active_projects
+    projects.active_projects
+  end
+
   def build_slug
-    self.slug = name.downcase.gsub(" ", "-").gsub(",","")
+    self.slug = name.parameterize
   end
 end

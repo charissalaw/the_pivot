@@ -1,0 +1,41 @@
+.status-active {
+  color: #2980b9;
+}
+
+.status-deactive {
+  color: #e74c3c;
+}
+
+.status-completed {
+  color: #27ae60;
+}
+
+.admin-project-show {
+  padding: 15px;
+  border:1px solid #DADFE1;
+  .project-header h2 {
+    margin-top: 0;
+  }
+}
+
+.responsive-input{
+  width: 100%;
+}
+
+.project-index {
+  td {
+    padding-right: 0;
+  }
+  border-bottom: 0;
+}
+
+.search-dropdown {
+  margin-bottom: 5px;
+}
+
+.admin-add-project {
+  margin-top: 0;
+  margin-bottom: 15px;
+  margin-left: 25px;
+  font-weight: 300;
+}

@@ -13,11 +13,11 @@ class Borrower < ActiveRecord::Base
   end
 
   def self.search_by_category(search)
-    joins(projects: :category).where('categories.name ILIKE ?', "%#{search}%").uniq
+    joins(:projects).where(projects: {category_id:search}).uniq
   end
 
   def self.search_by_country(search)
-    joins(projects: :country).where('countries.name ILIKE ?', "%#{search}%").uniq
+    joins(:projects).where(projects: {country_id:search}).uniq
   end
 
   def self.search_by_date(search)
