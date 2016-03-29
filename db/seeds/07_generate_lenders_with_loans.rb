@@ -10,21 +10,16 @@ class LendersLoansSeed
         date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
         user.update(created_at: date, updated_at: date)
 
-        rand(1..4).times do
+        rand(1..2).times do
           order = user.orders.new
 
           if order.save
             puts "Created Order: #{order.id}."
             order_date = Faker::Time.between(date, DateTime.now - 1)
             order.update(created_at: order_date, updated_at: order_date)
-            rand(0..4).times do
-              comment = order.comments.create(comment: Faker::StarWars.quote)
-              comment_date = Faker::Time.between(order_date, DateTime.now - 1)
-              comment.update(created_at: comment_date, updated_at: comment_date)
-            end
 
-            rand(1..7).times do
-              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(25..50))
+            rand(1..3).times do
+              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: (500..2500).step(5).to_a.sample)
 
               loan.update(created_at: order_date, updated_at: order_date)
               puts "Created Loan: #{loan.project.name}."

@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :orders, through: :loans
   belongs_to :country
   before_validation :build_slug
+  before_save :convert_dollars
 
   validates :name, presence: true, uniqueness: true
   validates :goal, presence: true
@@ -33,16 +34,24 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def convert_dollars
+    self.goal = goal * 100
+  end
+
   def display_goal
-    "$#{goal.to_i}"
+    "$#{goal.to_i / 100}"
   end
 
   def display_goal_remaining
-    "$#{((goal.to_i * 100) - loans.sum(:quantity)) / 100}"
+    "$#{((goal.to_i) - loans.sum(:quantity)) / 100}"
   end
 
   def remaining_goal
-    ((goal.to_i * 100) - loans.sum(:quantity))
+    ((goal.to_i) - loans.sum(:quantity)) / 100
+  end
+
+  def percent_funded
+    ((loans.sum(:quantity))/(goal.to_f) * 100).round
   end
 
   def self.active_index

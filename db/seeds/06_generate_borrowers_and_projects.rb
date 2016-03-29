@@ -1,6 +1,6 @@
 class BorrowersProjectsSeed
   def self.generate_borrowers
-    15.times do
+    25.times do
       fullname = Faker::Name.name
       email = Faker::Internet.free_email(fullname.split[0])
       user = User.new(fullname: fullname, email: email, password: "password")
@@ -27,10 +27,10 @@ class BorrowersProjectsSeed
 
 private
   def self.borrower_params(user)
-    { annual_income: Random.new.rand(300000),
-      monthly_housing: Random.new.rand(30000),
-      monthly_credit_pmt: Random.new.rand(30000),
-      dependents: Random.new.rand(7)}
+    { annual_income: 0,
+      monthly_housing: 0,
+      monthly_credit_pmt: 0,
+      dependents: 0}
   end
 
   def self.build_borrower_dashboard(user, borrower)
@@ -42,7 +42,7 @@ private
     countries = country_ids
     1.times do
       project = borrower.projects.create(name:Faker::Book.title, goal: rand(25..1500), description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
-      puts "Created Project: #{project.name}."
+      puts "Created Project: #{project.name}, #{project.goal}."
     end
   end
 
