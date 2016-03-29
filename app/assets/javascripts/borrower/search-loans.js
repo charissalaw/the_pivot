@@ -1,4 +1,4 @@
-rsfunction searchLoans(){
+function searchLoans(){
   $('#loan-search').keyup(function(event){
     var amountSearch = $(this).val()
     var allLoanRows = $('.loan-row')
