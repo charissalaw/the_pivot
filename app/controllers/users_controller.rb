@@ -3,6 +3,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def update
+    if current_user.update(user_params)
+      flash[:info] = "Thanks #{current_user.first_name}! Your info has been updated."
+      redirect_to current_user.dashboard
+    else
+      flash.now[:alert] = "Looks like that email already has an account..."
+      render :show
+    end
+  end
+
+  def show
+    @user = current_user
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
