@@ -8,9 +8,14 @@
             <i class="fa fa-user fa-lg"></i>
           </a>
           <ul class="dropdown-menu">
-            <li class="name-in-dropdown">
-                <%= current_user.fullname.downcase %>
+            <li>
+                <%= link_to current_user.fullname.downcase, user_path(current_user) %>
             </li>
+            <% if current_user.loans? %>
+            <li>
+              <%= link_to "loan history", user_orders_path(current_user) %>
+            </li>
+            <% end %>
             <li>
               <%= link_to "logout", logout_path, method: :delete %>
             </li>
@@ -20,6 +25,9 @@
           <a id="menu-toggle" href="#menu-toggle" style="color:#777; margin-top: 5px;", class"admin-menu-toggle">
             <i class="fa fa-compass fa-lg"></i>
           </a>
+        </li>
+        <li class="pull-right nav-icon">
+          <a id="lend" href="/lend" style="color:#777; margin-top: 5px;">lend</a>
         </li>
         <% if !@cart.contents.empty? %>
           <li class="pull-right nav-icon">

@@ -10,7 +10,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
     borrower.update(user_id: borrower_user.id)
     category1 = create(:category)
     country1 = create(:country)
-    project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
+    project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id, goal:40)
 
     visit project_path(project_active1.slug)
 
@@ -33,7 +33,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
     click_on "continue"
 
     expect(page).to have_content("Some of your loans have been adjusted.  Please review.")
-    expect(page).to have_content("$100")
+    expect(page).to have_content("$40")
     expect(page).to have_content("submit loans")
   end
 end

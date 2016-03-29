@@ -1,13 +1,14 @@
 class Loan < ActiveRecord::Base
   belongs_to :project
   belongs_to :order
+  before_save :check_status
 
   validates :quantity, presence: true
   validates :project_id, presence: true
   validates :order_id, presence: true
 
-  def total
-    quantity * project.goal
+  def check_status
+    project.check_status
   end
 
   def self.top_project_revenue
@@ -31,6 +32,14 @@ class Loan < ActiveRecord::Base
     loan(updated_at: :desc)
   end
 
+  def display_total
+    "$#{quantity/100}"
+  end
+
+  def date
+    updated_at.strftime("%B %-d, %Y")
+  end
+
   def self.active_loans
     where(status: "active").order(:created_at)
   end
@@ -38,6 +47,4 @@ class Loan < ActiveRecord::Base
   def self.completed_loans
     where(status: "completed").order(:created_at)
   end
-
-
 end

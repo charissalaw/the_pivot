@@ -35,6 +35,12 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :borrower_user, parent: :user do
+    fullname "Borrower Borrower"
+    email "borrower@gmail.com"
+    password "password"
+  end
+
   factory :category do
     name "education"
   end
@@ -46,7 +52,7 @@ FactoryGirl.define do
   factory :project do
     name "factory project"
     description Faker::Lorem.paragraph
-    goal 10000
+    goal 1000
   end
 
   factory :loan do
