@@ -17,7 +17,7 @@
 <div id="loans" class="container">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-          <% @projects.each do |project| %>
+      <% @projects.each do |project| %>
           <div class="table-responsive">
             <table class="table table-hover table-condensed table-projects">
             <tr id="<%= project.id %>-project" class="project-row">
@@ -43,9 +43,9 @@
               <% num += 1 %>
             <% end %>
             </table>
+            </div>
             <br>
           <% end %>
-      </div>
     </div>
   </div>
 </div>
