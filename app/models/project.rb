@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :orders, through: :loans
   belongs_to :country
   before_validation :build_slug
+  before_create :convert_dollars
 
   validates :name, presence: true, uniqueness: true
   validates :goal, presence: true
@@ -14,9 +15,7 @@ class Project < ActiveRecord::Base
   validates :borrower_id, presence: true
   validates :status, presence: true
   validates :slug, uniqueness: true
-  validates_numericality_of :goal, only_integer: true,
-    greater_than_or_equal_to: 25,
-    less_than_or_equal_to: 1500
+  validates_numericality_of :goal, only_integer: true
 
 
   has_attached_file :image,
@@ -26,6 +25,7 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   scope :active_projects, -> { where(status: "active") }
+  scope :funded_projects, -> { where(status: "funded") }
 
   def build_slug
     if name
@@ -33,16 +33,30 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def convert_dollars
+    self.goal = goal * 100
+  end
+
+  def check_status
+    unless loans.sum(:quantity) < goal
+      self.update_attributes(status: "funded")
+    end
+  end
+
   def display_goal
-    "$#{goal.to_i}"
+    "$#{goal.to_i / 100}"
   end
 
   def display_goal_remaining
-    "$#{((goal.to_i * 100) - loans.sum(:quantity)) / 100}"
+    "$#{((goal.to_i) - loans.sum(:quantity)) / 100}"
   end
 
   def remaining_goal
-    ((goal.to_i * 100) - loans.sum(:quantity))
+    ((goal.to_i) - loans.sum(:quantity)) / 100
+  end
+
+  def percent_funded
+    ((loans.sum(:quantity))/(goal.to_f) * 100).round
   end
 
   def self.active_index
@@ -51,6 +65,10 @@ class Project < ActiveRecord::Base
 
   def self.inactive_index
     where(status: "deactive").order(:name)
+  end
+
+  def funded?
+    status == "funded"
   end
 
   def self.completed_index
