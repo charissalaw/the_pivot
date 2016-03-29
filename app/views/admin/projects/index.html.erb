@@ -1,44 +1,56 @@
 <% if params[:status] == "active" %>
-  <h3 class="status-<%= params[:status] %> admin-project-index-header">active projects</h3>
+  <h3 class="status-<%= params[:status] %> admin-loan_transaction-project-header">active projects</h3>
 <% elsif params[:status] == "deactive" %>
   <h3 class="status-<%= params[:status] %> admin-loan_transaction-project-header">deactived projects</h3>
-<% else %>
+<% elsif params[:status] == "completed" %>
   <h3 class="status-<%= params[:status] %> admin-loan_transaction-project-header">completed projects</h3>
+<% else %>
+  <h3 class="status-<%= params[:status] %> admin-loan_transaction-project-header">search results</h3>
 <% end %>
 <br>
-<div class="table-responsive">
-  <table class="table table-hover table-condensed table-projects">
-    <thead>
-      <tr>
-        <th></th>
-        <th>name</th>
-        <th>goal</th>
-        <th>remaining goal</th>
-        <th>description</th>
-        <th>category</th>
-        <th>country</th>
-        <% if params[:status] == "active" %>
-          <th>deactivate project?</th>
-        <% end %>
-      </tr>
-    </thead>
-    <% if !@projects.nil? %>
-      <% @projects.each do |project| %>
-        <tr id="<%= project.id %>-project">
-          <td><%= image_tag(project.image.url(:small), class:"admin-project-image") %></td>
-          <td><%= project.name %></td>
-          <td><%= project.display_goal %></td>
-          <td><%= project.display_goal_remaining %></td>
-          <td><%= project.description %></td>
-          <td><%= project.category.name %></td>
-          <td><%= project.country.name %></td>
-          <% if params[:status] == "active" %>
-            <%= form_for [:admin, project], url: admin_project_path(current_user, project) do |f| %>
-            <td><%= f.submit "deactivate project", class:"btn btn-checkout btn-xs"%></td>
-            <% end %>
-          <% end %>
-        </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= form_tag admin_projects_path(status:"active"), method: 'get' do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "search by project name", class: "form-control form-control-sm search-form", required:true %>
+          <%= submit_tag "search by project name", class:"btn btn-lending-owl btn-sm"  %>
+        </div>
       <% end %>
-    <% end %>
-  </table>
+      <%= form_tag admin_projects_path, method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :id_search, params[:id], placeholder: "search by borrower id", class: "form-control form-control-sm search-form", required:true %>
+        <%= submit_tag "search by borrower id", class:"btn btn-lending-owl btn-sm"  %>
+      </div>
+      <% end %>
+      <%= form_tag admin_projects_path, method: 'get' do %>
+      <div class="form-group">
+        <%= select_tag :category_search, options_from_collection_for_select(Category.all, 'id', 'name'), {class: "form-control search-dropdown", required:true, prompt: "category"} %>
+        <%= submit_tag "filter by category", class:"btn btn-lending-owl btn-sm"  %>
+      </div>
+      <% end %>
+      <%= form_tag admin_projects_path, method: 'get' do %>
+      <div class="form-group">
+        <%= select_tag :country_search, options_from_collection_for_select(Country.all, 'id', 'name'), {class: "form-control search-dropdown", required:true, prompt: "country"} %>
+        <%= submit_tag "filter by category", class:"btn btn-lending-owl btn-sm"  %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <div class="table-responsive">
+          <% if !@projects.nil? %>
+            <% @projects.each do |project| %>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                <tr id="<%= project.id %>-project" class="project-index">
+                  <td class="text-left"><%= project.name %><br><%= link_to project.borrower.user.fullname, admin_borrower_path(project.borrower) %></td>
+                </tr>
+                  <td><%= image_tag(project.image.url(:small)) %></td>
+                </table>
+              </div>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

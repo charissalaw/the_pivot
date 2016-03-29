@@ -34,13 +34,13 @@ RSpec.feature "accessesing category show page", type: :feature do
     click_on "lend"
 
     click_on category1.name
-    expect(current_path).to eq("/category/#{category1.slug}")
+    expect(current_path).to eq("/categories/#{category1.slug}")
 
     expect(page).to have_content(project_active1.name)
     expect(page).to have_content(project_active3.name)
     expect(page).to_not have_content(project_active2.name)
 
-    visit "/category/#{category2.slug}"
+    visit "/categories/#{category2.slug}"
 
     expect(page).to have_content(project_active2.name)
     expect(page).to_not have_content(project_active1.name)

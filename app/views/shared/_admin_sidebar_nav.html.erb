@@ -8,7 +8,7 @@
     <%= link_to "dashboard", admin_user_path(current_user) %>
   </li>
   <li>
-    <%= link_to "borrowers", admin_borrowers_path(current_user) %>
+    <%= link_to "borrowers", admin_borrowers_path(current_user, tag:"all") %>
   </li>
   <li>
     <%= link_to "active projects", admin_projects_path(current_user, status: "active") %>
