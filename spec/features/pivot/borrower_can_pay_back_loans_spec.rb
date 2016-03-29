@@ -16,10 +16,10 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
     project_active2 = create(:project, name: "rockets", borrower_id: borrower.id, category_id: category2.id, country_id: country2.id)
     order = lender_user.orders.create
-    loan1 = order.loans.create(quantity: 25, project_id: project_active1.id)
-    loan2 = order.loans.create(quantity: 30, project_id: project_active1.id)
-    loan3 = order.loans.create(quantity: 35, project_id: project_active2.id)
-    repayment = create(:repayment, project_id: project_active1.id, amount_paid: "100")
+    loan1 = order.loans.create(quantity: 2500, project_id: project_active1.id)
+    loan2 = order.loans.create(quantity: 3000, project_id: project_active1.id)
+    loan3 = order.loans.create(quantity: 3500, project_id: project_active2.id)
+    repayment = create(:repayment, project_id: project_active1.id, amount_paid: 10000)
 
     visit root_path
     click_on "login"
@@ -44,11 +44,9 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     click_on "pay now"
 
     expect(current_path).to eq(borrower_user_loans_path(borrower))
-    save_and_open_page
     expect(page).to have_content("You have paid $105 toward your loan, homie.")
 
     within "tr##{project_active1.id}-project" do
-      save_and_open_page
       expect(page).to have_content("105")
     end
 
