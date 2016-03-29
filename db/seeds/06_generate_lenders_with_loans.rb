@@ -23,8 +23,8 @@ class LendersLoansSeed
               comment.update(created_at: comment_date, updated_at: comment_date)
             end
 
-            rand(1..7).times do
-              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(1..10))
+            rand(1..3).times do
+              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: rand(1..20))
 
               loan.update(created_at: order_date, updated_at: order_date)
               puts "Created Loan: #{loan.project.name}."
