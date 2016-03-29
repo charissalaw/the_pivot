@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.feature "UserCantLeaveSignupFieldBlank", type: :feature do
   scenario "user gets error message" do
+
+    create(:lender_role)
+    user0 = create(:user)
+
     visit "/"
 
     click_on "login"
