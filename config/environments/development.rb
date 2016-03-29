@@ -36,8 +36,7 @@ Rails.application.configure do
     domain: "gmail.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV['USER_NAME'],
-    password: ENV['PASSWORD']
+    user_name: ENV['SENDGRID_DEV_USER_NAME'],
+    password: ENV['SENDGRID_DEV_PASSWORD']
   }
-
 end

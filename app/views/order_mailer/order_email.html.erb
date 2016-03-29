@@ -35,15 +35,16 @@
             <tr style="border-bottom-color:#e5e5e5;border-bottom-style:solid;border-bottom-width:1px;border-collapse:separate">
               <td style="padding:20px 0;width:30%">
                 <div style="line-height:1.4">
-                  <h4>Shipping Address</h4>
-                  <%= @order.fullname %><br><br>
-                  <%= @order.street %><br><br>
-                  <%= @order.city %> <%= @order.state %> <%= @order.zip %>
+                  <%= @order.user.fullname %><br><br>
                 </div>
                </td>
               <td style="padding:20px 0 20px 10px;width:70%">
                 <span style="float:right">
-                  <h4>Order total</h4>                  $<%= @order.total %></span>
+                  <h4>Order loans</h4>
+                  <% @order.loans.each do |loan| %>
+                    <%= loan.project.name %> | $<%= loan.quantity %>
+                  <% end %>
+                </span>
               </td>
             </tr>
           </tbody>
