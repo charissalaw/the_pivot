@@ -1,6 +1,6 @@
 class LendersLoansSeed
   def self.generate_lenders
-    100.times do
+    75.times do
       fullname = Faker::Name.name
       email = Faker::Internet.free_email(fullname.split[0])
       user = User.new(fullname: fullname, email: email, password: "password")
@@ -18,18 +18,14 @@ class LendersLoansSeed
             order_date = Faker::Time.between(date, DateTime.now - 1)
             order.update(created_at: order_date, updated_at: order_date)
 
-            rand(1..3).times do
-              loan = order.loans.create(project_id: Project.order("RANDOM()").first.id, quantity: (500..2500).step(5).to_a.sample)
+            rand(1..2).times do
+              loan = order.loans.create(project_id: Project.where(status:"active").order("RANDOM()").first.id, quantity: (5..50).step(5).to_a.sample * 100)
 
               loan.update(created_at: order_date, updated_at: order_date)
               puts "Created Loan: #{loan.project.name}."
             end
             total = order.total
             order.update(order_total: total)
-
-            statuses = ["paid","paid","paid","paid","paid","completed","completed","completed","completed","completed", "completed","completed","completed","completed","completed","cancelled"]
-
-            order.update(status: statuses.sample)
           end
         end
       end
