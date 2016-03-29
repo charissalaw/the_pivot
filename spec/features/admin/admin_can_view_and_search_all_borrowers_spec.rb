@@ -58,8 +58,8 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
       expect(page).to have_link(user3.fullname)
     end
 
-    fill_in "search by project category", with: "space!"
-    click_on "search by category"
+    select:"space!", from: "category-search"
+    click_on "filter by category"
 
     within "tr##{user2.id}-borrower" do
       expect(page).to have_link(user2.fullname)
@@ -70,8 +70,8 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
     expect(page).to_not have_content(user1.fullname)
     expect(page).to_not have_content(user3.fullname)
 
-    fill_in "search by country", with: "nicaragua"
-    click_on "search by country"
+    select:"nicaragua", from:"country-search"
+    click_on "filter by country"
 
     within "tr##{user2.id}-borrower" do
       expect(page).to have_link(user2.fullname)

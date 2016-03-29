@@ -1,0 +1,33 @@
+<div class="row">
+  <h3 class="admin-add-project">Create a project for <%= @borrower.user.first_name %>:</h3>
+  <div id="new-project" class="form-group has success text-center form-div col-xs-10">
+    <%= form_for [:admin, @project] do |f| %>
+      <%= f.label :name, class:"sr-only"  %>
+      <%= f.text_field :name, placeholder: "project title", class:"form-control form-control-success" %><br>
+      <%= f.label :goal, class:"sr-only"  %>
+      <%= f.number_field :goal, placeholder: "project goal in dollars", class:"form-control text-input" %><br>
+      <%= f.label :description, class:"sr-only"  %>
+      <%= f.text_area :description, placeholder: "description", class:"form-control text-input" %><br>
+      <%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", class:"form-control", required:true}) %><br>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", class:"form-control", required:true}) %>
+      <br>
+      <%= f.label :borrower_id, class:"sr-only"  %>
+      <%= f.hidden_field :borrower_id, value: @borrower.id %><br>
+      <%= f.label :image, class:"sr-only"  %>
+      <%= f.file_field :image, { id:"file_input", class:"form-control text-input", style:"display:none" } %>
+      <div class="form-inline">
+        <div class="form-group">
+          <label class="file">
+          <input id="imageFormCover" class="form-control" type="text" readonly>
+          <a class="btn btn-primary" onclick="$('input[id=file_input]').click();">project image</a>
+          </label>
+      </div>
+      <br>
+      </div>
+      <br>
+      <%= f.submit "create project", class:"btn btn-lending-owl" %>
+    <% end %>
+  </div>
+  <div class="col-xs-3">
+  </div>
+</div>

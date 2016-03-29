@@ -14,6 +14,9 @@ class Project < ActiveRecord::Base
   validates :borrower_id, presence: true
   validates :status, presence: true
   validates :slug, uniqueness: true
+  validates_numericality_of :goal, only_integer: true,
+    greater_than_or_equal_to: 25,
+    less_than_or_equal_to: 1500
 
 
   has_attached_file :image,
@@ -31,15 +34,15 @@ class Project < ActiveRecord::Base
   end
 
   def display_goal
-    "$#{goal.to_i / 100}"
+    "$#{goal.to_i}"
   end
 
   def display_goal_remaining
-    "$#{(goal.to_i - loans.sum(:quantity)) / 100}"
+    "$#{((goal.to_i * 100) - loans.sum(:quantity)) / 100}"
   end
 
   def remaining_goal
-    (goal.to_i - loans.sum(:quantity))
+    ((goal.to_i * 100) - loans.sum(:quantity))
   end
 
   def self.active_index
@@ -56,5 +59,21 @@ class Project < ActiveRecord::Base
 
   def self.category_distribution
     group(:category).count.map { |k, v| [k.name, v] }
+  end
+
+  def self.search(search)
+    where('name ILIKE ?', "%#{search}%").uniq
+  end
+
+  def self.search_by_category(search)
+    where(category_id:search).uniq
+  end
+
+  def self.search_by_country(search)
+    where(country_id:search).uniq
+  end
+
+  def self.by_date
+    order(updated_at: :desc)
   end
 end
