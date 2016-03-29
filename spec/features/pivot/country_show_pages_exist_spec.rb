@@ -4,7 +4,7 @@ RSpec.feature "user sees country show page" do
   scenario "country details page" do
     country = create(:country)
 
-    visit "/country/#{country.slug}"
+    visit "/countries/#{country.slug}"
 
     expect(page).to have_content("#{country.name}")
   end
@@ -22,11 +22,10 @@ RSpec.feature "user sees country show page" do
     project1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
     project2 = create(:project, name: "As I Lay Dying", borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
 
-    visit "/country/#{country1.slug}"
+    visit "/countries/#{country1.slug}"
 
     expect(page).to have_content("#{country1.name}")
     expect(page).to have_content("#{project1.name}")
     expect(page).to have_content("#{project2.name}")
-save_and_open_page
   end
 end

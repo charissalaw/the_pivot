@@ -1,13 +1,13 @@
 <div class="general-hero-unit category-hero-unit">
   <div class="container text-center hero-container">
-    <a href="/categories/<%= @category.slug %>">
-      <h1><%= @category.name %></h1>
+    <a href="/countries/<%= @country.slug %>">
+      <h1><%= @country.name %></h1>
     </a>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row">
-    <% @category.active_projects.each do |project| %>
+    <% @country.active_projects.each do |project| %>
     <div class="col-xs-12 col-sm-6 col-md-4 project-div">
       <div class="row sm-project-row project-row">
         <div class="col-xs-12" id="<%= project.id %>-index">

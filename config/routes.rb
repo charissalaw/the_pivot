@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
   resources :borrowers, only: [:new, :create]
+  resources :categories, param: :slug, only: [:show]
+  resources :countries, param: :slug, only: [:show]
 
   resources :users, only: [:new, :create] do
     resources :orders, only: [:new, :index, :create, :show]
@@ -44,10 +46,6 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/lend", to: "projects#index"
-
-  namespace :country do
-    get "/:country", to: 'countries#show'
-  end
 
   resource :projects, as: :project, path: ":project", only: [:show]
 end
