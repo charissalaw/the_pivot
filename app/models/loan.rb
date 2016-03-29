@@ -6,10 +6,6 @@ class Loan < ActiveRecord::Base
   validates :project_id, presence: true
   validates :order_id, presence: true
 
-  def total
-    quantity * project.goal
-  end
-
   def self.top_project_revenue
     top_project.goal * (top_project_info[1] / 100)
   end
@@ -38,6 +34,4 @@ class Loan < ActiveRecord::Base
   def self.completed_loans
     where(status: "completed").order(:created_at)
   end
-
-
 end

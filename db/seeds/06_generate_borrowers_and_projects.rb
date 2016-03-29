@@ -45,7 +45,7 @@ private
     categories = category_ids
     countries = country_ids
     1.times do
-      project = borrower.projects.create(name:Faker::Book.title, goal: 2500, description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
+      project = borrower.projects.create(name:Faker::Book.title, goal: rand(25..1500), description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
       puts "Created Project: #{project.name}."
     end
   end

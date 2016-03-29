@@ -13,7 +13,7 @@ class Cart
   def adjust_loans
     flash = false
     contents.each do |project, loan|
-      if loan * 100 > Project.find(project.to_i).remaining_goal
+      if loan > Project.find(project.to_i).remaining_goal
         current_project = Project.find(project.to_i)
         contents[project] = current_project.remaining_goal
         flash = true

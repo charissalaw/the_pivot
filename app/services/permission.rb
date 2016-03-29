@@ -42,7 +42,7 @@ private
     return true if controller == 'home' && action.in?(%w(index))
     return true if controller == 'admin/users' && action.in?(%w(show))
     return true if controller == 'admin/borrowers' && action.in?(%w(index show))
-    return true if controller == 'admin/projects' && action.in?(%w(index show update))
+    return true if controller == 'admin/projects' && action.in?(%w(index show update create))
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
   end
 

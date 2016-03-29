@@ -1,62 +1,57 @@
 <h3 class="<%= params[:status] %> admin-borrower-index-header"><%= params[:status] %> borrowers</h3><br>
 <div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <%= form_tag admin_borrowers_path, method: 'get' do %>
       <div class="form-group">
         <%= text_field_tag :search, params[:search], placeholder: "search by name", class: "form-control form-control-sm search-form"%>
         <%= submit_tag "search by name", class:"btn btn-lending-owl btn-sm"  %>
       </div>
     <% end %>
-  </div>
-  <div class="col-sm-3">
     <%= form_tag admin_borrowers_path, method: 'get' do %>
     <div class="form-group">
       <%= date_field_tag :date_search, params[:date_search], placeholder: "mm/dd/yy", class: "form-control form-control-sm search-form"%>
       <%= submit_tag "search by date", class:"btn btn-lending-owl btn-sm"  %>
     </div>
     <% end %>
-  </div>
-  <div class="col-sm-3">
     <%= form_tag admin_borrowers_path, method: 'get' do %>
       <div class="form-group">
         <%= text_field_tag :id_search, params[:id], placeholder: "search by borrower id", class: "form-control form-control-sm search-form"%>
         <%= submit_tag "search by id", class:"btn btn-lending-owl btn-sm"  %>
       </div>
     <% end %>
-  </div>
-  <div class="col-sm-3">
     <%= form_tag admin_borrowers_path, method: 'get' do %>
-      <div class="form-group">
-        <%= text_field_tag :category_search, params[:category_search], placeholder: "search by project category", class: "form-control form-control-sm search-form"%>
-        <%= submit_tag "search by category", class:"btn btn-lending-owl btn-sm"  %>
-      </div>
+    <div class="form-group">
+      <%= select_tag :category_search, options_from_collection_for_select(Category.all, 'id', 'name'), {class: "form-control search-dropdown", id: "category-search", required:true, prompt: "category"} %>
+      <%= submit_tag "filter by category", class:"btn btn-lending-owl btn-sm"  %>
+    </div>
     <% end %>
-  </div>
-  <div class="col-sm-3">
     <%= form_tag admin_borrowers_path, method: 'get' do %>
-      <div class="form-group">
-        <%= text_field_tag :country_search, params[:country_search], placeholder: "search by country", class: "form-control form-control-sm search-form"%>
-        <%= submit_tag "search by country", class:"btn btn-lending-owl btn-sm"  %>
-      </div>
+    <div class="form-group">
+      <%= select_tag :country_search, options_from_collection_for_select(Country.all, 'id', 'name'), {class: "form-control search-dropdown", id: "country-search", required:true, prompt: "country"} %>
+      <%= submit_tag "filter by country", class:"btn btn-lending-owl btn-sm"  %>
+    </div>
     <% end %>
   </div>
-</div>
-<br>
-<div class="table-responsive">
-  <table class="table table-hover table-condensed table-bborrowered table-striped borrower-index-table">
-    <thead>
-      <tr>
-        <th>full name</th>
-        <th>balance</th>
-        <th>number of projects</th>
-      </tr>
-    </thead>
-    <% @borrowers.each do |borrower| %>
-      <tr id="<%= borrower.user.id %>-borrower">
-        <td class="text-nowrap"><%= link_to borrower.user.fullname, admin_borrower_path(borrower) %></td>
-        <td><%= borrower.user.display_balance %></td>
-        <td><%= borrower.user.projects.count %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="col-xs-7">
+    <div class="table-responsive">
+      <table class="table table-hover table-condensed table-bborrowered table-striped borrower-index-table">
+        <thead>
+          <tr>
+            <th>full name</th>
+            <th>balance</th>
+            <th>number of projects</th>
+          </tr>
+        </thead>
+        <% if !@borrowers.nil? %>
+          <% @borrowers.each do |borrower| %>
+            <tr id="<%= borrower.user.id %>-borrower">
+              <td class="text-nowrap"><%= link_to borrower.user.fullname, admin_borrower_path(borrower) %></td>
+              <td><%= borrower.user.display_balance %></td>
+              <td><%= borrower.user.projects.count %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>
