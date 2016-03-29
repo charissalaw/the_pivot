@@ -15,15 +15,15 @@ RSpec.feature "dashboard links work" do
     expect(current_path).to eq "/borrower/users/new"
 
     visit "/"
-    click_on "lend for agriculture"
-    expect(current_path).to eq "/categories/agriculture"
-
-    visit "/"
-    click_on "lend for education"
+    click_on "education"
     expect(current_path).to eq "/categories/education"
 
     visit "/"
-    click_on "lend for food"
+    click_link "agriculture"
+    expect(current_path).to eq "/categories/agriculture"
+
+    visit "/"
+    click_on "food"
     expect(current_path).to eq "/categories/food"
   end
 end
