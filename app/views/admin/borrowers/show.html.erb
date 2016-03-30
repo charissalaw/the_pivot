@@ -10,10 +10,14 @@
         <div class="project-images">
           <%= image_tag(project.image.url(:index), class: "img-responsive") %>
         </div><br>
-        <h3><%= @project.display_goal_remaining %> left to go!</h3><br>
+        <% if project.remaining_goal > 0 %>
+          <h3><%= project.display_goal_remaining %> left to go!</h3><br>
+        <% end %>
         <%= f.submit "update project", class:"btn btn-lending-owl btn-xs" %><br><br>
         <%= form_for [:admin, project], url: admin_project_path(current_user, project) do |f| %>
-        <td><%= f.submit "deactivate project", class:"btn btn-checkout btn-xs"%></td>
+          <% if  project.status == "active" %>
+          <td><%= f.submit "deactivate project", class:"btn btn-checkout btn-xs"%></td>
+          <% end %>
         <% end %>
       </div>
       <div class="col-sm-7">
