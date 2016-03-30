@@ -72,4 +72,24 @@ class User < ActiveRecord::Base
   def funded_projects
     borrower.projects.funded_index
   end
+
+  def total_goal
+    (self.projects.sum(:goal))/100
+  end
+
+  def total_funded
+    sum = 0
+    self.projects.each do |project|
+      sum += project.loans.sum(:quantity)
+    end
+    sum/100
+  end
+
+  def loan_count
+    count = 0
+    self.projects.each do |project|
+      count += project.loans.count
+    end
+    count
+  end
 end
