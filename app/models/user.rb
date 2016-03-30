@@ -92,5 +92,4 @@ class User < ActiveRecord::Base
     end
     count
   end
-
 end
