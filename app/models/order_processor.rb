@@ -12,7 +12,7 @@ class OrderProcessor
   end
 
   def cart_total
-      @projects.map do |project|
+    @projects.map do |project|
       project.goal * project.quantity
     end.reduce(:+) / 100
   end
