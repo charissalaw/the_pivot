@@ -89,7 +89,7 @@ private
     return true if controller == 'orders' && action.in?(%w(checkout_user checkout_login))
     return true if controller == 'carts' && action.in?(%w(show))
     return true if controller == 'cart_projects' && action.in?(%w(create destroy update))
-    return true if controller == "categories" && action.in?(%w(show))
-    return true if controller == "countries" && action.in?(%w(show))
+    return true if controller == "categories" && action.in?(%w(show search))
+    return true if controller == "countries" && action.in?(%w(show search))
   end
 end

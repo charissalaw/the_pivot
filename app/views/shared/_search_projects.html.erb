@@ -1,0 +1,25 @@
+<div class="row search-container">
+  <div class="container text-center light">
+    search for projects
+  </div>
+</div>
+<div class="row">
+  <div class="container">
+    <div class="col-xs-5">
+      <%= form_tag categories_search_path, method: 'get' do %>
+      <div class="form-group">
+        <%= select_tag :category_search, options_from_collection_for_select(Category.all, 'slug', 'name'), {class: "form-control search-dropdown", id: "category-search", required:true, prompt: "category"} %>
+        <%= submit_tag "search by category", class:"btn btn-lending-owl btn-sm"  %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-xs-5 col-xs-offset-2">
+      <%= form_tag countries_search_path, method: 'get' do %>
+      <div class="form-group">
+        <%= select_tag :country_search, options_from_collection_for_select(Country.all, 'slug', 'name'), {class: "form-control search-dropdown", id: "country-search", required:true, prompt: "country"} %>
+        <%= submit_tag "search by country", class:"btn btn-lending-owl btn-sm"  %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <%= form_for(:repayment, url: project_repayments_path) do |f| %>
   <select class="form-control" name="amount_paid">
-    <%= render partial: "shared/increments_by_5"  %>
+    <%= render partial: "shared/loan_repayment", locals: {remaining_amount: @project.debt}  %>
   </select><br>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
