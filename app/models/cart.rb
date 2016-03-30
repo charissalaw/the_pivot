@@ -10,18 +10,6 @@ class Cart
     contents[project_id.to_s] += loan_amount[1..-1].to_i
   end
 
-  def adjust_loans
-    flash = false
-    contents.each do |project, loan|
-      if (loan) > Project.find(project.to_i).remaining_goal
-        current_project = Project.find(project.to_i)
-        contents[project] = (current_project.remaining_goal)
-        flash = true
-      end
-    end
-    flash
-  end
-
   def count
     contents.values.sum
   end

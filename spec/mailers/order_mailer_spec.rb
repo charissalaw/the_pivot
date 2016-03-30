@@ -3,33 +3,38 @@ require 'spec_helper'
 RSpec.describe OrderMailer do
   describe 'email' do
     before :each do
-      @user = User.create(fullname: "Lucas Jones", password: "password", email: "lucas@email.com")
-
-      Category.create(name: "coffee")
-
-      Project.create(name: "test", goal: 23, description: "test", category_id: Category.last.id)
-
-      @order = Order.create(first_name: 'Lucas', last_name: "Jones", street: "123 St.", city: "Denver", state: "CO", zip: "80209", user_id: User.last.id, email: 'lucas@email.com', fullname: "Lucas Jones", order_total: "40")
-
-      @order.loans.create(project_id: Project.last.id, order_id: Order.last.id, quantity: 1)
+      create(:lender_role)
+      create(:borrower_role)
+      borrower_user = create(:user, fullname: "borrower jones", email: "borrow@email.com")
+      @lender_user = create(:user, fullname: "lender smith", email: "lender@email.com")
+      borrower_user.roles << Role.find_by(name:"borrower")
+      borrower = create(:borrower)
+      borrower.update(user_id: borrower_user.id)
+      category1 = create(:category)
+      country1 = create(:country)
+      project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
+      @order = @lender_user.orders.create
+      loan1 = @order.loans.create(quantity: 25, project_id: project_active1.id)
+      loan2 = @order.loans.create(quantity: 30, project_id: project_active1.id)
+      @order.send_to_escrow
     end
 
     let(:mail) { OrderMailer.order_email(@order) }
 
     it 'renders the subject' do
-      expect(mail.subject).to eql('🎉Alright, Alright, Alright. Your joe is on the way!🎉')
+      expect(mail.subject).to eql('🎉Thanks for your loan!🎉')
     end
 
     it 'renders the receiver email' do
-      expect(mail.to).to eql([@user.email])
+      expect(mail.to).to eql([@lender_user.email])
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['lendingowlturing@gmail.com'])
+      expect(mail.from).to eql(['lendingowl1511@gmail.com'])
     end
 
     it 'assigns @order.fullname' do
-      expect(mail.body.encoded).to match(@user.fullname)
+      expect(mail.body.encoded).to match(@lender_user.fullname)
     end
   end
 end

@@ -18,11 +18,11 @@
 
         <%= form_for(@user) do |f| %>
           <%= f.label :fullname, class:"sr-only"  %>
-          <%= f.text_field :fullname, placeholder: "name", class:"form-control text-input" %><br>
+          <%= f.text_field :fullname, placeholder: "name", class:"form-control text-input", required:true %><br>
           <%= f.label :email, class:"sr-only"  %>
-          <%= f.email_field :email, placeholder: "email", class:"form-control text-input" %><br>
+          <%= f.email_field :email, placeholder: "email", class:"form-control text-input", required:true %><br>
           <%= f.label :password, class:"sr-only"  %>
-          <%= f.password_field :password, placeholder: "password", class:"form-control text-input", pattern:".{5,20}", title:"Passwords need to be at least 5 characters" %><br>
+          <%= f.password_field :password, placeholder: "password", class:"form-control text-input", pattern:".{5,20}", title:"Passwords need to be at least 5 characters", required:true %><br>
           <%= f.submit "update", class:"btn btn-lending-owl" %>
         <% end %>
       </div>
