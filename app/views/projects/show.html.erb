@@ -18,11 +18,10 @@
           <% if @project.funded? %>
             <h2 class="text-center">Funded!</h2><br>
           <% else %>
-            <h2 class="text-center">Project Funding Goal: <%= @project.display_goal %></h2><br>
-            <h2 class="text-center"><%= @project.display_goal_remaining %> left go!</h2><br>
+            <h2 class="text-center project-funding"><span id="remaining-goal" data-remaining-amount="<%=@project.remaining_goal %>"><%= @project.display_goal_remaining %></span> left to fund project.</h2><br>
             <%= form_tag(cart_projects_path(project_id: @project.id), method: "post") do %>
-              <select class="form-control" name="loan-amount">
-                <%= render partial: "shared/options"  %>
+              <select class="form-control" name="loan-amount" id="loan-amount">
+                <%= render partial: "shared/loan_amount", locals: {remaining: @project.remaining_goal} %>
               </select><br>
               <%= submit_tag "Loan", class:"form-control btn btn-lending-owl"%>
             <% end %>
