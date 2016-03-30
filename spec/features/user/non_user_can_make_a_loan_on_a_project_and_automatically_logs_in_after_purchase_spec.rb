@@ -18,8 +18,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
     click_on "Loan"
 
     click_on "cart"
-
-    select "$105", from: "loan-amount"
+    select "$10", from: "loan-amount"
     click_on "Update"
     click_on "Confirm Loan"
 
@@ -31,9 +30,7 @@ RSpec.feature "NonUserCanMakeALoan", type: :feature do
 
 
     click_on "continue"
-
-    expect(page).to have_content("Some of your loans have been adjusted.  Please review.")
-    expect(page).to have_content("$40")
+    expect(page).to have_content("$10")
     expect(page).to have_content("submit loans")
   end
 end

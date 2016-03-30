@@ -6,10 +6,6 @@ class OrderProcessor
     @projects = cart.projects
   end
 
-  def adjust_loans
-    @cart.adjust_loans
-  end
-
   def process_current_user(params, current_user)
     processed_params = process_user_params(params)
     current_user.orders.new(processed_params)

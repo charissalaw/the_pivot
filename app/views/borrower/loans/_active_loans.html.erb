@@ -4,16 +4,22 @@
       <table class="table table-hover table-condensed table-projects all-projects">
       <tr id="<%= project.id %>-project" class="project-row">
         <td class="project-name"> <%= link_to project.name, project_path(project.slug) %> </td>
-        <td>Left to Pay: <%= project.display_debt %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="light">Left to Pay:</span>  <span class="font-bold"><%= project.display_debt %></span></td>
         <td></td>
         <td><%= link_to "pay back", new_project_repayment_path(project.slug), class:"btn btn-checkout btn-xs"%></td>
+        <td></td>
       </tr>
-        <tr>
-          <th class="text-center">loan</th>
-          <th class="text-center">status</th>
-          <th class="text-center">date</th>
-          <th></th>
-        </tr>
+      <tr>
+        <th class="text-center">loan</th>
+        <th class="text-center">status</th>
+        <th class="text-center">date</th>
+        <th></th>
+      </tr>
       <% num = 1 %>
       <% project.active_loans.each do |loan| %>
         <tr id="<%= loan.id %>-loan" class="loan-row">
@@ -28,6 +34,6 @@
       </div>
       <br>
       <% else %>
-      <h2 class='text-center'>No loans yet!</h2>
+      <h2 class='text-center light'>No loans yet!</h2>
     <% end %>
   <% end %>
