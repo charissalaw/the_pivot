@@ -11,6 +11,10 @@ class Loan < ActiveRecord::Base
     project.check_status
   end
 
+  def date
+    created_at.strftime("%B %-d, %Y")
+  end
+
   def self.top_project_revenue
     top_project.goal * (top_project_info[1] / 100)
   end
@@ -22,10 +26,6 @@ class Loan < ActiveRecord::Base
 
   def self.top_project_info
     group(:project_id).sum(:quantity).sort_by { |project, count| count }.last
-  end
-
-  def display_total
-    "$#{total / 100}"
   end
 
   def self.by_date
@@ -44,7 +44,7 @@ class Loan < ActiveRecord::Base
     where(status: "active").order(:created_at)
   end
 
-  def self.completed_loans
-    where(status: "completed").order(:created_at)
+  def self.paid
+    where(status: "paid").order(:created_at)
   end
 end

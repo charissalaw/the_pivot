@@ -16,8 +16,8 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def index
-    if params[:status] == "completed"
-      @projects = current_user.projects.completed_index
+    if params[:status] == "funded"
+      @projects = current_user.projects.funded_index
     else
       @projects = current_user.projects.active_index
     end

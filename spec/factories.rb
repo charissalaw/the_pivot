@@ -60,7 +60,7 @@ FactoryGirl.define do
   end
 
   factory :repayment do
-    amount_paid Faker::Number.number(2)
+    amount_paid 100
   end
 
   factory :borrower_attribute do
@@ -110,5 +110,4 @@ FactoryGirl.define do
     label "10"
     score 10
   end
-
 end

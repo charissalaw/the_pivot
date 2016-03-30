@@ -1,11 +1,10 @@
 class Borrower::LoansController < ApplicationController
   def index
     if params[:status] == "completed"
-      @loans = current_user.borrower.loans.completed_loans
+      @projects = current_user.projects
     else
-      @loans = current_user.borrower.loans.active_loans
+      @projects = current_user.projects
     end
-    @projects = current_user.borrower.projects
   end
 
   def show

@@ -1,0 +1,33 @@
+<% @projects.each do |project| %>
+  <% if project.has_active_loans? %>
+    <div class="table-responsive">
+      <table class="table table-hover table-condensed table-projects">
+      <tr id="<%= project.id %>-project" class="project-row">
+        <td> <%= link_to project.name, project_path(project.slug) %> </td>
+        <td>Left to Pay: <%= project.display_debt %></td>
+        <td></td>
+        <td><%= link_to "pay back", new_project_repayment_path(project.slug), class:"btn btn-checkout btn-xs"%></td>
+      </tr>
+        <tr>
+          <th class="text-center">loan</th>
+          <th class="text-center">status</th>
+          <th class="text-center">date</th>
+          <th></th>
+        </tr>
+      <% num = 1 %>
+      <% project.active_loans.each do |loan| %>
+        <tr id="<%= loan.id %>-loan" class="loan-row">
+          <td><%= link_to num, borrower_user_loan_path(current_user, loan) %></td>
+          <td><%= loan.status %></td>
+          <td class="loan-value" ><%= loan.date %></td>
+          <td></td>
+        </tr>
+        <% num += 1 %>
+      <% end %>
+      </table>
+      </div>
+      <br>
+      <% else %>
+      <h2 class='text-center'>No loans yet!</h2>
+    <% end %>
+  <% end %>

@@ -13,7 +13,7 @@ RSpec.feature "BorrowersDashShowProjects", type: :feature do
     country = create(:country)
     create(:country, name: "nicaragua")
     project_active = create(:project, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
-    project_inactive = create(:project, name: "whatever", borrower_id: borrower.id, category_id: category.id, country_id: country.id, status: "completed")
+    project_inactive = create(:project, name: "whatever", borrower_id: borrower.id, category_id: category.id, country_id: country.id, status: "funded")
 
     visit "/"
     click_on "login"
