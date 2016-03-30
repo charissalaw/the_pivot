@@ -59,15 +59,15 @@ RSpec.feature "AdminUsesSearchFeatureForOrders", type: :feature do
     expect(page).to have_content("#{Project.first.borrower.user.fullname}")
   end
 
-  scenario "they search by name" do
-
-    fill_in "search by name", with: "Jane Doe"
-    click_on "search by name"
-
-    expect(current_path).to eq(admin_borrowers_path)
-    expect(page).to have_content("#{Project.first.borrower.user.fullname}")
-
-  end
+  # scenario "they search by name" do
+  #
+  #   fill_in "search by name", with: "Jane Doe"
+  #   click_on "search by name"
+  #
+  #   expect(current_path).to eq(admin_borrowers_path)
+  #   expect(page).to have_content("#{Project.first.borrower.user.fullname}")
+  #
+  # end
 
   scenario "they search by date" do
 

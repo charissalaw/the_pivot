@@ -23,6 +23,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:info] = "Hey #{@user.first_name}, welcome to Lending Owl."
       redirect_to root_path
+    elsif user_params[:name].nil? || user_params[:email].nil? || user_params[:password].nil?
+      flash.now[:info] = "Sorry, you can't leave any fields blank."
+      render :new
     else
       flash[:info] = "Hey, looks like your email is already registered. Please login."
       redirect_to login_path
