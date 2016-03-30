@@ -14,12 +14,8 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     country1 = create(:country)
     country2 = create(:country, name: "nicaragua")
     project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
-    project_active2 = create(:project, name: "rockets", borrower_id: borrower.id, category_id: category2.id, country_id: country2.id)
     order = lender_user.orders.create
     order.loans.create(quantity: 2500, project_id: project_active1.id)
-    order.loans.create(quantity: 3000, project_id: project_active1.id)
-    order.loans.create(quantity: 3500, project_id: project_active2.id)
-    repayment = create(:repayment, project_id: project_active1.id)
 
     visit root_path
     click_on "login"
@@ -31,13 +27,9 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
 
     click_on "active loans"
     expect(page).to have_content("#{project_active1.name}")
-    expect(page).to have_content("#{project_active2.name}")
 
-    within "tr##{project_active1.id}-project" do
-      click_on "pay back"
-      expect(current_path).to eq(new_project_repayment_path(project_active1.slug))
-    end
-
+    click_on "pay back"
+    expect(current_path).to eq(new_project_repayment_path(project_active1.slug))
 
     expect(page).to have_content("repayment toward project #{project_active1.name}")
 

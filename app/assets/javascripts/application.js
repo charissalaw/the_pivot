@@ -17,4 +17,6 @@
 
 $( document ).ready(function() {
   searchLoans()
+  searchProjects()
+  searchBorrowers()
 });

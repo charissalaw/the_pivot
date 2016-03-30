@@ -30,7 +30,7 @@ RSpec.feature "BorrowerCanViewAllProjectsAndEdit", type: :feature do
 
     expect(current_path).to eq(borrower_user_projects_path(user))
 
-    within "tr##{project.id}-project" do
+    within "div##{project.id}-project" do
       fill_in "name", with: "New Name"
       fill_in "description", with: "newly guud"
       select "new category", from: "project-category"

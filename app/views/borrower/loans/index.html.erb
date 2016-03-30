@@ -4,23 +4,24 @@
   </div>
 </div><br>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-sm-10 col-sm-offset-1">
     <div class="input-group">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" type="button">Projects</button>
       </span>
-      <input id="loan-search" type="text" class="form-control" placeholder="Search for...">
+      <input id="project-search" type="text" class="form-control" placeholder="Search by project name">
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
-</div>
+<br>
+<br>
 <br>
 <div id="loans" class="container">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <% if params[:status] == "active" %>
-        <%= render partial: "active_loans" %>
-      <% else %>
+    <div class="col-sm-10 col-sm-offset-1">
+      <% if params[:status] == "completed" %>
         <%= render partial: "completed_loans" %>
+      <% else %>
+        <%= render partial: "active_loans" %>
       <% end %>
     </div>
   </div>

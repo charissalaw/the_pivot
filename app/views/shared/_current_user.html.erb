@@ -17,6 +17,12 @@
         </li>
       </ul>
     </li>
+    <li class="pull-right nav-icon">
+      <a id="borrow" href="/borrower/users/new" style="color:#777; margin-top: 5px;">borrow</a>
+    </li>
+    <li class="pull-right nav-icon">
+      <a id="lend" href="/lend" style="color:#777; margin-top: 5px;">lend</a>
+    </li>
     <% if !@cart.contents.empty? %>
       <li class="pull-right nav-icon">
         <a id="cart" href="/cart" style="color:#777; margin-top: 5px;">loans ($<%= @cart.count %>) </a>
