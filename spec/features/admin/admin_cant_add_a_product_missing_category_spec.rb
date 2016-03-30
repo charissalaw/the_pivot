@@ -41,7 +41,7 @@ RSpec.feature "AdminCantAddProjectWithoutCategory", type: :feature do
       click_on "login"
     end
 
-    visit admin_borrower_path(user1)
+    visit admin_borrower_path(user1.borrower.id)
 
     within "div#new-project" do
     fill_in "project title", with: "Glory Road"

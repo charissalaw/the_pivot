@@ -53,7 +53,7 @@ RSpec.feature "AdminViewsAllOrders", type: :feature do
     click_on(@project1.borrower.user.name)
 
     expect(current_path).to eq(admin_borrower_path(@project1.borrower.id))
-    expect(page).to have_content(@project1.id)
+    expect(page).to have_content(@project1.name)
     expect(@project1.status).to eq("active")
     expect(page).to have_button("update")
   end
