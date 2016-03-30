@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
 
   def new
-    order_processor = OrderProcessor.new(@cart)
-    @projects = order_processor.projects
+    @projects = @cart.projects
     @order = Order.new
   end
 
@@ -12,10 +11,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order_processor = OrderProcessor.new(@cart)
-    @order = order_processor.process_current_user(stripe_params, current_user)
+    @order = OrderProcessor.new(order_params, @cart, current_user).order
     if @order.save
-      @order.process(order_processor.projects, @cart.contents)
       OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
@@ -60,7 +57,11 @@ class OrdersController < ApplicationController
   end
 
   def stripe_params
-    params.permit(:stripeEmail, :stripeToken, :stripeShippingName, :stripeShippingAddressLine1, :stripeShippingAddressCity, :stripeShippingAddressZip, :stripeShippingAddressState, :stripeShippingAddressZip )
+    params.permit(:stripeToken)
+  end
+
+  def order_params
+    {card_token: stripe_params[:stripeToken]}
   end
 
   def login_or_create_user

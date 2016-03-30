@@ -41,19 +41,6 @@ class Order < ActiveRecord::Base
     "$#{total}"
   end
 
-  def process(projects, contents)
-    projects.each do |project|
-      loans.create(project_id: project.id, quantity: (contents[project.id.to_s] * 100))
-    end
-    process_stripe_payment
-    self.update(order_total: total)
-    send_to_escrow
-  end
-
-  def send_to_escrow
-    Escrow.send_to_escrow(self)
-  end
-
   def project_quantity
     loans.count
   end
