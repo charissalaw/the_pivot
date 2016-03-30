@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328194043) do
+ActiveRecord::Schema.define(version: 20160330024905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,16 @@ ActiveRecord::Schema.define(version: 20160328194043) do
   add_index "projects", ["country_id"], name: "index_projects_on_country_id", using: :btree
   add_index "projects", ["slug"], name: "index_projects_on_slug", using: :btree
 
+  create_table "repayments", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "amount_paid"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "stripeToken"
+  end
+
+  add_index "repayments", ["project_id"], name: "index_repayments_on_project_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -165,6 +175,7 @@ ActiveRecord::Schema.define(version: 20160328194043) do
   add_foreign_key "projects", "borrowers"
   add_foreign_key "projects", "categories"
   add_foreign_key "projects", "countries"
+  add_foreign_key "repayments", "projects"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

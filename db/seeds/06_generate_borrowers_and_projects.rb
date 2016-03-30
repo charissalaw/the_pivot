@@ -40,7 +40,8 @@ private
     user.update(created_at: date, updated_at: date)
     categories = category_ids
     countries = country_ids
-    1.times do
+
+    2.times do
       project = borrower.projects.create(name:Faker::Book.title, goal: (10..500).step(5).to_a.sample, description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
       puts "Created Project: #{project.name}, #{project.goal}."
     end
