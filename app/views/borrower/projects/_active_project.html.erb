@@ -1,6 +1,6 @@
 <% if !@projects.nil? %>
   <% @projects.each do |project| %>
-      <div class="container-fluid project-index-div">
+      <div id="<%= project.id %>-project"class="container-fluid project-index-div">
         <%= form_for [:borrower, current_user, project], url: borrower_user_project_path(current_user, project) do |f| %>
         <div class="row project-index-row">
           <div class="col-xs-2">
