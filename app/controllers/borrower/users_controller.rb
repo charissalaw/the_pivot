@@ -23,8 +23,8 @@ class Borrower::UsersController < ApplicationController
         redirect_to root_path
       end
     else
-      flash.now[:alert] = "Looks like you may already be a user!"
-      render :new
+      flash[:info] = "Looks like you may already be a user! Please login."
+      redirect_to login_path
     end
   end
 

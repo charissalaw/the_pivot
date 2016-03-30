@@ -1,9 +1,9 @@
-<% @projects.each do |project| %>
+ <% @projects.each do |project| %>
   <% if project.has_active_loans? %>
     <div class="table-responsive">
-      <table class="table table-hover table-condensed table-projects">
+      <table class="table table-hover table-condensed table-projects all-projects">
       <tr id="<%= project.id %>-project" class="project-row">
-        <td> <%= link_to project.name, project_path(project.slug) %> </td>
+        <td class="project-name"> <%= link_to project.name, project_path(project.slug) %> </td>
         <td>Left to Pay: <%= project.display_debt %></td>
         <td></td>
         <td><%= link_to "pay back", new_project_repayment_path(project.slug), class:"btn btn-checkout btn-xs"%></td>

@@ -24,8 +24,8 @@ class UsersController < ApplicationController
       flash[:info] = "Hey #{@user.first_name}, welcome to Lending Owl."
       redirect_to root_path
     else
-      flash.now[:alert] = "Sorry, friend.  Something went wrong :(... Please try again."
-      render :new
+      flash[:info] = "Hey, looks like your email is already registered. Please login."
+      redirect_to login_path
     end
   end
 
