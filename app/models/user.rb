@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     borrower.projects.funded_index
   end
 
-  def self.bar_chart_data(user)
+  def self.asking_for(user)
     totals_hash = Hash.new
     totals_hash["$ asked for"] = 100
     totals_hash["$ funded"] = 50

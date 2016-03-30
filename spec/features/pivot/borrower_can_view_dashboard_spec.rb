@@ -14,6 +14,10 @@ RSpec.feature "BorrowerCanViewDashboard", type: :feature do
     create(:country, name: "nicaragua")
     project = create(:project, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
     project2 = create(:project, name: "project2", borrower_id: borrower.id, category_id: category.id, country_id: country.id)
+    order = user.orders.create
+    loan1 = order.loans.create(quantity: 2500, project_id: project.id)
+    loan2 = order.loans.create(quantity: 3000, project_id: project.id)
+    loan3 = order.loans.create(quantity: 3500, project_id: project2.id)
 
     visit "/"
     click_on "login"
@@ -31,8 +35,10 @@ RSpec.feature "BorrowerCanViewDashboard", type: :feature do
 
     expect(current_path).to eq(borrower_user_path(user))
 
-    expect(page).to have_content("Here are your stats")
+    expect(page).to have_content("project goals")
 
-    expect(page).to have_content("$$ asked for")
+    expect(page).to have_content("repayment toward")
+    expect(page).to have_content("#{project.name}")
+    expect(page).to have_content("#{project2.name}")
   end
 end

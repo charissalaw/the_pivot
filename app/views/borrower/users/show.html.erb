@@ -6,7 +6,16 @@
 </div>
 <div class="row">
   <div class="col-xs-12 text-center">
-    <h3>Project Goals</h3>
-    <%= bar_chart current_user.projects.group(:name).sum(:goal) %>
+    <h3>project goals</h3>
+    <%= bar_chart @projects.group(:name).sum(:goal) %>
+
+    <h3>repayment toward</h3>
+    <div class="chart" style="height:10px;">
+      <% @projects.each do |project| %>
+        <h4> <%= project.name %> </h4>
+        <%= bar_chart project.repayments.group(:project_id).sum(:amount_paid) %>
+      <% end %>
+    </div>
+
   </div>
 </div>
