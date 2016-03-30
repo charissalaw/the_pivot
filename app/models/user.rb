@@ -72,4 +72,13 @@ class User < ActiveRecord::Base
   def funded_projects
     borrower.projects.funded_index
   end
+
+  def self.bar_chart_data(user)
+    totals_hash = Hash.new
+    totals_hash["$ asked for"] = 100
+    totals_hash["$ funded"] = 50
+    totals_hash["$ completed projects"] = 200
+    totals_hash["$ paid back"] = 40
+    totals_hash["$ given to other projects"] = 10
+  end
 end
