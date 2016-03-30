@@ -73,12 +73,24 @@ class User < ActiveRecord::Base
     borrower.projects.funded_index
   end
 
-  def self.asking_for(user)
-    totals_hash = Hash.new
-    totals_hash["$ asked for"] = 100
-    totals_hash["$ funded"] = 50
-    totals_hash["$ completed projects"] = 200
-    totals_hash["$ paid back"] = 40
-    totals_hash["$ given to other projects"] = 10
+  def total_goal
+    (self.projects.sum(:goal))/100
   end
+
+  def total_funded
+    sum = 0
+    self.projects.each do |project|
+      sum += project.loans.sum(:quantity)
+    end
+    sum/100
+  end
+
+  def loan_count
+    count = 0
+    self.projects.each do |project|
+      count += project.loans.count
+    end
+    count
+  end
+
 end

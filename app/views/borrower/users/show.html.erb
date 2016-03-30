@@ -4,18 +4,32 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-12 text-center">
-    <h3>project goals</h3>
-    <%= bar_chart @projects.group(:name).sum(:goal) %>
 
-    <h3>repayment toward</h3>
-    <div class="chart" style="height:10px;">
-      <% @projects.each do |project| %>
-        <h4> <%= project.name %> </h4>
-        <%= bar_chart project.repayments.group(:project_id).sum(:amount_paid) %>
-      <% end %>
-    </div>
+<div class="col-xs-12 text-center">
+  <h3>project goals</h3>
+  <%= bar_chart @projects.group(:name).sum(:goal) %>
+</div>
 
+<div class="row rev-data-row text-center">
+  <h3>totals</h3>
+  <div class="col-xs-1 text-center">
+  </div>
+  <div class="col-xs-2 rev-data text-center">
+    <h4 class="data-point-header"><small>total goal</small></h4>
+    <p class="revenue-span">$<%= current_user.total_goal %></p>
+  </div>
+  <div class="col-xs-3 rev-data text-center">
+    <h4 class="data-point-header"><small>total funded</small></h4>
+    <span class="revenue-span">$<%= current_user.total_funded %></span>
+  </div>
+  <div class="col-xs-2 rev-data text-center">
+    <h4 class="data-point-header"><small>total projects</small></h4>
+    <span class="revenue-span"><%= current_user.projects.count %></span>
+  </div>
+  <div class="col-xs-2 rev-data text-center">
+    <h4 class="data-point-header"><small>total loans</small></h4>
+    <span class="revenue-span"><%= current_user.loan_count %></span>
+  </div>
+  <div class="col-xs-2 text-center">
   </div>
 </div>

@@ -12,8 +12,8 @@ RSpec.feature "BorrowerCanViewDashboard", type: :feature do
     create(:category, name: "new category")
     country = create(:country)
     create(:country, name: "nicaragua")
-    project = create(:project, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
-    project2 = create(:project, name: "project2", borrower_id: borrower.id, category_id: category.id, country_id: country.id)
+    project = create(:project, goal: 20000, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
+    project2 = create(:project, name: "project2", goal: 25000, borrower_id: borrower.id, category_id: category.id, country_id: country.id)
     order = user.orders.create
     loan1 = order.loans.create(quantity: 2500, project_id: project.id)
     loan2 = order.loans.create(quantity: 3000, project_id: project.id)
@@ -37,8 +37,13 @@ RSpec.feature "BorrowerCanViewDashboard", type: :feature do
 
     expect(page).to have_content("project goals")
 
-    expect(page).to have_content("repayment toward")
-    expect(page).to have_content("#{project.name}")
-    expect(page).to have_content("#{project2.name}")
+    expect(page).to have_content("total goal")
+    expect(page).to have_content("450")
+    expect(page).to have_content("total funded")
+    expect(page).to have_content("90")
+    expect(page).to have_content("total projects")
+    expect(page).to have_content("2")
+    expect(page).to have_content("total loans")
+    expect(page).to have_content("3")
   end
 end
