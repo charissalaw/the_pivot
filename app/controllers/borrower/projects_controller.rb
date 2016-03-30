@@ -16,8 +16,8 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def index
-    if params[:status] == "completed"
-      @projects = current_user.projects.completed_index
+    if params[:status] == "funded"
+      @projects = current_user.projects.funded_index
     else
       @projects = current_user.projects.active_index
     end
@@ -32,6 +32,11 @@ class Borrower::ProjectsController < ApplicationController
       flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
       render :new
     end
+  end
+
+  def show
+    @project = Project.find(params[:id])
+    @repayment = Repayment.find_by(project_id: @project.id)
   end
 
   def project_params

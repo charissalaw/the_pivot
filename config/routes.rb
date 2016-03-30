@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  get 'country/show'
-
-  namespace :borrower do
-  get 'loans/index'
-  end
-
-  namespace :borrower do
-  get 'loans/show'
-  end
-
   root to: 'home#index'
 
   get "/lend", to: "projects#index", as: "projects"
@@ -26,7 +16,8 @@ Rails.application.routes.draw do
 
   namespace :borrower do
     resources :users, only: [:new, :create, :show] do
-      resources :projects, only: [:new, :create, :index, :update]
+      resources :projects, only: [:new, :create, :index, :update, :show]
+      resources :repayments, only: [:create, :show, :new]
       resources :orders, only: [:index, :show, :update]
       resources :loans, only: [:index, :show, :update]
       resources :comments, only: [:create]
@@ -47,5 +38,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/lend", to: "projects#index"
 
-  resource :projects, as: :project, path: ":project", only: [:show]
+  resource :projects, as: :project, path: ":project", only: [:index, :update, :show] do
+    resources :repayments, only: [:new, :create]
+  end
 end

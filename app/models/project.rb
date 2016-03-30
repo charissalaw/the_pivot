@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :category
   belongs_to :borrower
   has_many :loans
+  has_many :repayments
   has_many :orders, through: :loans
   belongs_to :country
   before_validation :build_slug
@@ -43,6 +44,15 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def check_repayment_status
+    if debt <= 0
+      self.status = "repaid"
+      loans.each do |loan|
+        loan.update(status: "paid")
+      end
+    end
+  end
+
   def display_goal
     "$#{goal.to_i / 100}"
   end
@@ -65,6 +75,10 @@ class Project < ActiveRecord::Base
 
   def self.inactive_index
     where(status: "deactive").order(:name)
+  end
+
+  def self.funded_index
+    where(status: "funded").order(:name)
   end
 
   def funded?
@@ -93,5 +107,21 @@ class Project < ActiveRecord::Base
 
   def self.by_date
     order(updated_at: :desc)
+  end
+
+  def debt
+    loans.sum(:quantity) - repayments.sum(:amount_paid)
+  end
+
+  def display_debt
+    "$#{debt/100.00}"
+  end
+
+  def has_active_loans?
+    !loans.where(status:"active").empty?
+  end
+
+  def active_loans
+    loans.where(status:"active")
   end
 end

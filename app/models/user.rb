@@ -69,4 +69,7 @@ class User < ActiveRecord::Base
     "$#{balance}"
   end
 
+  def funded_projects
+    borrower.projects.funded_index
+  end
 end
