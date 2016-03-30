@@ -1,0 +1,95 @@
+
+
+
+<h3>Annual Income Scoring</h3>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th>Income Range</th>
+        <th>Point value</th>
+        <th>Submit</th>
+      </tr>
+    </thead>
+
+      <% @borrower_attributes.annual_income.each do |income| %>
+        <tr id="<%= income.id %>-income">
+          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
+            <td><%= label_tag :income, nil, class:"sr-only" %>
+            <%= text_field_tag :name, income.label, placeholder: "income", class: "project-update-form" %></td>
+            <td><%= select_tag "loan amount", options_for_select([*1..25], income.score), class: "form-control"  %></td>
+            <td><%= submit_tag "update income details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+  </table>
+
+  <!-- ################ Refactor if time allows -->
+
+  <h3>Credit Card Debt Scoring</h3>
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th>Credit Payments</th>
+        <th>Point value</th>
+        <th>Submit</th>
+      </tr>
+    </thead>
+
+      <% @borrower_attributes.housing_costs.each do |housing| %>
+        <tr id="<%= housing.id %>-housing">
+          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
+            <td><%= label_tag :housing, nil, class:"sr-only" %>
+            <%= text_field_tag :housing, housing.label, placeholder: "housing", class: "project-update-form" %></td>
+            <td><%= select_tag "loan amount", options_for_select([*1..25], housing.score), class: "form-control" %></td>
+            <td><%= submit_tag "update housing details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+  </table>
+
+<h3>Housing Cost Scoring</h3>
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th>Housing Cost</th>
+        <th>Point value</th>
+        <th>Submit</th>
+      </tr>
+    </thead>
+
+      <% @borrower_attributes.credit_payments.each do |credit_payment| %>
+        <tr id="<%= credit_payment.id %>-credit_payment">
+          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
+            <td><%= label_tag :credit_payment, nil, class:"sr-only" %>
+            <%= text_field_tag :credit_payment, credit_payment.label, placeholder: "credit_payment", class: "project-update-form" %></td>
+            <td><td><%= select_tag "loan amount", options_for_select([*1..25], credit_payment.score), class: "form-control"  %></td></td>
+            <td><%= submit_tag "update credit payment details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+  </table>
+
+
+<h3>Dependents Scoring</h3>
+  <table class="table table-hover table-condensed table-projects">
+    <thead>
+      <tr>
+        <th>Dependents</th>
+        <th>Point value</th>
+        <th>Submit</th>
+      </tr>
+    </thead>
+
+      <% @borrower_attributes.dependents.each do |dependent| %>
+        <tr id="<%= dependent.id %>-dependent">
+          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
+            <td><%= label_tag :dependent, nil, class:"sr-only" %>
+            <%= text_field_tag :dependent, dependent.label, placeholder: "dependent", class: "project-update-form" %></td>
+            <td><td><%= select_tag "loan amount", options_for_select([*1..25], dependent.score), class: "form-control"  %></td></td>
+            <td><%= submit_tag "update dependent details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+  </table>
+</div>
