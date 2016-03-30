@@ -15,7 +15,6 @@ RSpec.feature "Loans are sent to escrow after creation", type: :feature do
     order = lender_user.orders.create
     loan1 = order.loans.create(quantity: 25, project_id: project_active1.id)
     loan2 = order.loans.create(quantity: 30, project_id: project_active1.id)
-# binding.pry
     order.send_to_escrow
 
     expect(Escrow.first.project_id).to eq project_active1.id
