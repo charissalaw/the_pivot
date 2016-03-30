@@ -15,6 +15,6 @@ class Admin::BorrowersController < ApplicationController
   def show
     @borrower = Borrower.find(params[:id])
     @project = Project.new
-    @projects = @borrower.projects.active_index
+    @projects = @borrower.projects
   end
 end

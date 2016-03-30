@@ -50,6 +50,6 @@ RSpec.feature "AdminCanManageProjects", type: :feature do
     end
     click_on "update project"
 
-    expect(page).to have_content("Project #{Project.last.id} has been updated.")
+    expect(page).to have_content("Project #{Project.last.name} has been updated.")
   end
 end
