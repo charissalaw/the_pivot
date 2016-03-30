@@ -21,7 +21,7 @@
         <%= label_tag :email,  nil, class:"sr-only"  %>
         <%= email_field_tag :email, nil, required:true, placeholder: "email", class:"form-control text-input" %><br>
         <%= label_tag :password,  nil, class:"sr-only"  %>
-        <%= password_field_tag :password, nil, required:true, placeholder: "enter or create password", class:"form-control text-input" %><br>
+        <%= password_field_tag :password, nil, required:true, placeholder: "enter or create password", class:"form-control text-input", pattern:".{5,20}", title:"Passwords need to be at least 5 characters" %><br>
         <%= select_tag :annual_income, options_from_collection_for_select(BorrowerAttribute.annual_income, 'score', 'label'), {class: "form-control text-input", required:true, prompt:"annual income"} %><br>
         <%= select_tag :monthly_housing, options_from_collection_for_select(BorrowerAttribute.housing_costs, 'score', 'label'), {class: "form-control text-input", required:true, prompt: "monthly mortgage or rent payment"} %><br>
         <%= select_tag :monthly_credit_pmt, options_from_collection_for_select(BorrowerAttribute.credit_payments, 'score', 'label'), {class: "form-control text-input", required:true, prompt: "monthly credit payment"} %><br>
