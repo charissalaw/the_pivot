@@ -1,9 +1,9 @@
-<% if params[:status] == "active" %>
+<% if params[:status] == "funded" %>
+  <h3 class="inactive-<%= params[:status] %> admin-loan_transaction-project-header">funded projects</h3>
+  <br>
+  <%= render partial: "funded_project" %>
+<% else %>
   <h3 class="inactive-<%= params[:status] %> admin-project-index-header">active projects</h3>
   <br>
   <%= render partial: "active_project" %>
-<% else %>
-  <h3 class="inactive-<%= params[:status] %> admin-loan_transaction-project-header">completed projects</h3>
-  <br>
-  <%= render partial: "funded_project" %>
 <% end %>

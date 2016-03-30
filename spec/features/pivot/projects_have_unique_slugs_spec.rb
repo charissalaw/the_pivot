@@ -13,7 +13,7 @@ RSpec.feature "projects have slugs", type: :feature do
     country1 = create(:country)
     project_active1 = create(:project, borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
     project_active2 = create(:project, name: "Invisible", borrower_id: borrower.id, category_id: category1.id, country_id: country1.id)
-
+  
     visit "/#{project_active1.slug}"
 
     expect(page).to have_content(project_active1.name)

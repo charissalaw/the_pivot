@@ -24,35 +24,11 @@
 <div id="loans" class="container">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-      <% @projects.each do |project| %>
-          <div class="table-responsive">
-            <table class="table table-hover table-condensed table-projects all-projects">
-            <tr id="<%= project.id %>-project" class="project-row">
-              <td class="project-name"> <%= link_to project.name, borrower_user_project_path(current_user, project) %> </td>
-              <td>Left to Pay: <%= Repayment.remaining_pmt(project) %> of <%= project.display_goal %> </td>
-              <td></td>
-              <td><%= link_to "pay back", borrower_user_repayment_path(current_user, Repayment.find_by(project_id: project.id)), class:"btn btn-checkout btn-xs"%></td>
-            </tr>
-              <tr>
-                <th class="text-center">loan</th>
-                <th class="text-center">status</th>
-                <th class="text-center">amount</th>
-                <th></th>
-              </tr>
-            <% num = 1 %>
-            <% @loans.where(project_id: project.id).each do |loan| %>
-              <tr id="<%= loan.id %>-loan" class="loan-row">
-                <td><%= link_to num, borrower_user_loan_path(current_user, loan) %></td>
-                <td><%= loan.status %></td>
-                <td class="loan-value" ><%= loan.quantity %></td>
-                <td></td>
-              </tr>
-              <% num += 1 %>
-            <% end %>
-            </table>
-            </div>
-            <br>
-          <% end %>
+      <% if params[:status] == "active" %>
+        <%= render partial: "active_loans" %>
+      <% else %>
+        <%= render partial: "completed_loans" %>
+      <% end %>
     </div>
   </div>
 </div>

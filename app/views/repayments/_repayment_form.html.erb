@@ -1,0 +1,16 @@
+<%= form_for(:repayment, url: project_repayments_path) do |f| %>
+  <select class="form-control" name="amount_paid">
+    <%= render partial: "shared/increments_by_5"  %>
+  </select><br>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description= "Pay those loans!"
+  data-image= "/assets/nav-logo-dcbacebfd4a74e9dd03a8b25e54dd394ae20fa2d62a47a2c08a4b27fd80962d3.png"
+  data-locale="auto"
+  data-billing-address= true
+  data-shipping-address= true
+  data-panel-label= "Total"
+  data-label= "repay loans">
+  </script>
+<% end %>
+</div>

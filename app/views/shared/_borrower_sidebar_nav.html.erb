@@ -20,7 +20,7 @@
     <%= link_to "add project", new_borrower_user_project_path(current_user) %>
   </li>
   <li>
-    <%= link_to "funded projects", borrower_user_projects_path(current_user, status: "completed") %>
+    <%= link_to "funded projects", borrower_user_projects_path(current_user, status: "funded") %>
   </li>
   <li>
     <%= link_to "lend", projects_path %>
