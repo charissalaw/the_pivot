@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330024905) do
+ActiveRecord::Schema.define(version: 20160330215258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 20160330024905) do
     t.datetime "updated_at", null: false
     t.string   "slug"
   end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "order_id"
-    t.string   "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comments", ["order_id"], name: "index_comments_on_order_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -90,8 +81,6 @@ ActiveRecord::Schema.define(version: 20160330024905) do
     t.integer  "user_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "status",      default: "escrow"
     t.string   "card_token"
     t.integer  "order_total"
@@ -106,8 +95,6 @@ ActiveRecord::Schema.define(version: 20160330024905) do
     t.integer  "category_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.boolean  "sale",               default: false
-    t.integer  "sale_goal"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -167,7 +154,6 @@ ActiveRecord::Schema.define(version: 20160330024905) do
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   add_foreign_key "borrowers", "users"
-  add_foreign_key "comments", "orders"
   add_foreign_key "escrows", "projects"
   add_foreign_key "loans", "orders"
   add_foreign_key "loans", "projects"
