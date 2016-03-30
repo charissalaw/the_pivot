@@ -2,7 +2,7 @@ function searchProjects(){
   $('#project-search').keyup(function(event){
     var amountSearch = ($(this).val()).toLowerCase()
 
-    var allProjects = $('.squeek')
+    var allProjects = $('.all-projects')
 
     allProjects.removeClass('invisible')
     var hideIdeas = allProjects.filter(function(){

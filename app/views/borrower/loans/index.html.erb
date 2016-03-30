@@ -26,7 +26,7 @@
     <div class="col-sm-8 col-sm-offset-2">
       <% @projects.each do |project| %>
           <div class="table-responsive">
-            <table class="table table-hover table-condensed table-projects squeek">
+            <table class="table table-hover table-condensed table-projects all-projects">
             <tr id="<%= project.id %>-project" class="project-row">
               <td class="project-name"> <%= link_to project.name, borrower_user_project_path(current_user, project) %> </td>
               <td>Left to Pay: <%= Repayment.remaining_pmt(project) %> of <%= project.display_goal %> </td>
