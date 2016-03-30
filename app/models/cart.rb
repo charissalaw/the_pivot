@@ -15,7 +15,7 @@ class Cart
     contents.each do |project, loan|
       if (loan) > Project.find(project.to_i).remaining_goal
         current_project = Project.find(project.to_i)
-        contents[project] = (current_project.remaining_goal / 100)
+        contents[project] = (current_project.remaining_goal)
         flash = true
       end
     end
