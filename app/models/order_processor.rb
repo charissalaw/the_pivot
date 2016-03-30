@@ -11,7 +11,6 @@ class OrderProcessor
     if @order.save
       create_loans
       @order.update(order_total: @order.total)
-      send_to_escrow
     end
   end
 
@@ -19,9 +18,5 @@ class OrderProcessor
     @cart.projects.each do |project|
       @order.loans.create(project_id: project.id, quantity: (@cart.contents[project.id.to_s] * 100))
     end
-  end
-
-  def send_to_escrow
-    Escrow.send_to_escrow(@order)
   end
 end

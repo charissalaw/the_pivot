@@ -10,6 +10,10 @@ class Order < ActiveRecord::Base
 
   scope :cancelled_orders, -> { where(status: "cancelled") }
 
+  def send_to_escrow
+    Escrow.send_to_escrow(self)
+  end
+
   def self.total_revenue
     processed_orders.sum(:order_total)
   end

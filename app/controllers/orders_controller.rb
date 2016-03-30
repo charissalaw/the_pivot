@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
   def create
     @order = OrderProcessor.new(order_params, @cart, current_user).order
     if @order.save
+      @order.send_to_escrow
       OrderMailer.order_email(@order).deliver_now
       flash[:info] = "Thanks for your order! :)"
       session[:cart] = nil
