@@ -1,43 +1,34 @@
-<div class="table-responsive">
-  <table class="table table-hover table-condensed table-projects">
-    <thead>
-      <tr>
-        <th></th>
-        <th>name</th>
-        <th>goal</th>
-        <th>description</th>
-        <th>category</th>
-        <th>country</th>
-        <th>update image</th>
-      </tr>
-    </thead>
-    <% if !@projects.nil? %>
-      <% @projects.each do |project| %>
-        <tr id="<%= project.id %>-project">
-          <td><%= link_to image_tag(project.image.url(:small),  class:"admin-project-image"), project_path(project.slug) %></td>
-          <%= form_for [:borrower, current_user, project], url: borrower_user_project_path(current_user, project) do |f| %>
-          <td><%= f.label :name, class:"sr-only" %>
-          <%= f.text_field :name, placeholder: "name", class: "project-update-form"%></td>
-          <td><%= f.label :goal, class:"sr-only"  %>
-          <%= f.text_field :goal, placeholder: "goal", class: "project-update-form"%></td>
-          <td><%= f.label :description, class:"sr-only"  %>
-          <%= f.text_field :description, placeholder: "description", class: "project-update-form" %></td>
-          <td><%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", required:true, class: "project-update-form"}) %></td>
-          <td><%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", required:true, class: "project-update-form"}) %></td>
-          <%= f.label :image, class:"sr-only"  %>
-          <%= f.file_field :image, { id:"#{project.id}_file_input", style:"display:none" } %>
-            <label class="file">
-            <td><a class="btn btn-primary btn-s" onclick="$('input[id=<%= project.id %>_file_input]').click();">update image</a></td>
-            </label>
-          <td><%= f.submit "update project", class:"btn btn-checkout btn-s"%></td>
-          <% end %>
-        </tr>
+<% if !@projects.nil? %>
+  <% @projects.each do |project| %>
+      <div class="container-fluid project-index-div">
+        <%= form_for [:borrower, current_user, project], url: borrower_user_project_path(current_user, project) do |f| %>
+        <div class="row project-index-row">
+          <div class="col-xs-2">
+            <%= link_to image_tag(project.image.url(:small),  class:"admin-project-image"), project_path(project.slug) %><br><br>
+            <%= f.label :image, class:"sr-only"  %>
+            <%= f.file_field :image, { id:"#{project.id}_file_input", style:"display:none" } %>
+              <label class="file">
+              <a class="btn btn-primary btn-s" onclick="$('input[id=<%= project.id %>_file_input]').click();">update image</a>
+              </label>
+            <%= f.submit "update project", class:"btn btn-checkout btn-s"%>
+          </div>
+          <div class="col-xs-8">
+            <%= f.label :name, class:"sr-only" %>
+            <%= f.text_field :name, placeholder: "name", class: "form-control"%><br>
+            <%= f.label :description, class:"sr-only"  %>
+            <%= f.text_area :description, placeholder: "description", class: "form-control" %><br>
+            <%= f.label :goal, class:"sr-only"  %>
+            <%= f.text_field :goal, placeholder: "goal", class: "project-update-form"%>
+            <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt:"category"}, {id:"project-category", required:true, class: "project-update-form"}) %>
+            <%= f.collection_select(:country_id, Country.all, :id, :name, {prompt:"country"}, {id:"country-list", required:true, class: "project-update-form"}) %>
+          </div>
+        </div>
         <script type="text/javascript">
         $('input[id= <%= project.id %>_file_input]').change(function() {
           $('#imageFormCover').val($(this).val());
         });
         </script>
-      <% end %>
+      </div>
     <% end %>
-  </table>
-</div>
+  <% end %>
+<% end %>
