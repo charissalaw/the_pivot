@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :categories, param: :slug, only: [:show]
   resources :countries, param: :slug, only: [:show]
 
-  resources :users, only: [:new, :create] do
+  resources :users, only: [:new, :create, :show, :update] do
     resources :orders, only: [:new, :index, :create, :show]
     get "/orders/:order_id/thanks", to: "orders#thanks", as: "thanks"
   end

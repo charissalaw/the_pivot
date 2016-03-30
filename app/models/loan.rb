@@ -1,10 +1,15 @@
 class Loan < ActiveRecord::Base
   belongs_to :project
   belongs_to :order
+  before_save :check_status
 
   validates :quantity, presence: true
   validates :project_id, presence: true
   validates :order_id, presence: true
+
+  def check_status
+    project.check_status
+  end
 
   def self.top_project_revenue
     top_project.goal * (top_project_info[1] / 100)
@@ -25,6 +30,14 @@ class Loan < ActiveRecord::Base
 
   def self.by_date
     loan(updated_at: :desc)
+  end
+
+  def display_total
+    "$#{quantity/100}"
+  end
+
+  def date
+    updated_at.strftime("%B %-d, %Y")
   end
 
   def self.active_loans

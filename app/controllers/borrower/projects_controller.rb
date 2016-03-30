@@ -24,7 +24,7 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def update
-  @project = Project.find(params[:id])
+  @project = current_user.projects.find(params[:id])
     if @project.update(project_params)
       flash[:info] = "Congrats! #{@project.name} has been updated!"
       redirect_to borrower_user_projects_path(active: "status")

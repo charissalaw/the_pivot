@@ -19,7 +19,7 @@
               <div class="cart-image">
                 <%= image_tag(project.image.url(:index), class: "project_image img-responsive") %>
               </div>
-              <h5><%= link_to "remove from cart", cart_project_path(project.id), method: :delete %></h5>
+              <h5><%= link_to "remove from cart", cart_project_path(project.id), class:"btn btn-lending-owl", method: :delete %></h5>
             </div>
             <div class="col-xs-4 col-sm-7">
               <div class="row">
