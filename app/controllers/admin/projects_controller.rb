@@ -17,11 +17,11 @@ class Admin::ProjectsController < Admin::BaseController
     project = Project.find(params[:id])
     if params[:commit] == "deactivate project"
       project.update(status: "deactive")
-      flash[:alert] = "Project #{project.id} has been deactivated."
+      flash[:alert] = "Project #{project.name} has been deactivated."
       redirect_to admin_borrower_path(project.borrower)
     elsif params[:commit] == "update project"
       project.update(project_params)
-      flash[:info] = "Project #{project.id} has been updated."
+      flash[:info] = "Project #{project.name} has been updated."
       redirect_to admin_borrower_path(project.borrower)
     else
       flash[:alert] = "Something went wrong... The project has not been updated."

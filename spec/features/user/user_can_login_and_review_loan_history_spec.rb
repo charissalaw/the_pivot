@@ -39,6 +39,6 @@ RSpec.feature "UserCanLoginAndReviewLoanHistory", type: :feature do
     expect(page).to have_content(project.name)
     expect(page).to have_content(loan.display_total)
     expect(page).to have_content(loan.date)
-    expect(page).to have_content(project.id)
+    expect(page).to have_content(project.name)
   end
 end

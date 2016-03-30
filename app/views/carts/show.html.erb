@@ -24,15 +24,16 @@
             <div class="col-xs-4 col-sm-7">
               <div class="row">
                 <p class="project-title"><%= project.name %></p>
-                <h3 class="project-goal">Project Goal: <%= project.display_goal %></h3>
-                <h3 class="project-goal">Your loan: $<%= @cart.contents[project.id.to_s] %></h3>
+                <br>
+                <h3 class="project-goal project-goal-cart">Remaining Goal: $<%= project.remaining_goal - @cart.contents[project.id.to_s] %></h3>
+                <h3 class="project-goal project-goal-cart">Your loan: $<%= @cart.contents[project.id.to_s] %></h3>
                 <div id="quantity-dropdown" class="row text-left">
                   <div class="form-inline">
                     <%= form_tag(cart_project_path(id: project.id)) do %>
                       <input type="hidden" name="_method" value="patch">
                       <div class="col-xs-6 col-sm-4 col-md-3">
                         <select class="form-control" name="loan-amount">
-                          <%= render partial: "shared/options"  %>
+                          <%= render partial: "shared/loan_amount", locals: {remaining: project.remaining_goal}  %>
                         </select><br>
                       </div>
                       <div class="text-left">

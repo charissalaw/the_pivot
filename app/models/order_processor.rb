@@ -1,27 +1,22 @@
 class OrderProcessor
-  attr_reader :projects
+  attr_reader :order
 
-  def initialize(cart)
+  def initialize(order_params, cart, current_user)
     @cart = cart
-    @projects = cart.projects
+    @order = current_user.orders.new(order_params)
+    process
   end
 
-  def adjust_loans
-    @cart.adjust_loans
+  def process
+    if @order.save
+      create_loans
+      @order.update(order_total: @order.total)
+    end
   end
 
-  def process_current_user(params, current_user)
-    processed_params = process_user_params(params)
-    current_user.orders.new(processed_params)
-  end
-
-  def cart_total
-      @projects.map do |project|
-      project.goal * project.quantity
-    end.reduce(:+) / 100
-  end
-
-  def process_user_params(params)
-    {card_token: params[:stripeToken]}
+  def create_loans
+    @cart.projects.each do |project|
+      @order.loans.create(project_id: project.id, quantity: (@cart.contents[project.id.to_s] * 100))
+    end
   end
 end

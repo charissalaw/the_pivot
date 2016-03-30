@@ -8,10 +8,11 @@
   </div>
   <div class="col-xs-12 col-sm-4 featured-project featured-sub-project">
     <div class="row">
+      <% category = Category.pluck(:name).sample %>
       <div class="featured-sub-project">
-        <a href="/agriculture %>">
-          <div class="text-center project-unit featured-agriculture category-unit">
-              <h1>lend to agriculture</h1>
+        <a href="/categories/<%= category %>">
+          <div class="text-center project-unit featured-category category-unit">
+              <h1>lend to <%= category %> </h1>
           </div>
         </a>
       </div>
