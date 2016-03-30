@@ -18,11 +18,10 @@
 <div id="loans" class="container">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-
-      <% if params[:status] == "active" %>
-        <%= render partial: "active_loans" %>
-      <% else %>
+      <% if params[:status] == "completed" %>
         <%= render partial: "completed_loans" %>
+      <% else %>
+        <%= render partial: "active_loans" %>
       <% end %>
     </div>
   </div>
