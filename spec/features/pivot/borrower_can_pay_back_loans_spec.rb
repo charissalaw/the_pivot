@@ -26,13 +26,21 @@ RSpec.feature "BorrowerPaysLoans", type: :feature do
     end
 
     click_on "active loans"
-    expect(page).to have_content("#{project_active1.name}")
+    expect(current_path).to eq(borrower_user_loans_path(borrower_user))
 
-    click_on "pay back"
-    expect(current_path).to eq(new_project_repayment_path(project_active1.slug))
+    within"div##{project_active1.id}-project" do
+      click_on "pay back"
+      expect(page).to have_content("repayment toward project #{project_active1.name}")
+      expect(page).to have_content("Remaining amount: $90.0")
+      select "10", from: "amount_paid"
+      click_on "pay back"
+    end
 
-    expect(page).to have_content("repayment toward project #{project_active1.name}")
+    expect(current_path).to eq(borrower_user_loans_path(borrower_user))
+    expect(page).to_not have_content("No loans yet!")
 
-    select "5", from: "amount_paid"
+    within "div##{project_active1.id}-project" do
+      expect(page).to have_content("Left to Pay: $80.0")
+    end
   end
 end
