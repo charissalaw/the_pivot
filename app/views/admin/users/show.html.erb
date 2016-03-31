@@ -55,7 +55,7 @@
       <h4><span class="label label-info top-project">top project</span></h4>
 
       <% if !@loans.empty? %>
-        <span class="revenue-span"><%= link_to @loans.top_project.name, project_path(@loans.top_project) %></span>
+        <span class="revenue-span"><%= link_to @loans.top_project.name, admin_borrower_path(@loans.top_project.borrower) %></span>
       <% end %>
     </div>
   </div>

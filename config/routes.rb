@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-
   get "/lend", to: "projects#index", as: "projects"
+  get "/countries/search", to: "countries#search", as: "countries_search"
+  get "/categories/search", to: "categories#search", as: "categories_search"
+
   resource :cart, only: [:show]
   resources :cart_projects, only: [:create, :destroy, :update]
   resources :mailing_list_emails, only: [:create]
   resources :borrowers, only: [:new, :create]
   resources :categories, param: :slug, only: [:show]
   resources :countries, param: :slug, only: [:show]
+
 
   resources :users, only: [:new, :create, :show, :update] do
     resources :orders, only: [:new, :index, :create, :show]
