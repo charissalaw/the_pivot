@@ -46,6 +46,8 @@ private
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
     return true if controller == 'users' && action.in?(%w(show update))
     return true if controller == 'admin/borrower_attributes' && (%w(show edit update))
+    return true if controller == "categories" && action.in?(%w(show search))
+    return true if controller == "countries" && action.in?(%w(show search))
   end
 
   def borrower_permissions
@@ -62,8 +64,8 @@ private
     return true if controller == 'borrower/loans' && action.in?(%w(index show update))
     return true if controller == 'repayments' && action.in?(%w(new create))
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
-    return true if controller == "categories" && action.in?(%w(show))
-    return true if controller == "countries" && action.in?(%w(show))
+    return true if controller == "categories" && action.in?(%w(show search))
+    return true if controller == "countries" && action.in?(%w(show search))
   end
 
   def lender_permissions
