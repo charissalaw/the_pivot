@@ -52,6 +52,5 @@ RSpec.feature "AdminCanAdjustBorrowerAttributes", type: :feature do
     end
 
     expect(page).to have_content("Attribute Updated. Please review carefully!")
-    save_and_open_page
   end
 end

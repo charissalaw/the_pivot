@@ -28,7 +28,7 @@ class SpecSeed
       date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
       user.update(created_at: date, updated_at: date)
 
-      rand(1..2).times do
+      rand(4).times do
         order = user.orders.new
 
         if order.save
@@ -66,7 +66,7 @@ private
     categories = category_ids
     countries = country_ids
 
-    2.times do
+    5.times do
       project = borrower.projects.create(name:Faker::Book.title, goal: (10..500).step(5).to_a.sample, description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
       puts "Created Project: #{project.name}, #{project.goal}."
     end
