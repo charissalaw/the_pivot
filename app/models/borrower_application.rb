@@ -4,7 +4,7 @@ class BorrowerApplication
   end
 
   def evaluate_borrower
-    if @borrower_params.values.map(&:to_i).inject(:+) < 100
+    if @borrower_params.values.map(&:to_i).inject(:+) < 20
       Borrower.new(@borrower_params)
     else
       Borrower.new
