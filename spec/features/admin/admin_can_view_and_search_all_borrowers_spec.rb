@@ -86,25 +86,14 @@ RSpec.feature "Platform admin can view and search all borrowers", type: :feature
     expect(page).to_not have_content(user1.fullname)
     expect(page).to_not have_content(user3.fullname)
 
-# visit admin_borrowers_path
-#     fill_in "Search by borrower name", with: "smy"
-#     click_on "borrower name"
-#
-#     expect(page).to have_link(user3.fullname)
-#     expect(page).to have_content(user3.balance)
-#     expect(page).to have_content(user3.projects.count)
-#
-#     expect(page).to_not have_content(user1.fullname)
-#     expect(page).to_not have_content(user2.fullname)
 
     fill_in "search by borrower id", with: -1
     click_on "search by id"
 
     expect(page).to have_content("Borrower -1 doesn't exist!")
 
-    fill_in "search by borrower id", with: user1.id
+    fill_in "search by borrower id", with: user1.borrower.id
     click_on "search by id"
-
-    expect(current_path).to eq(admin_borrower_path(user1))
+    expect(page).to have_content("Jane Doe's Projects")
   end
 end

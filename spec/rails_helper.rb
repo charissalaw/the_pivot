@@ -82,3 +82,16 @@ def create_borrower_account(user)
     click_on "Apply"
   end
 end
+
+def generate_borrower_attributes
+  criteria.each do |quality|
+    BorrowerAttribute.create(category:quality[0], label:quality[1], score:quality[2])
+  end
+end
+
+def criteria
+  [["income", "> $60,000", 7],
+  ["housing", "> $3,000", 7],
+  ["credit", "> $3,000", 7],
+  ["dependents", "> 6", 1]]
+end
