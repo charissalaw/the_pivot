@@ -9,8 +9,13 @@ class Admin::BorrowerAttributesController < ApplicationController
 
   def update
     borrower_attribute = BorrowerAttribute.find(params[:id])
-    borrower_attribute.update(borrower_attribute_params)
-    redirect_to admin_borrower_attributes_path
+    if borrower_attribute.update(borrower_attribute_params)
+      flash[:alert] = "Attribute Updated. Please review carefully!"
+      redirect_to admin_borrower_attributes_path
+    else
+      flash[:alert] = "Something went wrong."
+      redirect_to admin_borrower_attributes_path
+    end
   end
 
   private
