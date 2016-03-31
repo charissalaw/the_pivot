@@ -11,7 +11,6 @@ class Borrower::ProjectsController < ApplicationController
       flash[:info] = "Your project has been created"
     else
       render :new
-      flash[:danger] = "What have you done wrong?"
     end
   end
 
@@ -24,7 +23,7 @@ class Borrower::ProjectsController < ApplicationController
   end
 
   def update
-  @project = current_user.projects.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     if @project.update(project_params)
       flash[:info] = "Congrats! #{@project.name} has been updated!"
       redirect_to borrower_user_projects_path(active: "status")
@@ -32,11 +31,6 @@ class Borrower::ProjectsController < ApplicationController
       flash.now[:alert] = "Sorry, boss lolololololololol.  Something went wrong :(... Please try again."
       render :new
     end
-  end
-
-  def show
-    @project = Project.find(params[:id])
-    @repayment = Repayment.find_by(project_id: @project.id)
   end
 
   def project_params
