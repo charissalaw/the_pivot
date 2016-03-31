@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::BaseController
+class Admin::UsersController < ApplicationController
 
   def show
     @orders = Order.all

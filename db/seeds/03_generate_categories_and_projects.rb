@@ -8,7 +8,7 @@ class CategoriesSeed
 
 private
   def self.categories
-    ["education", "food", "agriculture"]
+    %w(education food agriculture arts health housing transportation retail entertainment emergency)
   end
 end
 

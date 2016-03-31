@@ -1,6 +1,7 @@
 class BorrowersProjectsSeed
   def self.generate_borrowers
-    25.times do
+    @i = 0
+    250.times do
       fullname = Faker::Name.name
       email = Faker::Internet.free_email(fullname.split[0])
       user = User.new(fullname: fullname, email: email, password: "password")
@@ -42,8 +43,10 @@ private
     countries = country_ids
 
     2.times do
-      project = borrower.projects.create(name:Faker::Book.title, goal: (10..500).step(5).to_a.sample, description:Faker::Lorem.paragraph, category_id: categories.sample, country_id: countries.sample, image: "https://source.unsplash.com/random")
+      project = borrower.projects.create(name:Faker::Book.title, goal: (10..500).step(5).to_a.sample, description:Faker::Lorem.paragraph, category_id: Category.all[@i].id, country_id: countries.sample, image: "https://source.unsplash.com/random")
       puts "Created Project: #{project.name}, #{project.goal}."
+      @i += 1
+      if @i == 10 then @i = 0 end
     end
   end
 

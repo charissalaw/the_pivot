@@ -1,4 +1,4 @@
- <% @projects.each do |project| %>
+<% @projects.each do |project| %>
   <% if project.has_active_loans? %>
     <div class="table-responsive">
       <table class="table table-hover table-condensed table-projects all-projects">
@@ -33,7 +33,5 @@
       </table>
       </div>
       <br>
-      <% else %>
-      <h2 class='text-center light'>No loans yet!</h2>
     <% end %>
   <% end %>

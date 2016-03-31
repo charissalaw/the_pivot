@@ -1,4 +1,4 @@
-class Admin::ProjectsController < Admin::BaseController
+class Admin::ProjectsController < ApplicationController
 
   def index
     @projects = Search.admin_projects(params)

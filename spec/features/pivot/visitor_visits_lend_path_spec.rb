@@ -21,7 +21,6 @@ RSpec.feature "Visitor visits lend path" do
     visit root_path
     click_on "lend"
     expect(current_path).to eq(lend_path)
-    expect(page).to have_content("Choose a Project")
     expect(page).to have_content("Project Name")
     expect(page).to have_content("$1500")
     expect(page).to have_content("education")
