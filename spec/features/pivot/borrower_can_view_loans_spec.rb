@@ -68,4 +68,5 @@ RSpec.feature "BorrowerViewsAllLoans", type: :feature do
     expect(page).to have_content(project_active1.name)
     expect(page).to have_content(project_active2.name)
   end
+
 end
