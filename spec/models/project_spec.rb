@@ -17,4 +17,5 @@ RSpec.describe Project, :type => :model do
   it { should have_many :loans }
   it { should belong_to :country }
   it { should have_many :orders }
+
 end
