@@ -32,7 +32,7 @@
       <%= form_tag admin_projects_path, method: 'get' do %>
       <div class="form-group">
         <%= select_tag :country_search, options_from_collection_for_select(Country.all, 'id', 'name'), {class: "form-control search-dropdown", required:true, prompt: "country"} %>
-        <%= submit_tag "filter by category", class:"btn btn-lending-owl btn-sm"  %>
+        <%= submit_tag "filter by country", class:"btn btn-lending-owl btn-sm"  %>
       </div>
       <% end %>
     </div>
