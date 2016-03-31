@@ -2,12 +2,7 @@ class Borrower::LoansController < ApplicationController
   def index
     @projects = current_user.projects
   end
-
-  def show
-    @loan = Loan.find(params[:id])
-    @project = Project.find(@loan.project_id)
-  end
-
+  
   def update
     @loan = Loan.find(params[:loan_id])
     subtract_amt = params[:amount]

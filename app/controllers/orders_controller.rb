@@ -24,14 +24,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show
-    if current_user
-      @order = current_user.orders.find(params[:id])
-    else
-      redirect_to root_path
-    end
-  end
-
   def thanks
     if current_user
       @order = current_user.orders.find(params[:order_id])
