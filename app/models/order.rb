@@ -28,15 +28,6 @@ class Order < ActiveRecord::Base
     total_revenue / processed_orders.group_by_week(:created_at).count.length
   end
 
-  def self.search(search)
-    where('first_name || last_name || fullname ILIKE ?', "%#{search}%").uniq
-  end
-
-  def self.search_by_date(search)
-    date = Date.parse(search)
-    where(updated_at: date.beginning_of_day..date.end_of_day)
-  end
-
   def total
     loans.sum(:quantity)
   end
@@ -50,11 +41,7 @@ class Order < ActiveRecord::Base
   end
 
   def name
-    "#{first_name} #{last_name}"
-  end
-
-  def self.by_date
-    order(updated_at: :desc)
+    "#{user.first_name} #{user.last_name}"
   end
 
   def date

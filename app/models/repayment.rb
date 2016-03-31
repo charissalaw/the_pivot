@@ -11,20 +11,6 @@ class Repayment < ActiveRecord::Base
 
   def process_project
     project.check_repayment_status
-
-  end
-
-  def self.remaining_pmt(project)
-    repayment = Repayment.find_or_create_by(project_id: project.id)
-    display_remaining_pmt(project, repayment)
-  end
-
-  def self.update_repayment(project)
-    Repayment.find_or_create_by(project_id: project.id)
-  end
-
-  def self.display_remaining_pmt(project, repayment)
-    "$#{(project.goal - repayment.amount_paid)/100}"
   end
 
   def process_stripe_payment
