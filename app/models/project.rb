@@ -93,10 +93,6 @@ class Project < ActiveRecord::Base
     group(:category).count.map { |k, v| [k.name, v] }
   end
 
-  def self.search(search)
-    where('name ILIKE ?', "%#{search}%").uniq
-  end
-
   def self.search_by_category(search)
     where(category_id:search).uniq
   end
