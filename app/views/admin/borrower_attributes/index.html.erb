@@ -14,11 +14,11 @@
 
       <% @borrower_attributes.annual_income.each do |income| %>
         <tr id="<%= income.id %>-income">
-          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
-            <td><%= label_tag :income, nil, class:"sr-only" %>
-            <%= text_field_tag :name, income.label, placeholder: "income", class: "project-update-form" %></td>
-            <td><%= select_tag "loan amount", options_for_select([*1..25], income.score), class: "form-control"  %></td>
-            <td><%= submit_tag "update income details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <%= form_tag(admin_borrower_attribute_path(income.id), method: :put) do %>
+            <td>
+            <%= text_field_tag :label, income.label, class: "project-update-form" %></td>
+            <td><%= select_tag :score, options_for_select([*1..25], income.score), class: "form-control"  %></td>
+            <td><%= submit_tag "update income details", class:"btn btn-checkout btn-s"%></td>
           <% end %>
         </tr>
       <% end %>
@@ -38,11 +38,10 @@
 
       <% @borrower_attributes.housing_costs.each do |housing| %>
         <tr id="<%= housing.id %>-housing">
-          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
-            <td><%= label_tag :housing, nil, class:"sr-only" %>
-            <%= text_field_tag :housing, housing.label, placeholder: "housing", class: "project-update-form" %></td>
-            <td><%= select_tag "loan amount", options_for_select([*1..25], housing.score), class: "form-control" %></td>
-            <td><%= submit_tag "update housing details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <%= form_tag(admin_borrower_attribute_path(housing.id), method: :put) do %>
+            <td><%= text_field_tag :label, housing.label, class: "project-update-form" %></td>
+            <td><%= select_tag :score, options_for_select([*1..25], housing.score), class: "form-control" %></td>
+            <td><%= submit_tag "update housing details", class:"btn btn-checkout btn-s"%></td>
           <% end %>
         </tr>
       <% end %>
@@ -60,11 +59,10 @@
 
       <% @borrower_attributes.credit_payments.each do |credit_payment| %>
         <tr id="<%= credit_payment.id %>-credit_payment">
-          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
-            <td><%= label_tag :credit_payment, nil, class:"sr-only" %>
-            <%= text_field_tag :credit_payment, credit_payment.label, placeholder: "credit_payment", class: "project-update-form" %></td>
-            <td><td><%= select_tag "loan amount", options_for_select([*1..25], credit_payment.score), class: "form-control"  %></td></td>
-            <td><%= submit_tag "update credit payment details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <%= form_tag(admin_borrower_attribute_path(credit_payment.id), method: :put) do %>
+            <td><%= text_field_tag :label, credit_payment.label, class: "project-update-form" %></td>
+            <td><%= select_tag :score, options_for_select([*1..25], credit_payment.score), class: "form-control"  %></td>
+            <td><%= submit_tag "update credit payment details", class:"btn btn-checkout btn-s"%></td>
           <% end %>
         </tr>
       <% end %>
@@ -83,11 +81,10 @@
 
       <% @borrower_attributes.dependents.each do |dependent| %>
         <tr id="<%= dependent.id %>-dependent">
-          <%= form_tag(admin_borrower_attributes_path(current_user)) do %>
-            <td><%= label_tag :dependent, nil, class:"sr-only" %>
-            <%= text_field_tag :dependent, dependent.label, placeholder: "dependent", class: "project-update-form" %></td>
-            <td><td><%= select_tag "loan amount", options_for_select([*1..25], dependent.score), class: "form-control"  %></td></td>
-            <td><%= submit_tag "update dependent details", class:"btn btn-checkout btn-s", method:"put" %></td>
+          <%= form_tag(admin_borrower_attribute_path(dependent.id), method: :put) do %>
+            <td><%= text_field_tag :label, dependent.label, class: "project-update-form" %></td>
+            <td><%= select_tag :score, options_for_select([*1..25], dependent.score), class: "form-control"  %></td>
+            <td><%= submit_tag "update dependent details", class:"btn btn-checkout btn-s"%></td>
           <% end %>
         </tr>
       <% end %>
