@@ -1,7 +1,7 @@
 #Lending Owl
-[![Stories in Progress](https://badge.waffle.io/weilandia/lending_owl.png?label=Ready)](http://waffle.io/weilandia/lending_owl.io) &nbsp;&nbsp;&nbsp;&nbsp; [![Code Climate](https://codeclimate.com/github/weilandia/lending_owl/badges/gpa.svg)](https://codeclimate.com/github/weilandia/lending_owl)
+[![Stories in Progress](https://badge.waffle.io/weilandia/lending_owl.png?label=Ready)](http://waffle.io/weilandia/lending_owl.io) &nbsp;&nbsp;&nbsp;&nbsp;
 
-LendingOwl is an enterprise eCommerce app built on rails.  Projection is hosted [here](http://lendingowl.herokuapp.com).
+LendingOwl is a peer-to-peer micro lending app built as a pivot from a coffee ecommerce app.  The goal of the project was to up the stakes on an agile development workflow by pivoting an entire app in 2 weeks, while adding multiple layers of new permissions. Production is hosted [here](http://lendingowl.herokuapp.com).
 
 Admin Username: admin@lendingowl.com
 
@@ -9,24 +9,15 @@ Admin Password: password
 
 #####Admin Workflow
  ![admin workflow](app/assets/images/admin_workflow.gif)
- 
+
 #####User Workflow
  ![user workflow](app/assets/images/user_workflow.gif)
- 
+
 
 ###Goals
-#####End-to-End UX Design
-![team](app/assets/images/ux_banner.png)
-A primary goal for the Lending Owl project was to model UX Design workflow from ideation to projection.  We started this process by building a Journey Map to define our ideal users. With an idea of these users defined, we interviewed a group of people who fit "The Persona" in order to gather insights on what type of experience our users would like when interacting with an eCommerce app. Rooted in this research, we wireframed the entire app and did our first round of usability testing without writing a snippet of code.
-
-Moving forward (if the app was live), we would expect to continually interact with our ideal users in an iterative process of continual design improvement.
-
 #####Agile TDD
-Another goal for this project was to mock a two week sprint on an agile team with a focus on test-driven-development. We used [waffle.io](https://waffle.io/) to manage issues and pull requests and we used [simplecov](https://github.com/colszowka/simplecov) to monitor test coverage.
+A main focus for this project was to mock a two week sprint on an agile team with a focus on test-driven-development. We used [waffle.io](https://waffle.io/) to manage issues and pull requests and we used [simplecov](https://github.com/colszowka/simplecov) to monitor test coverage.
 
-![agile stats](app/assets/images/agile_tdd.png)
-
-![test coverage](app/assets/images/code_coverage_for_lending_owl.png)
 
 ####Technical Overview
 * Full stack ruby-on-rails
@@ -44,16 +35,12 @@ Once you have the repo cloned, make sure to reset the database on your local mac
 
 In order to run the tests, enter `rspec` in the command line.
 
-If you would like to run a specific test enter, the whole path of that test, preceeded by the rspec command: ie. 
+If you would like to run a specific test enter, the whole path of that test, preceeded by the rspec command: ie.
 
 ```
 rspec spec/features/user/user_adds_project_to_cart_spec.rb
 ```
 
-In order to see coverage for our testing suite simply type the command `open coverage/index.html` and it will show the index page for our simple cov code coverage. 
+In order to see coverage for our testing suite simply type the command `open coverage/index.html` and it will show the index page for our simple cov code coverage.
 
 Happy testing!
-
-###Team
-![team](app/assets/images/team.png)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Adam](https://github.com/adamhundley)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nick](https://github.com/weilandia)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[David](https://github.com/damwhit)
