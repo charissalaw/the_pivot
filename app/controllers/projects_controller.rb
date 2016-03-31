@@ -13,7 +13,6 @@ class ProjectsController < ApplicationController
       flash[:info] = "Congrats! #{@project.name} has been updated!"
       redirect_to borrower_user_projects_path(active: "active")
     else
-      flash.now[:alert] = "Something went wrong :(... Please try again."
       render :new
     end
   end
