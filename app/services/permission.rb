@@ -45,6 +45,7 @@ private
     return true if controller == 'admin/projects' && action.in?(%w(index show update create))
     return true if controller == 'sessions' && action.in?(%w(new create destroy))
     return true if controller == 'users' && action.in?(%w(show update))
+    return true if controller == 'admin/borrower_attributes' && (%w(show edit update))
   end
 
   def borrower_permissions

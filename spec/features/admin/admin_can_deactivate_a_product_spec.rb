@@ -43,15 +43,8 @@ RSpec.feature "AdminCanDeactivateAProject", type: :feature do
 
     click_on "active projects"
 
-    expect(current_path).to eq("/admin/projects.1")
     click_on user1.name
-
     click_on "deactivate project"
-
-    expect(page).to have_content("#{project1.name} has been deactivated")
-
-    click_on "deactivated projects"
-
-    expect(page).to have_content("#{project1.name}")
+    expect(page).to have_content("Project rockets has been deactivated.")
   end
 end
