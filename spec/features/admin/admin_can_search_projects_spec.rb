@@ -62,4 +62,9 @@ RSpec.feature "AdminCanSearchProjects", type: :feature do
     click_on "filter by country"
     expect(page).to have_content(@project_active2.name)
   end
+
+  scenario "they can search by country" do
+    click_on "completed projects"
+    expect(page).to_not have_content(@project_active2.name)
+  end
 end
