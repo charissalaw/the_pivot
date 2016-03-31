@@ -48,6 +48,7 @@ private
     return true if controller == 'admin/borrower_attributes' && (%w(show edit update))
     return true if controller == "categories" && action.in?(%w(show search))
     return true if controller == "countries" && action.in?(%w(show search))
+    return true if controller == 'projects' && action.in?(%w(index show))
   end
 
   def borrower_permissions
