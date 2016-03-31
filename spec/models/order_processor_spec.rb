@@ -19,8 +19,6 @@ RSpec.describe OrderProcessor, :type => :model do
     @order_processor = OrderProcessor.new({card_token: "token"}, @cart, @lender_user)
 
     expect(@order_processor.order.card_token).to eq("token")
-    expect(@order_processor.order.user_id).to eq(2)
-    expect(@order_processor.order.id).to eq(1)
     expect(@order_processor.order.order_total).to eq(500)
     expect(@order_processor.order.status).to eq("escrow")
   end
