@@ -8,7 +8,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr id="<%= project.id %>-project-detail">
         <td><span class="light">Left to Pay:</span>  <span class="font-bold"><%= project.display_debt %></span></td>
         <td></td>
         <td><%= link_to "pay back", new_project_repayment_path(project.slug), class:"btn btn-checkout btn-xs"%></td>
