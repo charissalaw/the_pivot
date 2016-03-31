@@ -1,7 +1,18 @@
 class BorrowersProjectsSeed
   def self.generate_borrowers
     @i = 0
-    250.times do
+
+    test_borrower = User.new(fullname: "Borrower", email: "borrower@lendingowl.com", password: "password")
+    if test_borrower.save
+      puts "Created User: #{test_borrower.fullname}."
+      borrower = Borrower.new(borrower_params(test_borrower))
+      if borrower.save
+        puts "Created Borrower: #{borrower.id}."
+        build_borrower_dashboard(test_borrower, borrower)
+      end
+    end
+
+    275.times do
       fullname = Faker::Name.name
       email = Faker::Internet.free_email(fullname.split[0])
       user = User.new(fullname: fullname, email: email, password: "password")
@@ -12,16 +23,6 @@ class BorrowersProjectsSeed
           puts "Created Borrower: #{borrower.id}."
           build_borrower_dashboard(user, borrower)
         end
-      end
-    end
-
-    test_borrower = User.new(fullname: "Borrower", email: "borrower@lendingowl.com", password: "password")
-    if test_borrower.save
-      puts "Created User: #{test_borrower.fullname}."
-      borrower = Borrower.new(borrower_params(test_borrower))
-      if borrower.save
-        puts "Created Borrower: #{borrower.id}."
-        build_borrower_dashboard(test_borrower, borrower)
       end
     end
   end
@@ -39,7 +40,6 @@ private
     user.borrower = borrower
     date = Faker::Time.between(DateTime.now - 700, DateTime.now - 2)
     user.update(created_at: date, updated_at: date)
-    categories = category_ids
     countries = country_ids
 
     2.times do

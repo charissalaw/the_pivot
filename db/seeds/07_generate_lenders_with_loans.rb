@@ -18,7 +18,7 @@ class LendersLoansSeed
             order_date = Faker::Time.between(date, DateTime.now - 1)
             order.update(created_at: order_date, updated_at: order_date)
 
-            rand(1..4).times do
+            rand(2..4).times do
               loan = order.loans.create(project_id: Project.where(status:"active").order("RANDOM()").first.id, quantity: (5..50).step(5).to_a.sample * 100)
 
               loan.update(created_at: order_date, updated_at: order_date)
