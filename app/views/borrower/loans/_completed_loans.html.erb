@@ -17,7 +17,7 @@
       <% num = 1 %>
       <% project.loans.each do |loan| %>
         <tr id="<%= loan.id %>-loan" class="loan-row">
-          <td><%= link_to num, borrower_user_loan_path(current_user, loan) %></td>
+          <td><%= num %></td>
           <td><%= loan.status %></td>
           <td class="loan-value" ><%= loan.date %></td>
           <td></td>

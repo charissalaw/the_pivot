@@ -32,11 +32,6 @@ RSpec.describe Order, :type => :model do
     expect(order.project_quantity).to eq(1)
   end
 
-  scenario "it displays date" do
-    order = @order_processor.order
-    expect(order.date).to eq("March 31, 2016")
-  end
-
   scenario "it displays name" do
     order = @order_processor.order
     expect(order.name).to eq("lender smith")

@@ -22,14 +22,14 @@ RSpec.feature "User searches projects", type: :feature do
   scenario "user searches by country" do
     visit "/"
     select "United States", from: "country-search"
-    click_on "search by country"
+    click_on "browse by country"
     expect(page).to have_content("factory project")
   end
 
   scenario "user searches by country" do
     visit "/"
     select "education", from: "category-search"
-    click_on "search by category"
+    click_on "browse by category"
     expect(page).to have_content("factory project")
   end
 end

@@ -42,13 +42,6 @@ RSpec.feature "AdminCanSearchProjects", type: :feature do
     expect(current_path).to eq(admin_user_path(@admin))
   end
 
-  scenario "they can search by borrower id" do
-    click_on "active projects"
-    fill_in "id_search", with: @user1.id
-    click_on "search by borrower id"
-    expect(page).to have_content(@user1.name)
-  end
-
   scenario "they can search by category" do
     click_on "active projects"
     select "space!", from: "category_search"

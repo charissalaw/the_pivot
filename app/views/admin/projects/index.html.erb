@@ -11,18 +11,14 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-4">
-      <%= form_tag admin_projects_path(status:"active"), method: 'get' do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "search by project name", class: "form-control form-control-sm search-form", required:true %>
-          <%= submit_tag "search by project name", class:"btn btn-lending-owl btn-sm"  %>
-        </div>
-      <% end %>
-      <%= form_tag admin_projects_path, method: 'get' do %>
       <div class="form-group">
-        <%= text_field_tag :id_search, params[:id], placeholder: "search by borrower id", class: "form-control form-control-sm search-form", required:true %>
-        <%= submit_tag "search by borrower id", class:"btn btn-lending-owl btn-sm"  %>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-lending-owl btn-sm" type="button" style="margin-right:3px;">search projects</button>
+          </span>
+          <input id="project-search" type="text" class="form-control form-control-sm search-form" placeholder="Search by project name">
+        </div><!-- /input-group -->
       </div>
-      <% end %>
       <%= form_tag admin_projects_path, method: 'get' do %>
       <div class="form-group">
         <%= select_tag :category_search, options_from_collection_for_select(Category.all, 'id', 'name'), {class: "form-control search-dropdown", required:true, prompt: "category"} %>
@@ -41,9 +37,9 @@
           <% if !@projects.nil? %>
             <% @projects.each do |project| %>
               <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered all-projects">
                 <tr id="<%= project.id %>-project" class="project-index">
-                  <td class="text-left"><%= project.name %><br><%= link_to project.borrower.user.fullname, admin_borrower_path(project.borrower) %></td>
+                  <td class="text-left project-name"><%= project.name %><br><%= link_to project.borrower.user.fullname, admin_borrower_path(project.borrower) %></td>
                 </tr>
                   <td><%= image_tag(project.image.url(:small)) %></td>
                 </table>

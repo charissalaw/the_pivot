@@ -3,7 +3,7 @@
       <div id="<%= project.id %>-project"class="container-fluid project-index-div">
         <%= form_for [:borrower, current_user, project], url: borrower_user_project_path(current_user, project) do |f| %>
         <div class="row project-index-row">
-          <div class="col-xs-2">
+          <div class="col-lg-2">
             <%= link_to image_tag(project.image.url(:small),  class:"admin-project-image"), project_path(project.slug) %><br><br>
             <%= f.label :image, class:"sr-only"  %>
             <%= f.file_field :image, { id:"#{project.id}_file_input", style:"display:none" } %>
@@ -12,7 +12,7 @@
               </label>
             <%= f.submit "update project", class:"btn btn-checkout btn-s"%>
           </div>
-          <div class="col-xs-8">
+          <div class="col-lg-8">
             <%= f.label :name, class:"sr-only" %>
             <%= f.text_field :name, placeholder: "name", class: "form-control"%><br>
             <%= f.label :description, class:"sr-only"  %>

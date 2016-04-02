@@ -18,14 +18,16 @@
               <th></th>
             </tr>
           </thead>
+          <% num = 1 %>
           <% current_user.loans.each do |loan| %>
             <tr>
-              <td><h4><%= loan.order.id %></h4></td>
+              <td><h4><%= num %></h4></td>
               <td><h4><%= link_to loan.project.name, project_path(loan.project.slug) %></h4></td>
               <td><h4><%= loan.date %></h4></td>
               <td><h4><%= loan.project.status %></h4></td>
               <td><h4><%= loan.display_total %></h4></td>
             </tr>
+            <% num += 1 %>
           <% end %>
         </table>
       </div>
